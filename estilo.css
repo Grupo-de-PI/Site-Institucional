@@ -1,0 +1,196 @@
+/* INDEX ------------------------------------------------------------------------------------------------------------*/
+
+body {
+    margin: 0;
+    background-color: #ffffff;
+
+}
+
+/* HEADEAR */
+
+.header {
+    background-color: black;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 120px;
+    background-color: #ffffff;
+    font-family: "Marvel", sans-serif;
+    padding-bottom: 30px;
+
+
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+@import url('https://fonts.googleapis.com/css2?family=Marvel:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    list-style: none;
+    width: 700px;
+
+
+}
+
+.navbar a {
+    color: black;
+    text-decoration: none;
+    font-family: "Marvel", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+.locs {
+    display: flex;
+    font-weight: bolder;
+    font-size: larger;
+
+}
+
+.botoes1navbar {
+    display: flex;
+    width: 120px;
+    height: 40px;
+    flex-direction: row;
+    border-radius: 15px;
+    background-color: #3FA2F3;
+    border-color: #3FA2F3;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+
+}
+
+.botoes2navbar {
+    display: flex;
+    width: 120px;
+    height: 40px;
+    flex-direction: row;
+    border-radius: 15px;
+    background-color: #1F2A33;
+    border-color: #1F2A33;
+    color: white;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+
+}
+
+.imageNavbar {
+    width: 80px;
+    height: 80px;
+}
+
+.container .caixaprincipal {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 100px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    padding-right: 40px;
+}
+
+.caixaprincipal {
+    background-color: #B7CEF1;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.image1 {
+    width: 600px;
+    margin-left: 400px;
+
+
+}
+
+h2{
+    align-items: flex-start;
+    color: #2F58A5;
+    font-family: "Marvel", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding-left: 30px;
+}
+
+.box2{
+    display: flex;
+    justify-content: start;
+    width: 50px;
+    height: 50px;
+    background-color: #2F58A5;
+    align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* FOOTER */
+
+.footer {
+    height: 120px;
+    width: 100%;
+    background-color: #2F58A5;
+}
+
+.footer .container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.footer h4 {
+    margin-bottom: 0;
+
+}
+
+.image {}
