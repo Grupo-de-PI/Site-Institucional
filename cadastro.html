@@ -8,8 +8,6 @@
 
   <title>AquaTech | Cadastro</title>
 
-  <link rel="stylesheet" href="styles/style.css" />
-  <link rel="icon" href="assets/icon/favicon2.ico" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
@@ -44,26 +42,75 @@
         <h2>Bem-vindo!</h2>
         <div class="formulario">
           <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
+            <span>Nome do usuário</span>
+            <input id="input_nome" type="text"/>
           </div>
           <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
+            <span>Razão Social</span>
+            <input id="input_razaoSocial" type="text"/>
           </div>
           <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
+            <span>CNPJ</span>
+            <input id="input_cnpj" type="text"/>
           </div>
           <div class="campo">
-            <span>Senha:</span>
-            <input id="senha_input" type="password" placeholder="******" />
+            <span>Porte da Empresa</span>
+            <input id="input_porte_da_Empresa" type="text"/>
           </div>
           <div class="campo">
-            <span>Confirmação da Senha:</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="******" />
+            <span>Telefone - Comercial</span>
+            <input id="input_telefoneComercial" type="text"/>
           </div>
-          <button class="botao">Cadastrar</button>
+          <div class="campo">
+            <span>Telefone - Celular</span>
+            <input id="input_telefoneCelular" type="text"/>
+          </div>
+          <div class="campo">
+            <span>Email</span>
+            <input id="input_email" type="email"/>
+          </div>
+          <div class="campo">
+            <span>Digite sua Senha</span>
+            <input id="input_senha" type="password"/>
+          </div>
+          <div class="campo">
+            <span>Redigite sua Senha:</span>
+            <input id="input_confirmacao_senha" type="password"/>
+          </div>
+          <div class="campo">
+            <span>Logradouro</span>
+            <input id="input_logradouro" type="text"/>
+          </div>
+          <div class="campo">
+            <span>Número</span>
+            <input id="input_num" type="text"/>
+          </div>
+          <div class="campo">
+            <span>Complemento</span>
+            <input id="input_complemento" type="text"/>
+          </div>
+          <div class="campo">
+            <span>CEP</span>
+            <input id="input_cep" type="text"/>
+          </div>
+          <div class="campo">
+            <span>Bairro</span>
+            <input id="input_bairro" type="text"/>
+          </div>
+          <div class="campo">
+            <span>Cidade</span>
+            <input id="input_cidade" type="text"/>
+          </div>
+          <div class="campo">
+            <span>Estado</span>
+            <input id="input_estado" type="text"/>
+          </div>
+          <div class="campo">
+            <span>País</span>
+            <input id="input_pais" type="text"/>
+          </div>
+          <button class="botao" onclick="cadastrar()">Finalizar cadastro</button>
+          <div id="div_mensagem"></div>
         </div>
       </div>
     </div>
@@ -80,3 +127,43 @@
 </body>
 
 </html>
+
+<script>
+  function cadastrar() {
+      var nomeUsuario = input_nome.value;
+      var razaoSocial = input_razaoSocial.value;
+      var CNPJ = input_cnpj.value;
+      var porte_empresa = input_porte_da_Empresa.value;
+      var telefoneComercial = input_telefoneComercial.value;
+      var telefoneCelular = input_telefoneCelular.value;
+      var email = input_email.value;
+      var senha = input_senha.value;
+      var redigitarSenha = input_confirmacao_senha.value;
+      var logradouro = input_logradouro.value;
+      var numero = input_num.value;
+      var complemento = input_complemento.value;
+      var cep = input_cep.value;
+      var bairro = input_bairro.value;
+      var cidade = input_cidade.value;
+      var estado = input_estado.value;
+      var pais = input_pais.value;
+
+      var contadorNumeros = 0;
+      var i = 0;
+      while (i < CNPJ.length) {
+        var caractere = CNPJ[i];
+        if (caractere >= '0' && caractere <= '9') {
+        contadorNumeros = contadorNumeros + 1;
+        }
+         i = i + 1;
+      }
+
+      if (contadorNumeros != 14) {
+        alert("CNPJ inválido! Deve conter exatamente 14 números.");
+        return;
+      }
+      div_mensagem = "Cadastro realizado com sucesso"
+
+      
+  } 
+</script>
