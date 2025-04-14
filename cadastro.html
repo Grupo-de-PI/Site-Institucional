@@ -41,74 +41,92 @@
       <div class="card card-cadastro">
         <h2>Bem-vindo!</h2>
         <div class="formulario">
+          
           <div class="campo">
             <span>Nome do usuário</span>
-            <input id="input_nome" type="text"/>
+            <input id="input_nome" type="text" oninput="validarNome()"/>
           </div>
+          
           <div class="campo">
             <span>Razão Social</span>
             <input id="input_razaoSocial" type="text"/>
           </div>
+
           <div class="campo">
             <span>CNPJ</span>
-            <input id="input_cnpj" type="text"/>
+            <input id="input_cnpj" type="number" oninput="validarCPNJ()"/>
           </div>
+
           <div class="campo">
             <span>Porte da Empresa</span>
             <input id="input_porte_da_Empresa" type="text"/>
           </div>
+
           <div class="campo">
             <span>Telefone - Comercial</span>
             <input id="input_telefoneComercial" type="text"/>
           </div>
+
           <div class="campo">
             <span>Telefone - Celular</span>
             <input id="input_telefoneCelular" type="text"/>
           </div>
+
           <div class="campo">
             <span>Email</span>
             <input id="input_email" type="email"/>
           </div>
+
           <div class="campo">
             <span>Digite sua Senha</span>
             <input id="input_senha" type="password"/>
           </div>
+
           <div class="campo">
             <span>Redigite sua Senha:</span>
             <input id="input_confirmacao_senha" type="password"/>
           </div>
+
           <div class="campo">
             <span>Logradouro</span>
             <input id="input_logradouro" type="text"/>
           </div>
+
           <div class="campo">
             <span>Número</span>
             <input id="input_num" type="text"/>
           </div>
+
           <div class="campo">
             <span>Complemento</span>
             <input id="input_complemento" type="text"/>
           </div>
+
           <div class="campo">
             <span>CEP</span>
             <input id="input_cep" type="text"/>
           </div>
+
           <div class="campo">
             <span>Bairro</span>
             <input id="input_bairro" type="text"/>
           </div>
+
           <div class="campo">
             <span>Cidade</span>
             <input id="input_cidade" type="text"/>
           </div>
+
           <div class="campo">
             <span>Estado</span>
             <input id="input_estado" type="text"/>
           </div>
+
           <div class="campo">
             <span>País</span>
             <input id="input_pais" type="text"/>
           </div>
+
           <button class="botao" onclick="cadastrar()">Finalizar cadastro</button>
           <div id="div_mensagem"></div>
         </div>
@@ -129,41 +147,65 @@
 </html>
 
 <script>
-  function cadastrar() {
-      var nomeUsuario = input_nome.value;
-      var razaoSocial = input_razaoSocial.value;
-      var CNPJ = input_cnpj.value;
-      var porte_empresa = input_porte_da_Empresa.value;
-      var telefoneComercial = input_telefoneComercial.value;
-      var telefoneCelular = input_telefoneCelular.value;
-      var email = input_email.value;
-      var senha = input_senha.value;
-      var redigitarSenha = input_confirmacao_senha.value;
-      var logradouro = input_logradouro.value;
-      var numero = input_num.value;
-      var complemento = input_complemento.value;
-      var cep = input_cep.value;
-      var bairro = input_bairro.value;
-      var cidade = input_cidade.value;
-      var estado = input_estado.value;
-      var pais = input_pais.value;
+  //Criando Variaveis globais para usar nas validações
+  var nomeUsuario = "";
+  var razaoSocial = "";
+  var CNPJ = 0;
+  var porte_empresa = "";
+  var telefoneComercial = 0;
+  var telefoneCelular = 0;
+  var email = "";
+  var senha = "";
+  var redigitarSenha = "";
+  var logradouro = "";
+  var numero = 0;
+  var complemento = "";
+  var cep = 0;
+  var bairro = "";
+  var cidade = "";
+  var estado = "";
+  var pais = "";
 
-      var contadorNumeros = 0;
-      var i = 0;
-      while (i < CNPJ.length) {
-        var caractere = CNPJ[i];
-        if (caractere >= '0' && caractere <= '9') {
-        contadorNumeros = contadorNumeros + 1;
-        }
-         i = i + 1;
-      }
+  var caractere=0;
 
-      if (contadorNumeros != 14) {
-        alert("CNPJ inválido! Deve conter exatamente 14 números.");
-        return;
-      }
-      div_mensagem = "Cadastro realizado com sucesso"
+  // nomeUsuario = input_nome.value;
+  // razaoSocial = input_razaoSocial.value;
+  // porte_empresa = input_porte_da_Empresa.value;
+  // telefoneComercial = input_telefoneComercial.value;
+  // telefoneCelular = input_telefoneCelular.value;
+  // email = input_email.value;
+  // senha = input_senha.value;
+  // redigitarSenha = input_confirmacao_senha.value;
+  // logradouro = input_logradouro.value;
+  // numero = input_num.value;
+  // complemento = input_complemento.value;
+  // cep = input_cep.value;
+  // bairro = input_bairro.value;
+  // cidade = input_cidade.value;
+  // estado = input_estado.value;
+  // pais = input_pais.value;
 
+  function validarCPNJ() {
       
-  } 
+    
+    var cnpj = Number(input_cnpj.value);
+    var tamanho = cnpj.length();
+      
+    for(var i = 0 ; i<tamanho ; i++ ){
+      caractere = cnpj[i];
+
+      if (caractere >= 0 && caractere <= 9) {
+        
+      } else {
+        alert("Erro!")
+      }
+    }
+      
+        
+       
+  }
+
+  function validarNome(){
+
+  }
 </script>
