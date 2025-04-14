@@ -162,9 +162,10 @@
 
     // Aplica a máscara: (99) 99999-9999
     var formatado = "";
-    if (numeros.length >= 0) formatado += numeros.substring(0, 2);
+    if (numeros.length > 0) formatado += "(" + numeros.substring(0, 2);
+    if (numeros.length >= 3) formatado += ") ";
     if (numeros.length >= 3) formatado += numeros.substring(2, 7);
-    if (numeros.length >= 7) formatado += "-" + numeros.substring(7, 11);
+    if (numeros.length >= 8) formatado += "-" + numeros.substring(7, 11);
 
     input_telefoneCelular.value = formatado;
   }
