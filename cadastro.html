@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AquaTech | Cadastro</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+</head>
+
+<body>
+  <!--header inicio-->
+  <div class="header">
+    <div class="container">
+      <h1 class="titulo">AquaTech</h1>
+      <ul class="navbar">
+        <li>
+          <a href="index.html">Inicial</a>
+        </li>
+        <li>
+          <a href="simulador.html">Simulador</a>
+        </li>
+        <li>|</li>
+        <li>
+          <a href="login.html">Login</a>
+        </li>
+        <li class="agora">
+          <a href="#">Cadastro</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--header fim-->
+
+  <div class="login">
+
+    <div class="container">
+      <div class="card card-cadastro">
+        <h2>Bem-vindo!</h2>
+        <div class="formulario">
+          
+          <div class="campo">
+            <span>Nome do usuário</span>
+            <input id="input_nome" type="text" oninput="validarNome()"/>
+          </div>
+          
+          <div class="campo">
+            <span>Razão Social</span>
+            <input id="input_razaoSocial" type="text"/>
+          </div>
+
+          <div class="campo">
+            <span>CNPJ</span>
+            <input id="input_cnpj" min="0" type="text" oninput="mascaraCNPJ()" placeholder="00.000.000/0000-00" maxlength="18"/>
+          </div>
+
+          <div class="campo">
+            <span>Porte da Empresa</span>
+            <input id="input_porte_da_Empresa" type="text"/>
+          </div>
+
+          <div class="campo">
+            <span>Telefone - Comercial</span>
+            <input id="input_telefoneComercial" type="text"/>
+          </div>
+
+          <div class="campo">
+            <span>Telefone - Celular</span>
+            <input id="input_telefoneCelular" min="0" type="text" oninput="mascaraCelular()" placeholder="(99) 99999-9999" maxlength="15"/>
+          </div>
+
+          <div class="campo">
+            <span>Email</span>
+            <input id="input_email" type="email"/>
+          </div>
+
+          <div class="campo">
+            <span>Digite sua Senha</span>
+            <input id="input_senha" type="password"/>
+          </div>
+
+          <div class="campo">
+            <span>Redigite sua Senha:</span>
+            <input id="input_confirmacao_senha" type="password"/>
+          </div>
+
+          <div class="campo">
+            <span>Logradouro</span>
+            <input id="input_logradouro" type="text"/>
+          </div>
+
+          <div class="campo">
+            <span>Número</span>
+            <input id="input_num" type="text"/>
+          </div>
+
+          <div class="campo">
+            <span>Complemento</span>
+            <input id="input_complemento" type="text"/>
+          </div>
+
+          <div class="campo">
+            <span>CEP</span>
+            <input id="input_cep" type="text"/>
+          </div>
+
+          <div class="campo">
+            <span>Bairro</span>
+            <input id="input_bairro" type="text"/>
+          </div>
+
+          <div class="campo">
+            <span>Cidade</span>
+            <input id="input_cidade" type="text"/>
+          </div>
+
+          <div class="campo">
+            <span>Estado</span>
+            <input id="input_estado" type="text"/>
+          </div>
+
+          <div class="campo">
+            <span>País</span>
+            <input id="input_pais" type="text"/>
+          </div>
+
+          <button class="botao" onclick="cadastrar()">Finalizar cadastro</button>
+          <div id="div_mensagem"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--footer inicio-->
+  <div class="footer">
+    <div class="container">
+      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2024</h4>
+      <span class="version">v1.0.0</span>
+    </div>
+  </div>
+  <!--footer fim-->
+</body>
+
+</html>
+
+<script>
+  function mascaraCelular() {
+    var valor = input_telefoneCelular.value;
+
+    // Remove tudo que não for número
+    var numeros = "";
+    var i = 0;
+    while (i < valor.length) {
+      if (valor[i] >= '0' && valor[i] <= '9') {
+        numeros += valor[i];
+      }
+      i++;
+    }
+
+    // Aplica a máscara: (99) 99999-9999
+    var formatado = "";
+    if (numeros.length > 0) formatado += "(" + numeros.substring(0, 2);
+    if (numeros.length >= 3) formatado += ") ";
+    if (numeros.length >= 3) formatado += numeros.substring(2, 7);
+    if (numeros.length >= 8) formatado += "-" + numeros.substring(7, 11);
+
+    input_telefoneCelular.value = formatado;
+  }
+
+  function mascaraComercial() {
+    var valor = input_telefoneComercial.value;
+
+    var numeros = "";
+    var i = 0;
+    while (i < valor.length) {
+      if (valor[i] >= '0' && valor[i] <= '9') {
+        numeros += valor[i];
+      }
+      i++;
+    }
+
+    // Aplica a máscara: (99) 9999-9999
+    var formatado = "";
+    if (numeros.length > 0) formatado += "(" + numeros.substring(0, 2);
+    if (numeros.length >= 2) formatado += ") ";
+    if (numeros.length >= 3) formatado += numeros.substring(2, 6);
+    if (numeros.length >= 6) formatado += "-" + numeros.substring(6, 10);
+
+    input_telefoneComercial.value = formatado;
+  }
+
+  function mascaraCNPJ() {
+    var valor = input_cnpj.value;
+
+    var numeros = "";
+    var i = 0;
+    while (i < valor.length) {
+      if (valor[i] >= '0' && valor[i] <= '9') {
+        numeros += valor[i];
+      }
+      i++;
+    }
+
+    // Aplica a máscara: 99.999.999/9999-99
+    var formatado = "";
+    if (numeros.length >= 1) formatado += numeros.substring(0, 2);
+    if (numeros.length >= 3) formatado += "." + numeros.substring(2, 5);
+    if (numeros.length >= 6) formatado += "." + numeros.substring(5, 8);
+    if (numeros.length >= 9) formatado += "/" + numeros.substring(8, 12);
+    if (numeros.length >= 13) formatado += "-" + numeros.substring(12, 14);
+
+    input_cnpj.value = formatado;
+  }
+
+  function validarNome() {
+      
+   
+      var valor = input_nome.value;
+      var nomeValido = "";
+      var i = 0;
+    
+      while (i < valor.length) {
+      var caractere = valor[i];
+  
+      if (
+        (caractere >= 'A' && caractere <= 'Z') ||
+        (caractere >= 'a' && caractere <= 'z') ||
+        caractere === ' '
+      ) {
+        nomeValido += caractere;
+      }
+      i++;
+    }
+  
+    input_nome.value = nomeValido;
+  }
+</script>
