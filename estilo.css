@@ -1,38 +1,41 @@
 /* INDEX ------------------------------------------------------------------------------------------------------------*/
 
+html{
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     background-color: #ffffff;
+
+
 
 }
 
 /* HEADEAR */
 
-.header {
-    background-color: black;
+header {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0%;
+    font-family: 'Fredoka One', cursive;
+    display: flex;
+    flex-direction: column;
+    top: 0%;
+    align-items: center;
 }
 
-.header .container {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #ffffff;
+.container {
+
+    width: 80%;
+    margin: auto;
+
+}
+
+.fixo {
     position: fixed;
-    top: 0;
     width: 100%;
-
+    z-index: 1000;
 }
-
-/* display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 0 120px;
-background-color: #ffffff;
-font-family: "Marvel", sans-serif;
-padding-bottom: 30px; */
-
-
 
 @import url('https://fonts.googleapis.com/css2?family=Marvel:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
@@ -56,22 +59,36 @@ padding-bottom: 30px; */
 
 }
 
+.ou {
+    padding: 10px;
+    font-size: larger;
+    font-family: "Marvel", sans-serif;
+
+}
+
+.traco {
+    background-color: #1F2A33;
+    width: 1px;
+    height: 60px;
+    margin: 20px;
+}
+
 .locs {
     display: flex;
-    font-weight: bolder;
     color: black;
     align-items: center;
 
 
 }
- 
+
 /* descoração dos LINKS */
 
-.locs >a{
-    display: inline-block ;
+.locs>a {
+    display: inline-block;
     padding-bottom: 0.25rem;
     position: relative;
 }
+
 .locs a::before {
     content: "";
     position: absolute;
@@ -81,17 +98,17 @@ padding-bottom: 30px; */
     width: 0;
     height: 2px;
     transition: width 0.25s ease-out;
-    
-    
+
+
 }
 
- .locs >a:hover::before{
+.locs>a:hover::before {
     width: 100%;
- }
+}
 
- /* fim dos links */
+/* fim dos links */
 
-.locs > p {
+.locs>p {
     color: #000000;
     font-family: "Marvel", sans-serif;
     display: flex;
@@ -118,10 +135,11 @@ padding-bottom: 30px; */
 }
 
 .botoes1navbar:hover {
-    background-color: #ffffff; /* Green */
+    background-color: #ffffff;
+    /* Green */
     color: #3FA2F3;
 
-  }
+}
 
 
 .botoes2navbar {
@@ -138,14 +156,15 @@ padding-bottom: 30px; */
     justify-content: center;
     font-size: large;
     transition-duration: 0.4s;
-    
+
 }
 
 .botoes2navbar:hover {
-    background-color: #ffffff; /* Green */
+    background-color: #ffffff;
+    /* Green */
     color: #1F2A33;
 
-  }
+}
 
 .imageNavbar {
     width: 80px;
@@ -153,89 +172,788 @@ padding-bottom: 30px; */
     margin-right: 100px;
 }
 
-.container .caixaprincipal {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 100px;
-    padding-top: 80px;
-    padding-bottom: 80px;
-    padding-right: 40px;
+/* comeco site */
+
+.caxa {
+    width: 50%;
+    flex-direction: column;
+
+
+}
+
+.caxa2 {
+    width: 50%;
+}
+
+section {
+    margin-top: 1.5%;
+    margin-bottom: 1.5%;
 }
 
 .caixaprincipal {
     background-color: #B7CEF1;
     border-radius: 20px;
- 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 100px;
+    padding: 3%;
+
 }
 
 .image1 {
-    width: 600px;
-    flex-direction: end;
-    display: flex;
-    padding-left: 400px;
-
+    float: right;
+    margin-left: 2%;
+    width: 90%;
+    padding-right: 5%;
 }
 
 h2 {
-    align-items: flex-start;
     color: #2F58A5;
     font-family: "Marvel", sans-serif;
-    font-weight: 800px;
-    font-style: normal;
-    padding-left: 30px;
+    font-size: 25px;
+    margin-top: 2%;
+    margin-bottom: 8%;
 }
 
+.texto_caixa {
+    color: #2F58A5;
+    font-family: "Marvel", sans-serif;
+    font-size: 135%;
+    margin-top: 2%;
+
+
+}
 
 .box2 {
     width: 200px;
     height: 120px;
     background-color: #2F58A5;
-
+    align-items: end;
+    margin-top: 20%;
+    margin-left: 6%;
 
 }
 
 /* TEXTOS -----------------------------------------------------------------------------------------------------------------*/
 
-.texto1{
+.texto1 {
     display: flex;
+    justify-content: start;
     flex-direction: row;
+    margin-bottom: 10%;
 }
 
-.texto1 >p{
+.retan {
+    margin-left: 8%;
+    width: 50%;
+
+}
+
+.retan2 {
+    margin-right: 7%;
+    width: 50%;
+    display: flex;
+}
+
+
+.retangulo {
+    background-color: #2F58A5;
+    width: 80px;
+    height: 7px;
+    margin-bottom: 3%;
+
+}
+
+h3 {
+    color: #2F58A5;
+    font-family: "Marvel", sans-serif;
+    font-size: 25px;
+    
+
+}
+
+
+p {
+    font-size: 17px;
     text-align: justify;
-    margin-left: 50%;
+    line-height: 1.3;
+    margin-bottom: 1.8%;
+    margin-top: 1.8%;
+    font-family: "Marvel", sans-serif;
+    margin-right: 30%;
+    width: 100%;
     margin-right: 100px;
 
 }
 
 
+.texto2 {
+    display: flex;
+    justify-content: start;
+    flex-direction: row;
+    margin-bottom: 10%;
+}
+
+.retan3 {
+    margin-left: 8%;
+    width: 50%;
+
+}
+
+.retan4 {
+    flex-direction: column;
+    margin-left: 10%;
+    width: 50%;
+    display: flex;
+}
+
+.retan4>p {
+    width: 65%;
+}
+
+.imagem_freezer {
+    float: left;
+    margin-left: 2%;
+    width: 90%;
+    padding-right: 5%;
+    border-radius: 8%;
+}
 
 
 
 
+.texto3 {
+    display: flex;
+    justify-content: start;
+
+}
+
+.retan5 {
+    width: 50%;
+    margin: 9%;
+
+}
+
+.retan6 {
+    flex-direction: column;
+    margin-right: 9%;
+    width: 50%;
+    display: flex;
+}
+
+.retan5>p {
+    width: 65%;
+}
+
+.boxbox {
+    background-color: #cccccc;
+    width: 400px;
+    height: 450px;
+    border-color: #2F58A5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+/* estruturação ---------------------------------------------------------- */
+
+.titulo {
+    height: 15%;
+    text-align: center;
+    margin-top: 5%;
+}
+
+
+.icons {
+    height: 25%;
+    padding-left: 8%;
+
+}
+
+.icons2 {
+    height: 25%;
+    padding-left: 38%;
+
+}
+
+
+
+/* --------------------------------------------------------------------- */
+
+
+h5 {
+    color: #2F58A5;
+    font-family: "Marvel", sans-serif;
+    font-size: 25px;
+    margin-top: 2%;
+
+}
+
+.imagens {
+    width: 100px;
+    height: 100px;
+}
+
+.mais {
+    width: 40px;
+    height: 40px;
+    margin-left: 10%;
+    margin-right: 10%;
+    justify-content: center;
+
+}
+
+
+
+
+
+
+.caixaFaleConosco {
+    background-color: #1F2A33;
+    width: 800px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 280px;
+    border-radius: 15px;
+    margin-bottom: 10%;
+
+}
+
+
+.caixaTexto1 {
+    height: 25%;
+
+}
+
+.caixaTexto2 {
+    height: 25%;
+
+}
+
+.caixaTexto3 {
+    height: 25%;
+
+}
+
+.caixaTexto4 {
+    height: 25%;
+    justify-content: center;
+    display: flex;
+
+}
+
+h6 {
+    color: #ffffff;
+    font-family: "Marvel", sans-serif;
+    font-size: 23px;
+    margin-top: 2%;
+    text-align: center;
+    width: 100%;
+}
+
+.caixaTexto1>h3 {
+    margin-top: 5%;
+    margin-left: 5%;
+
+}
+
+.textoF {
+    font-family: "Marvel", sans-serif;
+    text-align: center;
+    color: #ffffffd2;
+    font-size: 21px;
+}
+
+.botaoFale {
+    text-align: center;
+    width: 150px;
+    height: 60px;
+    background-color: #ffffff;
+    border-color: #2F58A5;
+    color: #2F58A5;
+    border-radius: 15px;
+    font-size: larger;
+    border: 15%;
+}
+
+.botaoFale {
+    cursor: pointer;
+}
 
 
 /* FOOTER */
 
-.footer {
-    height: 120px;
-    width: 100%;
-    background-color: #2F58A5;
-}
 
-.footer .container {
+.footer {
+    display: flex;
     height: 100%;
     width: 100%;
+    background-color: #2F58A5;
+    flex-direction: row;
+    padding: 5%;
+
+}
+
+.quadrado1 {
+    width: 50%;
+    flex-direction: column;
+
+
+}
+
+.quadrado2 {
+    width: 50%;
+    justify-content: center;
     display: flex;
     flex-direction: column;
+}
+
+.imagem_footer {
+    display: flex;
+    flex-direction: row;
     align-items: center;
+    flex-direction: flex-end;
+}
+
+
+.i {
+    width: 80px;
+    height: 80px;
+
+}
+
+/* CLASS DOS TEXTOS -------------------------------------------------- */
+
+.texto88 {
     color: white;
+    margin-top: 5%;
 }
 
-.footer h4 {
-    margin-bottom: 0;
+.HH {
+    color: white;
+    margin-left: 0px;
+}
+
+.texto99 {
+    color: white;
+    font-family: "Marvel", sans-serif;
+    font-size: large;
+    margin-bottom: 5%;
+}
+
+/* --------------------------------------------------------------------------*/
+
+
+
+.tods>a {
+    color: #ffffffce;
+    font-family: "Marvel", sans-serif;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+
+/*****************************/
+.tods>a {
+    display: inline-block;
+    padding-bottom: 0.25rem;
+    position: relative;
+}
+
+.tods a::before {
+    content: "";
+    position: absolute;
+    background-color: #3FA2F3;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    transition: width 0.25s ease-out;
 
 }
 
-.image {}
+.tods>a:hover::before {
+    width: 100%;
+}
+
+.tods::marker {
+    color: white;
+
+}
+
+
+/* ******************************************************************************************************************************/
+
+
+/* SITE PRODUTOS */
+
+
+.texto1_produtos {
+    display: flex;
+    flex-direction: row;
+    margin-top: 170px;
+}
+
+.retan_produtos {
+    width: 50%;
+    margin-left: 100px;
+    align-items: center;
+
+}
+
+.retan2_imagem {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    align-items: center;
+
+}
+
+.sensorfoto {
+    width: 400px;
+    height: 400px;
+
+}
+
+/* SEGUNDA PARTE - PRODUTOS */
+
+.texto2_produtos {
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px;
+
+}
+
+.retan3_produtos {
+    width: 50%;
+    margin-left: 100px;
+    align-items: center;
+
+}
+
+.retan4_produtos {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    align-items: center;
+
+
+}
+
+/* TERCEIRA PARTE */
+
+.texto3_produtos {
+    display: flex;
+    flex-direction: row;
+    margin-top: 100px;
+    margin-bottom: 8%;
+
+}
+
+.retan5_produtos {
+    width: 50%;
+    margin-left: 100px;
+    align-items: center;
+
+
+}
+
+.retan6_produtos {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 8%;
+
+
+}
+
+.retanguloW {
+    background-color: #2F58A5;
+    width: 80px;
+    height: 7px;
+    margin-bottom: 5%;
+    margin-right: 52%;
+
+}
+
+
+/* Site Sobre Nós --------------------------------------------------------------------------------- */
+
+.container2 {
+    flex-direction: row;
+    display: flex;
+}
+
+.caixaprincipal_sobrenos {
+    height: 320px;
+    width: 70%;
+    background-color: #1F2A33;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 100px;
+    padding: 3%;
+}
+
+.fotosptech {
+    height: 350px;
+    margin-left: 100px;
+   
+}
+
+.box4{
+    display: flex;
+}
+
+.texto_caixa{
+    color: white;
+    text-align: left;
+}
+
+.caixaprincipal_sobrenos .caxa{
+    margin-top: 8%;
+}
+
+
+.bm {
+    color: #2F58A5;
+    font-family: "Marvel", sans-serif;
+    font-size: 35px;
+    margin-top: 2%;
+    margin-bottom: 8%;
+
+}
+
+/* parte 2 */
+
+.texto1_sobrenos{
+    display: flex;
+    flex-direction: column;
+}
+
+.aspas{
+    width: 65px;
+    height: 65px;
+}
+
+.fundadores{
+    color: #2F58A5;
+    display: flex;
+    justify-content: end;
+    font-size: 17px;
+    text-align: justify;
+    line-height: 1.3;
+    margin-bottom: 1.8%;
+    margin-top: 1.8%;
+    font-family: "Marvel", sans-serif;
+    margin-right: 30%;
+    width: 100%;
+    margin-right: 100px;
+
+}
+
+
+/* -------------------------------*/ 
+
+.rm {
+    color: #2F58A5;
+    font-family: "Marvel", sans-serif;
+    font-size: 35px;
+    margin-bottom: 5%;
+
+}
+
+.texto2_sobrenos{
+    display: flex;
+    flex-direction: column;
+    margin-top: 3%;
+}
+
+.icons4_sobrenos{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    justify-content: center;
+
+}
+
+
+/* ===================================================*/ 
+.cc1{
+    width: 20%;
+
+}
+.cc2{
+    width: 20%;
+
+}
+.cc3{
+    width: 20%;
+
+}
+.cc4{
+    width: 20%;
+
+}
+.cc5{
+    width: 20%;
+
+}
+
+.cc1>p{
+    width: 60%;
+    color: #2F58A5;
+    text-align: center;
+
+}
+.cc2>p{
+   width: 60%;
+    color: #2F58A5;
+    text-align: center;
+}
+.cc3>p{
+    width: 60%;
+    color: #2F58A5;
+    text-align: center;
+
+}
+.cc4>p{
+    width: 60%;
+    color: #2F58A5;
+    text-align: center;
+
+}
+.cc5>p{
+    width: 60%;
+    color: #2F58A5;
+    text-align: center;
+
+}
+
+/* -------------------------------------------*/
+
+
+.jj{
+    width: 100px;
+    height: 100px;
+
+}
+
+/*  Fale Conosco ------------------------------------------------------ */ 
+
+.container3{
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    background-color: #ffffff;
+}
+.caixa_faleconosco{
+    border-color: #2F58A5;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    background-color: #ffffff;
+    border-radius: 20px;
+    width: 820px;
+    height: 670px;
+    flex-direction: row;
+    border: 4px solid #3D75DC;
+
+    
+   
+}
+
+
+.parte1{
+    width: 60%;
+
+    padding: 8%;
+
+}
+.parte2{
+    width: 40%;
+}
+
+.botao_fale{
+    justify-content: center;
+    display: flex;
+    width: 170px;
+    height: 40px;
+    flex-direction: row;
+    border-radius: 8px;
+    background-color: #1F2A33;
+    border-color: #1F2A33;
+    color: #2F58A5;
+    text-align: center;
+    align-items: center;
+    font-size: medium;
+    transition-duration: 0.4s;
+    font-family: "Marvel", sans-serif;
+
+}
+
+.direcao_botao{
+    justify-content: center;
+    display: flex;
+}
+
+.botao_fale:hover {
+    background-color: #ffffff;
+    /* Green */
+    color: #2F58A5;
+
+}
+
+.input_nome{
+    border-color: #3D75DC;
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.input_mensagem{
+    border-color: #3D75DC;
+    width: 320px;
+    height: 90px;
+    border-radius: 5px;
+}
+
+
+.nome{
+    color: #3D75DC;
+    font-family: 'Marvel', sans-serif;
+    margin-top: 5%;
+    margin-bottom: 1%;
+}
+
+.textoH{
+    font-family: 'Marvel', sans-serif;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+
+/* ***************************************************************************************** */
+
+.link_faleconosco{
+    color: #2F58A5;
+    font-family: 'Marvel', sans-serif;
+    list-style-type: none;
+    text-decoration: none;
+
+}
+
+li{
+    list-style-type: none;
+
+}

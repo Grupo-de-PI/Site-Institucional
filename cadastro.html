@@ -68,7 +68,9 @@
 
           <div class="campo">
             <span>Telefone - Comercial</span>
-            <input id="input_telefoneComercial" type="text" oninput="mascaraComercial()" placeholder=""/>
+
+            <input id="input_telefoneComercial" type="text" placeholder="(99) 9999-9999" oninput="mascaraComercial()" maxlength="14"/>
+
           </div>
 
           <div class="campo">
@@ -78,7 +80,9 @@
 
           <div class="campo">
             <span>Email</span>
-            <input id="input_email" type="email" oninput="validarEmail()"/>
+
+            <input id="input_email" placeholder="nome@dominio.com" type="email"/>
+
           </div>
 
           <div class="campo">
@@ -108,7 +112,9 @@
 
           <div class="campo">
             <span>CEP</span>
-            <input id="input_cep" type="text" oninput="validarCEP()"/>
+
+            <input id="input_cep" type="text" oninput="mascaraCep()" placeholder="00000-000" maxlength="9"/>
+
           </div>
 
           <div class="campo">
@@ -174,74 +180,79 @@
     input_nome.value = nomeValido;
   }
 
-  function mascaraCNPJ() {
-    var valor = input_cnpj.value;
-
-    var numeros = "";
-    var i = 0;
-    while (i < valor.length) {
-      if (valor[i] >= '0' && valor[i] <= '9') {
-        numeros += valor[i];
-      }
-      i++;
-    }
-
-    // Aplica a máscara: 99.999.999/9999-99
-    var formatado = "";
-    if (numeros.length >= 1) formatado += numeros.substring(0, 2);
-    if (numeros.length >= 3) formatado += "." + numeros.substring(2, 5);
-    if (numeros.length >= 6) formatado += "." + numeros.substring(5, 8);
-    if (numeros.length >= 9) formatado += "/" + numeros.substring(8, 12);
-    if (numeros.length >= 13) formatado += "-" + numeros.substring(12, 14);
-
-    input_cnpj.value = formatado;
-  }
-
   function mascaraCelular() {
-    var valor = input_telefoneCelular.value;
-
-    // Remove tudo que não for número
-    var numeros = "";
-    var i = 0;
-    while (i < valor.length) {
-      if (valor[i] >= '0' && valor[i] <= '9') {
-        numeros += valor[i];
-      }
-      i++;
-    }
-
-    // Aplica a máscara: (99) 99999-9999
+    
+    var celular = input_telefoneCelular.value;
     var formatado = "";
-    if (numeros.length > 0) formatado += "(" + numeros.substring(0, 2);
-    if (numeros.length >= 3) formatado += ") ";
-    if (numeros.length >= 3) formatado += numeros.substring(2, 7);
-    if (numeros.length >= 8) formatado += "-" + numeros.substring(7, 11);
+
+    celular = celular.replaceAll('(',"").replaceAll(') ','').replaceAll('-','');
+
+    for(var i=0 ; i < celular.length ; i++){
+
+      //(11) 95982-3726
+      if ( i==0 ) {
+        formatado += '(';
+      } else if ( i==2 ) {
+        formatado += ') ';
+      } else if ( i==7 ) {
+        formatado += '-';
+      } 
 
 
+      formatado += celular[i];
+    }
     input_telefoneCelular.value = formatado;
+
   }
+
+  function mascaraCep(){
+    var Cep = input_cep.value;
+    var formatado = "";
+    
+
+
+    Cep = Cep.replaceAll('(',"").replaceAll(') ','').replaceAll('-','');
+
+    for(var i=0 ; i < Cep.length ; i++){
+
+      //00000-000
+      if ( i==5 ) {
+        formatado += '-';
+      } 
+
+      formatado += Cep[i];
+    }
+    input_cep.value = formatado;
+
+  }
+
+  
 
   function mascaraComercial() {
-    var valor = input_telefoneComercial.value;
-
-    var numeros = "";
-    var i = 0;
-    while (i < valor.length) {
-      if (valor[i] >= '0' && valor[i] <= '9') {
-        numeros += valor[i];
-      }
-      i++;
-    }
-
-    // Aplica a máscara: (99) 9999-9999
+    var comercial = input_telefoneComercial.value;
     var formatado = "";
-    if (numeros.length > 0) formatado += "(" + numeros.substring(0, 2);
-    if (numeros.length >= 2) formatado += ") ";
-    if (numeros.length >= 3) formatado += numeros.substring(2, 6);
-    if (numeros.length >= 6) formatado += "-" + numeros.substring(6, 10);
+    
 
+
+    comercial = comercial.replaceAll('(',"").replaceAll(') ','').replaceAll('-','');
+
+    for(var i=0 ; i < comercial.length ; i++){
+
+      //(11) 95982-3726
+      if ( i==0 ) {
+        formatado += '(';
+      } else if ( i==2 ) {
+        formatado += ') ';
+      } else if ( i==6 ) {
+        formatado += '-';
+      } 
+
+      formatado += comercial[i];
+    }
     input_telefoneComercial.value = formatado;
+
   }
+
 
   function validarEmail() {
     var email = input_email.value;
@@ -266,6 +277,29 @@
     } else {
       div_mensagem.innerHTML = `Senha fraca`
     }
+
+  function mascaraCNPJ() {
+
+    var cnpj = input_cnpj.value;
+        
+        cnpj = cnpj.replaceAll(".","").replaceAll("-","").replaceAll("/","");
+        var formatado = ''
+
+        for(var i =0 ; i < cnpj.length ; i++) {
+        
+            //00.623.904/0001-73
+            if (i == 2 || i == 5){
+                formatado += ".";
+            } else if (i == 8) {
+                formatado += "/";
+            } else if (i == 12) {
+                formatado += "-";
+            }
+            
+        formatado += cnpj[i];
+        input_cnpj.value = formatado
+    }
+
   }
 
   function validarConfirmacaoSenha() {
@@ -277,7 +311,4 @@
     }
   }
 
-  function validarCEP() {
-
-  }
 </script>
