@@ -148,26 +148,29 @@
 
 <script>
   function mascaraCelular() {
-    var valor = input_telefoneCelular.value;
+    
+    var celular = input_telefoneCelular.value;
+    var formatado = "";
+    var par1 = '(';
+    var par2 = ')';
 
-    // Remove tudo que não for número
-    var numeros = "";
-    var i = 0;
-    while (i < valor.length) {
-      if (valor[i] >= '0' && valor[i] <= '9') {
-        numeros += valor[i];
-      }
-      i++;
+    celular = celular.replace(par1,"").replaceAll(par2,'').replaceAll('-','');
+
+    for(var i=0 ; i < celular.length ; i++){
+
+      //(11) 95982-3726
+      if ( i==0 ) {
+        formatado += '(';
+      } else if ( i==2 ) {
+        formatado += ') ';
+      } else if ( i==7 ) {
+        formatado += '-';
+      } 
+
+      formatado += celular[i];
+      input_telefoneCelular = formatado;
     }
 
-    // Aplica a máscara: (99) 99999-9999
-    var formatado = "";
-    if (numeros.length > 0) formatado += "(" + numeros.substring(0, 2);
-    if (numeros.length >= 3) formatado += ") ";
-    if (numeros.length >= 3) formatado += numeros.substring(2, 7);
-    if (numeros.length >= 8) formatado += "-" + numeros.substring(7, 11);
-
-    input_telefoneCelular.value = formatado;
   }
 
   function mascaraComercial() {
@@ -193,26 +196,27 @@
   }
 
   function mascaraCNPJ() {
-    var valor = input_cnpj.value;
 
-    var numeros = "";
-    var i = 0;
-    while (i < valor.length) {
-      if (valor[i] >= '0' && valor[i] <= '9') {
-        numeros += valor[i];
-      }
-      i++;
+        var cnpj = input_cnpj.value;
+        var largura = cnpj.length;
+        
+        cnpj = cnpj.replaceAll(".","").replaceAll("-","").replaceAll("/","");
+        var formatado = ''
+
+        for(var i =0 ; i < cnpj.length ; i++) {
+        
+            //00.623.904/0001-73
+            if (i == 2 || i == 5){
+                formatado += ".";
+            } else if (i == 8) {
+                formatado += "/";
+            } else if (i == 12) {
+                formatado += "-";
+            }
+            
+        formatado += cnpj[i];
+        input_cnpj.value = formatado
     }
-
-    // Aplica a máscara: 99.999.999/9999-99
-    var formatado = "";
-    if (numeros.length >= 1) formatado += numeros.substring(0, 2);
-    if (numeros.length >= 3) formatado += "." + numeros.substring(2, 5);
-    if (numeros.length >= 6) formatado += "." + numeros.substring(5, 8);
-    if (numeros.length >= 9) formatado += "/" + numeros.substring(8, 12);
-    if (numeros.length >= 13) formatado += "-" + numeros.substring(12, 14);
-
-    input_cnpj.value = formatado;
   }
 
   function validarNome() {
