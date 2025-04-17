@@ -81,7 +81,7 @@
           <div class="campo">
             <span>Email</span>
 
-            <input id="input_email" placeholder="nome@dominio.com" type="email"/>
+            <input id="input_email" placeholder="nome@dominio.com" type="email" onclick="mascaraEmail()"/>
 
           </div>
 
@@ -310,5 +310,28 @@
       alert("As senhas não coincidem. Por favor, tente novamente!")
     }
   }
+
+  function mascaraEmail() {
+
+  var email = input_email.value;
+    
+    email = email.replaceAll(".","").replaceAll("-","").replaceAll("/","");
+    var formatado = ''
+
+    for(var i =0 ; i < email.length ; i++) {
+    
+        //de
+        if (i == 2 || i == 5){
+            formatado += ".";
+        } else if (i == 8) {
+            formatado += "/";
+        } else if (i == 12) {
+            formatado += "-";
+        }
+        
+    formatado += email[i];
+    input_email.value = formatado
+}
+}
 
 </script>
