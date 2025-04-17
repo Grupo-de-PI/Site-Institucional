@@ -59,18 +59,12 @@
 
           <div class="campo">
             <span>Porte da Empresa</span>
-            <select id="">
-              <option>Pequena</option>
-              <option>Média</option>
-              <option>Grande</option>
-            </select>
+            <input id="input_porte_da_Empresa" type="text"/>
           </div>
 
           <div class="campo">
             <span>Telefone - Comercial</span>
-
             <input id="input_telefoneComercial" type="text" placeholder="(99) 9999-9999" oninput="mascaraComercial()" maxlength="14"/>
-
           </div>
 
           <div class="campo">
@@ -80,19 +74,17 @@
 
           <div class="campo">
             <span>Email</span>
-
             <input id="input_email" placeholder="nome@dominio.com" type="email" onclick="mascaraEmail()"/>
-
           </div>
 
           <div class="campo">
             <span>Digite sua Senha</span>
-            <input id="input_senha" type="text" oninput="validarSenha()"/>
+            <input id="input_senha" type="password"/>
           </div>
 
           <div class="campo">
             <span>Redigite sua Senha:</span>
-            <input id="input_confirmacao_senha" type="text" onblur="validarConfirmacaoSenha()"/>
+            <input id="input_confirmacao_senha" type="password"/>
           </div>
 
           <div class="campo">
@@ -112,9 +104,7 @@
 
           <div class="campo">
             <span>CEP</span>
-
             <input id="input_cep" type="text" oninput="mascaraCep()" placeholder="00000-000" maxlength="9"/>
-
           </div>
 
           <div class="campo">
@@ -157,33 +147,12 @@
 </html>
 
 <script>
-  function validarNome() {
-      
-   
-      var valor = input_nome.value;
-      var nomeValido = "";
-      var i = 0;
-    
-      while (i < valor.length) {
-      var caractere = valor[i];
-  
-      if (
-        (caractere >= 'A' && caractere <= 'Z') ||
-        (caractere >= 'a' && caractere <= 'z') ||
-        caractere === ' '
-      ) {
-        nomeValido += caractere;
-      }
-      i++;
-    }
-  
-    input_nome.value = nomeValido;
-  }
-
   function mascaraCelular() {
     
     var celular = input_telefoneCelular.value;
     var formatado = "";
+    
+
 
     celular = celular.replaceAll('(',"").replaceAll(') ','').replaceAll('-','');
 
@@ -197,7 +166,6 @@
       } else if ( i==7 ) {
         formatado += '-';
       } 
-
 
       formatado += celular[i];
     }
@@ -253,31 +221,6 @@
 
   }
 
-
-  function validarEmail() {
-    var email = input_email.value;
-
-    if (email.startsWith('@') || email.startsWith('.') ) {
-      alert('O E-mail não pode iniciar com @ ou .')
-    } else {
-      if (email.includes('@') && email.endsWith('.com')) {
-        div_mensagem.innerHTML = `E-mail válido`
-      }
-      else{
-        div_mensagem.innerHTML = `O E-mail deve seguir o exemplo: airsafe@x.com`
-      }
-    }
-}
-
-  function validarSenha() {
-    var senha = input_senha.value;
-
-    if ((senha.includes('!') || senha.includes('@') || senha.includes('$') || senha.includes('%') || senha.includes('&') || senha.includes('*')) && (senha != senha.toLowerCase()) && senha.length >= 8) {
-      div_mensagem.innerHTML = `Senha Forte`
-    } else {
-      div_mensagem.innerHTML = `Senha fraca`
-    }
-
   function mascaraCNPJ() {
 
     var cnpj = input_cnpj.value;
@@ -299,18 +242,31 @@
         formatado += cnpj[i];
         input_cnpj.value = formatado
     }
-
   }
 
-  function validarConfirmacaoSenha() {
-    var senha = input_senha.value;
-    var redigiteSenha = input_confirmacao_senha.value;
-
-    if (redigiteSenha != senha) {
-      alert("As senhas não coincidem. Por favor, tente novamente!")
+  function validarNome() {
+      
+   
+      var valor = input_nome.value;
+      var nomeValido = "";
+      var i = 0;
+    
+      while (i < valor.length) {
+      var caractere = valor[i];
+  
+      if (
+        (caractere >= 'A' && caractere <= 'Z') ||
+        (caractere >= 'a' && caractere <= 'z') ||
+        caractere === ' '
+      ) {
+        nomeValido += caractere;
+      }
+      i++;
     }
+  
+    input_nome.value = nomeValido;
   }
-
+  
   function mascaraEmail() {
 
   var email = input_email.value;
@@ -330,8 +286,7 @@
         }
         
     formatado += email[i];
-    input_email.value = formatado
+  }
+  input_email.value = formatado
 }
-}
-
 </script>
