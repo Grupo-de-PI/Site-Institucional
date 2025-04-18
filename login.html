@@ -8,8 +8,9 @@
 
     <title>AquaTech | Login</title>
 
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="icon" href="assets/icon/favicon2.ico">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="cads_login.css">
+    <link rel="shortcut icon" href="./fotos/favicon-16x16.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
@@ -17,102 +18,138 @@
 
     <!--Header-->
 
-    <div class="header">
-        <div class="container">
-            <h1 class="titulo">AquaTech</h1>
-            <ul class="navbar">
-                <li>
-                    <a href="index.html">Inicial</a>
-                </li>
-                <li>
-                    <a href="simulador.html">Simulador</a>
-                </li>
-                <li>|</li>
-                <li class="agora">
-                    <a href="#">Login</a>
-                </li>
-                <li>
-                    <a href="cadastro.html">Cadastro</a>
-                </li>
-            </ul>
+    <header>
+        <div class="botaocads">
+            <li>
+                <a class="link_faleconosco" href="index.html">
+                    <button class="botaoFale">Voltar</button>
+                </a>
+            </li>
         </div>
-    </div>
+    </header>
+
 
 
     <div class="login">
-  
+
         <div class="container">
-            <div class="card card-login">
-                <h2>Olá de volta!</h2>
-                <div class="formulario" id="div_login">
-                    <div class="campo">
-                        <span>E-mail:</span>
-                        <input id="email_input" type="email" placeholder="Login">
-                    </div>
-                    <div id="div_email"></div>
+            <div class="card card-cadastro">
 
-                    <div class="campo">
-                        <span>Senha:</span>
-                        <input id="senha_input" type="password" placeholder="******">
-                    </div>
-                    <div id="div_senha"></div>
-
-                    <button class="botao" onclick="validar()">Entrar</button>
+                <div class="card1">
+                    <h2>Faça seu Login!</h2>
                 </div>
 
-                <br>
-
-                <div id="div_msm"></div>
-
-
+                <div class="card2">
+                    <img class="imageNavbar2" src="./fotos/logo Airsafe sem fundo.png" alt="">
+                </div>
             </div>
+
+            <div class="formulario" id="div_login">
+                <div class="campo">
+                    <span>E-mail:</span> <br>
+                    <input class="input_decor" id="email_input" type="email" placeholder="Login">
+                </div>
+                <div id="div_email"></div>
+
+                <div class="campo">
+                    <span>Senha:</span> <br>
+                    <input class="input_decor" id="senha_input" type="password" placeholder="******">
+                </div>
+                <div id="div_senha"></div>
+
+                <div class="loc_botao">
+                    <button class="botao" onclick="validar()">Entrar</button>
+                </div>
+                </div>
+
+            <br>
+
+            <div id="div_msm"></div>
+
+
         </div>
     </div>
 
     <!--footer inicio-->
-    <div class="footer">
-        <div class="container">
-            <h4>Feito com amor por aluno &hearts; SPTech &copy; 2024</h4>
-            <span class="version">v1.0.0</span>
+    <footer class="footer">
+        <div class="footer-conteudo">
+            <nav class="footer-nav">
+                <div class="imagem_footer">
+                    <img class="i" src="./fotos/logo Airsafe sem fundo.png" alt="">
+                    <h6> AirSafe. </h6>
+                </div>
+                <p class="texto88">contato@airsafe.com.br</p>
+                <p class="texto88">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP</p>
+
+
+            </nav>
+            <nav class="footer-nav2">
+                <div class="texto99"> SERVIÇOS</div>
+
+                <li class="tods">
+                    <a href="simulador.html">Simulador</a>
+                </li>
+                <li class="tods">
+                    <a href="produtos.html">Produtos</a>
+                </li>
+
+                <li class="tods">
+                    <a href="sobrenos.html">Sobre Nós</a>
+                </li>
+
+                <li class="tods">
+                    <a href="cadastro.html">Cadastro</a>
+                </li>
+
+                <li class="tods">
+                    <a href="login.html">Login</a>
+                </li>
+
+                <li class="tods">
+                    <a href="faleConosco.html">Contato</a>
+                </li>
+            </nav>
         </div>
-    </div>
+    </footer>
     <!--footer fim-->
+
 
 </body>
 
+</html>
 <script>
 
     var cont = 2;
-    
-    function validar (){
+
+    function validar() {
         var email = email_input.value;
         var senha = senha_input.value;
-        
 
-        if(cont > 0) {
+
+        if (cont > 0) {
             if (email != 'caramico@outlook.com' || senha != 'Caramico123') {
-           
-        
-                if(email != 'caramico@outlook.com') {    
-                div_email.innerHTML = '<b style="Color: red"> E-mail incorreto </b>'; 
+
+
+                if (email != 'caramico@outlook.com') {
+                    div_email.innerHTML = '<b style="Color: red"> E-mail incorreto </b>';
                 }
 
                 if (senha != 'Caramico123') {
                     div_senha.innerHTML = '<b style="Color: red"> Senha incorreta </b>';
-                } 
+                }
 
                 div_msm.innerHTML = `Restam ${cont} tentativas`;
 
-                cont --;
+                cont--;
 
             } else {
                 cont = 3;
                 alert('Login bem sucedido!');
                 // location.href = 'index.html/';
-                
+
 
             }
-            
+
         } else {
             div_msm.innerHTML = `Usuario bloqueado!`;
             div_login.innerHTML = '';
@@ -120,5 +157,3 @@
 
     }
 </script>
-
-</html>

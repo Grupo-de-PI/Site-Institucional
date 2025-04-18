@@ -1,0 +1,257 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+header{
+    display: flex;
+    justify-content: end;
+}
+
+.login{
+    border-radius: 25px;
+    margin-top: 12%;
+    margin-bottom: 12%;
+    background-color: #CADAE9;
+    width: 40%;
+    height: 70%;
+    padding: 5%;
+
+}
+
+.card-cadastro{
+    font-family: 'Marvel', sans-serif;
+    color: #3D75DC;
+    flex-direction: row;
+    display: flex;
+    margin-bottom: 5%;
+}
+
+.card1{
+    width: 50%;
+    align-items: center;
+    display: flex;
+}
+
+.card2{
+    width: 50%;
+    display: flex;
+    justify-content: end;
+
+}
+
+
+.imageNavbar2 {
+    width: 80px;
+    height: 80px;
+    
+}
+
+h2{
+    font-size: 150%;
+    
+}
+
+
+.input_decor{
+    background-color: #ffffff;
+    color: #3D75DC;
+    height: 30px;
+    width: 100%;
+    border-radius: 15px;
+    border-color: #2F58A5;
+    margin-bottom: 5%;
+    margin-top: 1%;
+}
+
+span{
+    color: #3D75DC;
+    font-family: 'Marvel', sans-serif;
+    font-size: 20px;
+    margin-left: 3%;
+}
+
+.botao{
+    justify-content: center;
+    display: flex;
+    width: 170px;
+    height: 40px;
+    flex-direction: row;
+    border-radius: 8px;
+    background-color: #1F2A33;
+    border-color: #1F2A33;
+    color: #f7f7f7;
+    text-align: center;
+    align-items: center;
+    font-size: medium;
+    transition-duration: 0.4s;
+    font-family: "Marvel", sans-serif;
+}
+
+.loc_botao{
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+
+.botao {
+    cursor: pointer;
+}
+
+
+/* ---------------------------------------------------------------*/ 
+
+.botaocads{
+    margin-top: 20%;
+    margin-right: 450%;
+}
+
+.botaoFale {
+    text-align: center;
+    width: 120px;
+    height: 45px;
+    background-color: #3D75DC;
+    border: none;
+    color: #ffffff;
+    border-radius: 15px;
+    font-size: larger;
+    border: 15%;
+
+}
+
+.botaoFale{
+    cursor: pointer;
+}
+
+li{
+    list-style-type: none;
+
+}
+
+.link_faleconosco{
+    color: #2F58A5;
+    font-family: 'Marvel', sans-serif;
+    
+
+}
+
+
+
+
+
+
+
+/* FOOTER */
+
+footer{
+    position: flex;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
+    background-color: #2F58A5;
+ 
+}
+
+.footer-conteudo{
+    flex-direction: row;
+    display: flex;
+}
+
+.footer-nav{
+    padding-left: 5%;
+    padding-top: 2%;
+    width: 50%;
+}
+
+.footer-nav2{
+    padding-left: 5%;
+    padding-top: 2%;
+    width: 50%;
+}
+
+.imagem_footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-direction: flex-end;
+    width: 50%;
+    
+}
+
+.i{
+    height: 100px;
+    width: 100px;
+}
+
+/* ------------------------------ LINKS ------------------------------------------------------------------------- */ 
+
+h6 {
+    color: #ffffff;
+    font-family: "Marvel", sans-serif;
+    font-size: 23px;
+    margin-top: 2%;
+    text-align: center;
+    width: 100%;
+}
+
+
+.texto88 {
+    color: white;
+    margin-top: 5%;
+    font-family: "Marvel", sans-serif;
+    justify-content: left;
+    display: flex;
+
+}
+
+.HH {
+    color: white;
+    margin-left: 0px;
+}
+
+.texto99 {
+    color: white;
+    font-family: "Marvel", sans-serif;
+    font-size: large;
+    margin-bottom: 5%;
+}
+
+/* --------------------------------------------------------------------------*/
+
+
+
+.tods>a {
+    color: #ffffffce;
+    font-family: "Marvel", sans-serif;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+    display: inline-block;
+    padding-bottom: 0.25rem;
+    position: relative;
+}
+
+
+.tods a::before {
+    content: "";
+    position: absolute;
+    background-color: #3FA2F3;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    transition: width 0.25s ease-out;
+
+}
+
+.tods>a:hover::before {
+    width: 100%;
+}

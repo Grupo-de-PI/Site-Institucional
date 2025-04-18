@@ -5,167 +5,223 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="cads_login.css">
+  <link rel="shortcut icon" href="./fotos/favicon-16x16.png" type="image/x-icon">
 
-  <title>AquaTech | Cadastro</title>
+  <title> Cadastro - AirSafe</title>
 
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
 <body>
   <!--header inicio-->
-  <div class="header">
-    <div class="container">
-      <h1 class="titulo">AquaTech</h1>
-      <ul class="navbar">
+  <header>
+  <div class="botaocads">
         <li>
-          <a href="index.html">Inicial</a>
+            <a class="link_faleconosco" href="index.html">
+              <button class="botaoFale">Voltar</button>
+              </a>
         </li>
-        <li>
-          <a href="simulador.html">Simulador</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li class="agora">
-          <a href="#">Cadastro</a>
-        </li>
-      </ul>
-    </div>
   </div>
+</header>
+
   <!--header fim-->
 
   <div class="login">
-
     <div class="container">
       <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
-        <div class="formulario">
-          
-          <div class="campo">
-            <span>Nome do usuário</span>
-            <input id="input_nome" type="text" oninput="validarNome()"/>
-          </div>
-          
-          <div class="campo">
-            <span>Razão Social</span>
-            <input id="input_razaoSocial" type="text"/>
-          </div>
 
-          <div class="campo">
-            <span>CNPJ</span>
-            <input id="input_cnpj" min="0" type="text" oninput="mascaraCNPJ()" placeholder="00.000.000/0000-00" maxlength="18"/>
-          </div>
-
-          <div class="campo">
-            <span>Porte da Empresa</span>
-            <input id="input_porte_da_Empresa" type="text"/>
-          </div>
-
-          <div class="campo">
-            <span>Telefone - Comercial</span>
-            <input id="input_telefoneComercial" type="text" placeholder="(99) 9999-9999" oninput="mascaraComercial()" maxlength="14"/>
-          </div>
-
-          <div class="campo">
-            <span>Telefone - Celular</span>
-            <input id="input_telefoneCelular" min="0" type="text" oninput="mascaraCelular()" placeholder="(99) 99999-9999" maxlength="15"/>
-          </div>
-
-          <div class="campo">
-            <span>Email</span>
-            <input id="input_email" placeholder="nome@dominio.com" type="email" onclick="mascaraEmail()"/>
-          </div>
-
-          <div class="campo">
-            <span>Digite sua Senha</span>
-            <input id="input_senha" type="password"/>
-          </div>
-
-          <div class="campo">
-            <span>Redigite sua Senha:</span>
-            <input id="input_confirmacao_senha" type="password"/>
-          </div>
-
-          <div class="campo">
-            <span>Logradouro</span>
-            <input id="input_logradouro" type="text"/>
-          </div>
-
-          <div class="campo">
-            <span>Número</span>
-            <input id="input_num" type="text"/>
-          </div>
-
-          <div class="campo">
-            <span>Complemento</span>
-            <input id="input_complemento" type="text"/>
-          </div>
-
-          <div class="campo">
-            <span>CEP</span>
-            <input id="input_cep" type="text" oninput="mascaraCep()" placeholder="00000-000" maxlength="9"/>
-          </div>
-
-          <div class="campo">
-            <span>Bairro</span>
-            <input id="input_bairro" type="text"/>
-          </div>
-
-          <div class="campo">
-            <span>Cidade</span>
-            <input id="input_cidade" type="text"/>
-          </div>
-
-          <div class="campo">
-            <span>Estado</span>
-            <input id="input_estado" type="text"/>
-          </div>
-
-          <div class="campo">
-            <span>País</span>
-            <input id="input_pais" type="text"/>
-          </div>
-
-          <button class="botao" onclick="cadastrar()">Finalizar cadastro</button>
-          <div id="div_mensagem"></div>
+        <div class="card1">
+          <h2>Faça seu cadastro!</h2>
         </div>
+
+        <div class="card2">
+          <img class="imageNavbar2" src="./fotos/logo Airsafe sem fundo.png" alt="">
+        </div>
+
+      </div>
+      <div class="formulario">
+        <div class="campo">
+          <span>Nome do usuário</span><br>
+          <input class="input_decor" id="input_nome" type="text" oninput="validarNome()" />
+        </div>
+
+        <div class="campo">
+          <span>Razão Social</span><br>
+          <input class="input_decor" id="input_razaoSocial" type="text" />
+        </div>
+
+        <div class="campo">
+          <span>CNPJ</span><br>
+          <input class="input_decor" id="input_cnpj" min="0" type="text" oninput="mascaraCNPJ()"
+            placeholder="00.000.000/0000-00" maxlength="18" />
+        </div>
+
+        <div class="campo">
+          <span>Porte da Empresa</span><br>
+          <select class="input_decor" id="select_porte">
+            <option></option>
+            <option>Pequena</option>
+            <option>Média</option>
+            <option>Grande</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <span>Telefone - Comercial</span><br>
+          <input class="input_decor" id="input_telefoneComercial" type="text" placeholder="(99) 9999-9999"
+            oninput="mascaraComercial()" maxlength="14" />
+        </div>
+
+        <div class="campo">
+          <span>Telefone - Celular</span><br>
+          <input class="input_decor" id="input_telefoneCelular" min="0" type="text" oninput="mascaraCelular()"
+            placeholder="(99) 99999-9999" maxlength="15" />
+        </div>
+
+        <div class="campo">
+          <span>Email</span><br>
+          <input class="input_decor" id="input_email" placeholder="nome@dominio.com" type="email"
+            onclick="mascaraEmail()" />
+        </div>
+
+        <div class="campo">
+          <span>Digite sua Senha</span><br>
+          <input class="input_decor" id="input_senha" type="password" />
+        </div>
+
+        <div class="campo">
+          <span>Redigite sua Senha:</span><br>
+          <input class="input_decor" id="input_confirmacao_senha" type="password" />
+        </div>
+
+        <div class="campo">
+          <span>Logradouro</span><br>
+          <input class="input_decor" id="input_logradouro" type="text" />
+        </div>
+
+        <div class="campo">
+          <span>Número</span><br>
+          <input class="input_decor" id="input_num" type="text" />
+        </div>
+
+        <div class="campo">
+          <span>Complemento</span><br>
+          <input class="input_decor" id="input_complemento" type="text" />
+        </div>
+
+        <div class="campo">
+          <span>CEP</span><br>
+          <input class="input_decor" id="input_cep" type="text" oninput="mascaraCep()" placeholder="00000-000"
+            maxlength="9" />
+        </div>
+
+        <div class="campo">
+          <span>Bairro</span><br>
+          <input class="input_decor" id="input_bairro" type="text" />
+        </div>
+
+        <div class="campo">
+          <span>Cidade</span><br>
+          <input class="input_decor" id="input_cidade" type="text" />
+        </div>
+
+        <div class="campo">
+          <span>Estado</span><br>
+          <input class="input_decor" id="input_estado" type="text" />
+        </div>
+
+        <div class="campo">
+          <span>País</span><br>
+          <input class="input_decor" id="input_pais" type="text" />
+        </div>
+
+        <div class="loc_botao">
+          <button class="botao" onclick="cadastrar()">Finalizar cadastro</button>
+        </div>
+        <div id="div_mensagem"></div>
       </div>
     </div>
   </div>
 
   <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2024</h4>
-      <span class="version">v1.0.0</span>
+  <footer class="footer">
+    <div class="footer-conteudo">
+      <nav class="footer-nav">
+        <div class="imagem_footer">
+          <img class="i" src="./fotos/logo Airsafe sem fundo.png" alt="">
+          <h6> AirSafe. </h6>
+        </div>
+        <p class="texto88">contato@airsafe.com.br</p>
+        <p class="texto88">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP</p>
+
+
+      </nav>
+      <nav class="footer-nav2">
+        <div class="texto99"> SERVIÇOS</div>
+
+        <li class="tods">
+          <a href="simulador.html">Simulador</a>
+        </li>
+        <li class="tods">
+          <a href="produtos.html">Produtos</a>
+        </li>
+
+        <li class="tods">
+          <a href="sobrenos.html">Sobre Nós</a>
+        </li>
+
+        <li class="tods">
+          <a href="cadastro.html">Cadastro</a>
+        </li>
+
+        <li class="tods">
+          <a href="login.html">Login</a>
+        </li>
+
+        <li class="tods">
+          <a href="faleConosco.html">Contato</a>
+        </li>
+      </nav>
     </div>
-  </div>
+  </footer>
   <!--footer fim-->
 </body>
 
 </html>
 
+
+
+
+<!-- /* ------------------------------------------------------------------------------------------------------------------
+ --------------------------------------------------------------------------------------------------------------------------
+ -------------------------------------------------------------------------------------------------------------------------
+ --------------------------------------------------------------------------------------------------------------------------->
+
+
+
+
 <script>
   function mascaraCelular() {
-    
+
     var celular = input_telefoneCelular.value;
     var formatado = "";
-    
 
 
-    celular = celular.replaceAll('(',"").replaceAll(') ','').replaceAll('-','');
 
-    for(var i=0 ; i < celular.length ; i++){
+    celular = celular.replaceAll('(', "").replaceAll(') ', '').replaceAll('-', '');
+
+    for (var i = 0; i < celular.length; i++) {
 
       //(11) 95982-3726
-      if ( i==0 ) {
+      if (i == 0) {
         formatado += '(';
-      } else if ( i==2 ) {
+      } else if (i == 2) {
         formatado += ') ';
-      } else if ( i==7 ) {
+      } else if (i == 7) {
         formatado += '-';
-      } 
+      }
 
       formatado += celular[i];
     }
@@ -173,20 +229,20 @@
 
   }
 
-  function mascaraCep(){
+  function mascaraCep() {
     var Cep = input_cep.value;
     var formatado = "";
-    
 
 
-    Cep = Cep.replaceAll('(',"").replaceAll(') ','').replaceAll('-','');
 
-    for(var i=0 ; i < Cep.length ; i++){
+    Cep = Cep.replaceAll('(', "").replaceAll(') ', '').replaceAll('-', '');
+
+    for (var i = 0; i < Cep.length; i++) {
 
       //00000-000
-      if ( i==5 ) {
+      if (i == 5) {
         formatado += '-';
-      } 
+      }
 
       formatado += Cep[i];
     }
@@ -194,26 +250,26 @@
 
   }
 
-  
+
 
   function mascaraComercial() {
     var comercial = input_telefoneComercial.value;
     var formatado = "";
-    
 
 
-    comercial = comercial.replaceAll('(',"").replaceAll(') ','').replaceAll('-','');
 
-    for(var i=0 ; i < comercial.length ; i++){
+    comercial = comercial.replaceAll('(', "").replaceAll(') ', '').replaceAll('-', '');
+
+    for (var i = 0; i < comercial.length; i++) {
 
       //(11) 95982-3726
-      if ( i==0 ) {
+      if (i == 0) {
         formatado += '(';
-      } else if ( i==2 ) {
+      } else if (i == 2) {
         formatado += ') ';
-      } else if ( i==6 ) {
+      } else if (i == 6) {
         formatado += '-';
-      } 
+      }
 
       formatado += comercial[i];
     }
@@ -224,36 +280,36 @@
   function mascaraCNPJ() {
 
     var cnpj = input_cnpj.value;
-        
-        cnpj = cnpj.replaceAll(".","").replaceAll("-","").replaceAll("/","");
-        var formatado = ''
 
-        for(var i =0 ; i < cnpj.length ; i++) {
-        
-            //00.623.904/0001-73
-            if (i == 2 || i == 5){
-                formatado += ".";
-            } else if (i == 8) {
-                formatado += "/";
-            } else if (i == 12) {
-                formatado += "-";
-            }
-            
-        formatado += cnpj[i];
-        input_cnpj.value = formatado
+    cnpj = cnpj.replaceAll(".", "").replaceAll("-", "").replaceAll("/", "");
+    var formatado = ''
+
+    for (var i = 0; i < cnpj.length; i++) {
+
+      //00.623.904/0001-73
+      if (i == 2 || i == 5) {
+        formatado += ".";
+      } else if (i == 8) {
+        formatado += "/";
+      } else if (i == 12) {
+        formatado += "-";
+      }
+
+      formatado += cnpj[i];
+      input_cnpj.value = formatado
     }
   }
 
   function validarNome() {
-      
-   
-      var valor = input_nome.value;
-      var nomeValido = "";
-      var i = 0;
-    
-      while (i < valor.length) {
+
+
+    var valor = input_nome.value;
+    var nomeValido = "";
+    var i = 0;
+
+    while (i < valor.length) {
       var caractere = valor[i];
-  
+
       if (
         (caractere >= 'A' && caractere <= 'Z') ||
         (caractere >= 'a' && caractere <= 'z') ||
@@ -263,30 +319,30 @@
       }
       i++;
     }
-  
+
     input_nome.value = nomeValido;
   }
-  
+
   function mascaraEmail() {
 
-  var email = input_email.value;
-    
-    email = email.replaceAll(".","").replaceAll("-","").replaceAll("/","");
+    var email = input_email.value;
+
+    email = email.replaceAll(".", "").replaceAll("-", "").replaceAll("/", "");
     var formatado = ''
 
-    for(var i =0 ; i < email.length ; i++) {
-    
-        //de
-        if (i == 2 || i == 5){
-            formatado += ".";
-        } else if (i == 8) {
-            formatado += "/";
-        } else if (i == 12) {
-            formatado += "-";
-        }
-        
-    formatado += email[i];
+    for (var i = 0; i < email.length; i++) {
+
+      //de
+      if (i == 2 || i == 5) {
+        formatado += ".";
+      } else if (i == 8) {
+        formatado += "/";
+      } else if (i == 12) {
+        formatado += "-";
+      }
+
+      formatado += email[i];
+    }
+    input_email.value = formatado
   }
-  input_email.value = formatado
-}
 </script>
