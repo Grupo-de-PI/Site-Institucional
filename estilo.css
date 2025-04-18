@@ -4,6 +4,11 @@ html{
     scroll-behavior: smooth;
 }
 
+.html_produto{
+    scroll-behavior: smooth;
+}   
+
+
 body {
     margin: 0;
     background-color: #ffffff;
@@ -63,6 +68,7 @@ header {
     padding: 10px;
     font-size: larger;
     font-family: "Marvel", sans-serif;
+    color: #000000;
 
 }
 
@@ -133,6 +139,9 @@ header {
     transition-duration: 0.4s;
 
 }
+.botoes1navbar {
+    cursor: pointer;
+}
 
 .botoes1navbar:hover {
     background-color: #ffffff;
@@ -158,6 +167,11 @@ header {
     transition-duration: 0.4s;
 
 }
+
+.botoes1navbar {
+    cursor: pointer;
+}
+
 
 .botoes2navbar:hover {
     background-color: #ffffff;
@@ -470,11 +484,11 @@ h6 {
 
 .botaoFale {
     text-align: center;
-    width: 150px;
-    height: 60px;
-    background-color: #ffffff;
-    border-color: #2F58A5;
-    color: #2F58A5;
+    width: 120px;
+    height: 45px;
+    background-color: #3D75DC;
+    border: none;
+    color: #ffffff;
     border-radius: 15px;
     font-size: larger;
     border: 15%;
@@ -487,29 +501,34 @@ h6 {
 
 /* FOOTER */
 
-
-.footer {
-    display: flex;
-    height: 100%;
+ footer {
+    position: flex;
+    bottom: 0;
+    left: 0;
     width: 100%;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
     background-color: #2F58A5;
+ 
+}
+
+.footer-conteudo{
     flex-direction: row;
-    padding: 5%;
-
-}
-
-.quadrado1 {
-    width: 50%;
-    flex-direction: column;
-
-
-}
-
-.quadrado2 {
-    width: 50%;
-    justify-content: center;
     display: flex;
-    flex-direction: column;
+}
+
+.footer-nav{
+    padding-left: 5%;
+    padding-top: 2%;
+    width: 50%;
+}
+
+.footer-nav2{
+    padding-left: 5%;
+    padding-top: 2%;
+    width: 50%;
 }
 
 .imagem_footer {
@@ -517,15 +536,14 @@ h6 {
     flex-direction: row;
     align-items: center;
     flex-direction: flex-end;
+    width: 50%;
+    
 }
 
-
-.i {
-    width: 80px;
-    height: 80px;
-
+.i{
+    height: 100px;
+    width: 100px;
 }
-
 /* CLASS DOS TEXTOS -------------------------------------------------- */
 
 .texto88 {
@@ -694,7 +712,7 @@ h6 {
 }
 
 .caixaprincipal_sobrenos {
-    height: 320px;
+    height: 350px;
     width: 70%;
     background-color: #1F2A33;
     border-radius: 20px;
@@ -711,9 +729,6 @@ h6 {
    
 }
 
-.box4{
-    display: flex;
-}
 
 .texto_caixa{
     color: white;
@@ -744,6 +759,15 @@ h6 {
 .aspas{
     width: 65px;
     height: 65px;
+}
+
+#inverter{
+    transform: scale(-1);
+}
+
+.gg{
+    justify-content: end;
+    display: flex;
 }
 
 .fundadores{
@@ -790,7 +814,7 @@ h6 {
 
 
 /* ===================================================*/ 
-.cc1{
+.cc1{   
     width: 20%;
 
 }
@@ -854,10 +878,17 @@ h6 {
 
 .container3{
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-top: 100px;
     background-color: #ffffff;
 }
+
+.kk{
+    display: flex;
+     
+}
+
 .caixa_faleconosco{
     border-color: #2F58A5;
     margin-top: 10%;
@@ -946,9 +977,9 @@ h6 {
 /* ***************************************************************************************** */
 
 .link_faleconosco{
-    color: #2F58A5;
+    color: #ffffff;
     font-family: 'Marvel', sans-serif;
-    list-style-type: none;
+    list-style-type: none;  
     text-decoration: none;
 
 }
