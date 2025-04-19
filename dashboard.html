@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashborad</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <link rel="stylesheet" href="styles/styles.css"> -->
+</head>
+
+<body>
+    <div class="container">
+        <canvas id="card1" class="card card1"> </canvas>
+        <canvas id="card2" class="card card2"> </canvas>
+        <canvas id="card3" class="card card3"> </canvas>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    card1();
+    card2();
+    card3();
+   
+
+    // grafico histórico de do dia
+    function card1() {
+
+        const labels_grafic_lines = [
+            '12:00',
+            '12:01',
+            '12:02',
+            '12:03',
+            '12:04',
+            '12:05',
+        ];
+        // cnstante que configura exibição do grafico com json e array
+        const data_grafic_lines = {
+            labels: labels_grafic_lines,
+            datasets: [{
+                label: 'Quantidade de amônia no ar (ppm)',
+                backgroundColor: 'rgb(255,0,0)',
+                borderColor: 'rgb(255,0,0)',
+                data: [0, 2, 2, 5, 10, 5]
+            }, {
+                label: 'Máximo permitido',
+                backgroundColor: 'rgb(0,0,255)', 
+                borderColor: 'rgb(0,0,255)', 
+                data: [20, 20, 20, 20, 20, 20]
+            }
+
+            ]
+        };
+        // configurações do grafico. titulos, base de inicio e final e etc.
+        const config_grafic_lines = {
+            type: 'line',
+            data: data_grafic_lines,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        // inicia um novo grafico dando como referencia o id do canvas e as configurações
+        const chart_grafic_lines = new Chart(
+            document.getElementById('card1'),
+            config_grafic_lines
+        );
+    }
+
+    function card2() {
+
+        const labels_grafic_bar = [
+            'Sala das Maquina',
+            'Câmara de resfriamento',
+            'Câmara de estocagem',
+            'Túnel congelador',
+        ]
+
+        const data_grafic_bar = {
+            labels: labels_grafic_bar,
+            datasets: [{
+                label: 'Nível de amônia(ppm) por ala',
+                backgroundColor: 'rgb(255,0,0)',
+                data: [7, 4, 2, 5]
+            }]
+        };
+
+        const config_grafic_bar = {
+            type: 'bar',
+            data: data_grafic_bar,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        const chart_grafic_bar = new Chart(
+            document.getElementById('card2'),
+            config_grafic_bar
+        )
+    }
+
+    function card3() {
+
+        const labels_grafic_donut = [
+            'Sala das Maquina',
+            'Câmara de resfriamento',
+            'Câmara de estocagem',
+            'Túnel congelador'
+        ]
+
+        const data_grafic_donut = {
+            labels: labels_grafic_donut,
+            datasets: [{
+                label: 'Porcentagem de recorrências por ala',
+                backgroundColor: 'rgb(255,0,0)',
+                data: [26, 24, 27, 23]
+            }]
+        };
+
+        const config_grafic_donut = {
+            type: 'doughnut',
+            data: data_grafic_donut,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+
+        const chart_grafic_donut = new Chart(
+            document.getElementById('card3'),
+            config_grafic_donut
+        )
+    }
+</script>
