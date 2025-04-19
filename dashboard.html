@@ -6,16 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashborad</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- <link rel="stylesheet" href="styles/styles.css"> -->
+    <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body>
     <div class="container">
-        <canvas id="card1" class="card card1"> </canvas>
-        <canvas id="card2" class="card card2"> </canvas>
-        <canvas id="card3" class="card card3"> </canvas>
 
+        <div class="top_kpi">
+
+            <div class="top kp1">
+                <p>dias sem vazamento</p>
+                <p>[$valor]</p>
+            </div>
+            <div class="top kp2">
+                <p>acidentes evitados</p>
+                <p>[$valor]</p>
+            </div>
+            <div class="top kp3">
+                <p>Prejuizos evitados</p>
+                <p>[$valor]</p>
+            </div>
+
+
+
+        </div>
+        <div class="section">
+            <div class="cards">
+                <canvas id="card1" class="card card1"> </canvas>
+                <canvas id="card2" class="card card2"> </canvas>
+                <canvas id="card3" class="card card3"> </canvas>
+            </div>
+
+            <div class="left_kpi">
+                <div class="left kp1">
+                    <p>Sensores ativos</p>
+                    <p>[$valor]</p>
+                </div>
+                <div class="left kp2">
+                    <p>Dias para manutenção preventiva</p>
+                    <p>[$valor]</p>
+                </div>
+                <div class="left kp3">
+                    <p>Status geral das ala</p>
+                    <p>[$valor]</p>
+                </div>
+                <div class="left kp4">
+                    <p>Alertas ativos</p>
+                    <p>[$valor]</p>
+                </div>
+            </div>
+
+
+        </div>
     </div>
+
+
 
 </body>
 
@@ -25,7 +70,7 @@
     card1();
     card2();
     card3();
-   
+
 
     // grafico histórico de do dia
     function card1() {
@@ -48,8 +93,8 @@
                 data: [0, 2, 2, 5, 10, 5]
             }, {
                 label: 'Máximo permitido',
-                backgroundColor: 'rgb(0,0,255)', 
-                borderColor: 'rgb(0,0,255)', 
+                backgroundColor: 'rgb(0,0,255)',
+                borderColor: 'rgb(0,0,255)',
                 data: [20, 20, 20, 20, 20, 20]
             }
 
