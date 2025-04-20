@@ -66,6 +66,18 @@ h2{
     margin-top: 1%;
 }
 
+.input_login{
+    background-color: #ffffff;
+    color: #3D75DC;
+    height: 30px;
+    width: 100%;
+    border-radius: 15px;
+    border-color: #2F58A5;
+    margin-bottom: 5%;
+    margin-top: 1%;
+
+}
+
 span{
     color: #3D75DC;
     font-family: 'Marvel', sans-serif;
@@ -88,6 +100,7 @@ span{
     font-size: medium;
     transition-duration: 0.4s;
     font-family: "Marvel", sans-serif;
+    text-decoration: none;
 }
 
 .loc_botao{
@@ -254,4 +267,52 @@ h6 {
 
 .tods>a:hover::before {
     width: 100%;
+}
+
+
+/* -----------------------------------------------------------------  cadastro pt2 ----------------------*/
+
+.direcionamento{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+}
+
+.bola{
+    background-color: #3D75DC;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+
+}
+
+.bola1{
+    background-color: #CADAE9;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+
+
+}
+
+.espn{
+    margin: 10px;
+}
+
+.bola2{
+    background-color: #CADAE9;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+
+}
+
+.bola3{
+    background-color: #3D75DC;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+
+
 }

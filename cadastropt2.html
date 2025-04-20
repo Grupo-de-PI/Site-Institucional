@@ -19,7 +19,7 @@
   <header>
   <div class="botaocads">
         <li>
-            <a class="link_faleconosco" href="index.html">
+            <a class="link_faleconosco" href="cadastro.html">
               <button class="botaoFale">Voltar</button>
               </a>
         </li>
@@ -28,13 +28,12 @@
 
   <!--header fim-->
 
-
   <div class="direcionamento">
-    <div class="bola"></div>
+    <div class="bola2"></div>
 
     <div class="espn"></div>
 
-    <div class="bola1"></div>
+    <div class="bola3"></div>
   </div>
 
   <div class="login">
@@ -51,66 +50,50 @@
 
       </div>
       <div class="formulario">
+
         <div class="campo">
-          <span>Nome do usuário</span><br>
-          <input class="input_decor" id="input_nome" type="text" oninput="validarNome()" />
+          <span>Logradouro</span><br>
+          <input class="input_decor" id="input_logradouro" type="text" />
         </div>
 
         <div class="campo">
-          <span>Razão Social</span><br>
-          <input class="input_decor" id="input_razaoSocial" type="text" />
+          <span>Número</span><br>
+          <input class="input_decor" id="input_num" type="text" />
         </div>
 
         <div class="campo">
-          <span>CNPJ</span><br>
-          <input class="input_decor" id="input_cnpj" min="0" type="number" oninput="mascaraCNPJ()"
-            placeholder="00.000.000/0000-00" maxlength="18" />
+          <span>Complemento</span><br>
+          <input class="input_decor" id="input_complemento" type="text" />
         </div>
 
         <div class="campo">
-          <span>Porte da Empresa</span><br>
-          <select class="input_decor" id="select_porte">
-            <option></option>
-            <option>Pequena</option>
-            <option>Média</option>
-            <option>Grande</option>
-          </select>
+          <span>CEP</span><br>
+          <input class="input_decor" id="input_cep" type="text" oninput="mascaraCep()" placeholder="00000-000"
+            maxlength="9" />
         </div>
 
         <div class="campo">
-          <span>Telefone - Comercial</span><br>
-          <input class="input_decor" id="input_telefoneComercial" type="text" placeholder="(99) 9999-9999"
-            oninput="mascaraComercial()" maxlength="14" />
+          <span>Bairro</span><br>
+          <input class="input_decor" id="input_bairro" type="text" />
         </div>
 
         <div class="campo">
-          <span>Telefone - Celular</span><br>
-          <input class="input_decor" id="input_telefoneCelular" min="0" type="text" oninput="mascaraCelular()"
-            placeholder="(99) 99999-9999" maxlength="15" />
+          <span>Cidade</span><br>
+          <input class="input_decor" id="input_cidade" type="text" />
         </div>
 
         <div class="campo">
-          <span>Email</span><br>
-          <input class="input_decor" id="input_email" placeholder="nome@dominio.com" type="email"
-            onclick="mascaraEmail()" />
+          <span>Estado</span><br>
+          <input class="input_decor" id="input_estado" type="text" />
         </div>
 
         <div class="campo">
-          <span>Digite sua Senha</span><br>
-          <input class="input_decor" id="input_senha" type="password" />
-        </div>
-
-        <div class="campo">
-          <span>Redigite sua Senha:</span><br>
-          <input class="input_decor" id="input_confirmacao_senha" type="password" />
+          <span>País</span><br>
+          <input class="input_decor" id="input_pais" type="text" />
         </div>
 
         <div class="loc_botao">
-          <li>
-            <a href="cadastropt2.html">
-              <button class="botao" onclick="cadastrar()">Próxima Página</button>
-            </a>
-          </li>
+          <button class="botao" onclick="cadastrar()">Finalizar cadastro</button>
         </div>
         <div id="div_mensagem"></div>
       </div>
