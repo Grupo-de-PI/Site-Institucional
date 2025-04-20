@@ -1,0 +1,48 @@
+.container {
+    margin: 0;
+}
+
+.top_kpi {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.top {
+    border: 2px solid #000;
+}
+
+.section {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.left_kpi {
+    display: block;
+    width: 10%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left {
+    border: 2px solid #000;
+}
+
+.cards {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.double_card {
+    display: flex;
+    flex-direction: row;
+    height: 350px;
+}
+
+.card {
+    width: 20%;
+    height: 200px;
+    border: 2px solid #000;
+}

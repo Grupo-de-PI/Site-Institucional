@@ -7,5 +7,131 @@
 </head>
 <body>
     
+    <div>
+        <label>
+            Insira a quantidade de bovinos que fazem parte da sua produção diária:
+            <input type="number" id="input_qntBois">
+        <label>
+    </div>
+    <br>
+    
+    <div id="div_mensagem"></div>
+    </div>
+    
+    <!-- <div>
+        <label>
+            Insira o nível de vazamento que houve na empresa:
+            <select id="select_nivel">
+                <option>Leve</option>
+                <option>Moderado</option>
+                <option>Arrojado</option>
+            </select> 
+        </label>
+    </div> -->
+
+    <div></div>
+
+    <div>
+        <label>
+            Houve paralisação por conta de vazamento de amonia na sua empresa quando houve um acidente?
+            <select id="select_resposta" onchange="mensagem()">
+                <option>Não</option>
+                <option>Sim</option>
+                
+            </select>
+        </label>
+    </div>
+    
+    <div id="div_mensagemPar"></div>
+    <div id="div_prejuizo"></div>
+    <button onclick="simular()">Simular Prejuízo</button>
+    
 </body>
 </html>
+
+<script>
+    var resposta = 0;
+    var tipoTempo = 0;
+
+    function simular() {
+        
+        tipoTempo = select_tempo.value;
+        var qtdBois= Number(input_qntBois.value);
+         
+        var precoArroba = 325;
+        var pesoArroba = 15;
+        var qntAprovAroba = 0.50;
+
+        var qntArroba = (qtdBois*qntAprovAroba)/pesoArroba;
+        var custoPrejuijo = precoArroba*qntArroba;
+        
+        div_prejuizo.innerHTML = "";
+
+
+         
+        if (tipoTempo != '#' || resposta == 'Não') {
+            
+            
+            
+            div_prejuizo.innerHTML = 'Funcionou'
+
+
+
+
+        } else {
+           alert("Valor não preenchido");
+        }
+         
+         
+         
+        // Gráfico para exemplificar os níveis; 
+        // Alguns custos de paralisação não planejada; 
+
+    }
+
+    function mensagem() {
+
+        resposta = select_resposta.value;
+
+        div_mensagemPar.innerHTML = "";
+
+        if (resposta == "Sim") {
+            div_mensagemPar.innerHTML = `
+            Informe a escala da paralisação:
+            <select id="select_tempo" onchange="temporizador()">
+                <option value="#">Selecione uma das seguintes opções</option>
+                <option>Minutos</option>
+                <option>Horas</option>
+                <option>Dias</option>
+            </select>
+            <div id="div_resposta2"></div>
+        `; 
+        }
+    }
+
+    function temporizador() {
+        
+        tipoTempo = select_tempo.value;
+        div_resposta2.innerHTML = "";
+
+        if (tipoTempo == "Minutos") {
+    
+            div_resposta2.innerHTML += `
+            Informe a quantidade de minutos que a fábrica parou:
+            <input type="text" id="input_tempo">
+            `
+            } else if (tipoTempo == "Horas") {
+
+                div_resposta2.innerHTML += `
+                Informe a quantidade de horas que a fábrica parou:
+                <input type="text" id="input_tempo">
+                `
+            } else if (tipoTempo == "Dias") {
+
+                div_resposta2.innerHTML += `
+                Informe a quantidade de dias que a fábrica parou:
+                <input type="text" id="input_tempo">
+                `
+            }
+    }
+</script>
