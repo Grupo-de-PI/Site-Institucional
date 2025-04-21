@@ -103,7 +103,6 @@
                 Informe a escala da paralisação:
                 <select id="select_tempo" onchange="temporizador()">
                     <option value="#">Selecione uma das seguintes opções</option>
-                    <option>Minutos</option>
                     <option>Horas</option>
                     <option>Dias</option>
                 </select><br>
@@ -129,13 +128,7 @@
             div_resposta.innerHTML = "";
             tipoTempo = select_tempo.value;
 
-            if (tipoTempo == "Minutos") {
-                div_resposta.innerHTML += `
-                Informe a quantidade de minutos que a fábrica parou:
-                <input type="text" id="input_tempo"><br>
-                <div id="div_botao"><button onclick="analisarpt2()">Simular Prejuízo</button></div>
-                `
-            } else if (tipoTempo == "Horas") {
+            if (tipoTempo == "Horas") {
                 div_resposta.innerHTML += `
                 Informe a quantidade de horas que a fábrica parou:
                 <input type="text" id="input_tempo"><br>
