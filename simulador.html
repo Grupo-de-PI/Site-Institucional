@@ -17,17 +17,17 @@
             <ul class="navbar">
                 <img class="imageNavbar" src="./fotos/logo Airsafe sem fundo.png" alt="">
                 <li class="locs">
-                    <a href="#">Home</a>
+                    <a href="index.html">Home</a>
                 </li>
-                
+
                 <li class="locs">
                     <a href="produtos.html">Produtos</a>
                 </li class="locs">
-                
+
                 <li class="locs">
                     <a href="sobrenos.html">Sobre Nós</a>
                 </li class="locs">
-                
+
                 <li class="locs">
                     <a href="simulador.html">Simulador</a>
                 </li>
@@ -57,7 +57,7 @@
 
                     <label>
                         Houve paralisação? <br><br>
-                        <select id="select_resposta" onchange="mensagem()"> 
+                        <select id="select_resposta" onchange="mensagem()">
                             <option value="#">Escolha uma opção</option>
                             <option>Não</option>
                             <option>Sim</option>
@@ -69,14 +69,14 @@
                         <button class="simulador" onclick="analisar()">Simular Prejuízo</button>
                     </div>
         </div>
-        
+
         <div id="div_prejuizo"></div>
-        
+
         <div>
-            <canvas id="grafico"></canvas>
-            <canvas id="grafico1"></canvas>
+            <canvas class="dados" id="grafico" style="display: none;"></canvas>
         </div>
-        
+
+
 
     </div>
     </div>
@@ -216,11 +216,12 @@
         div_resposta.innerHTML = "";
         tipoTempo = select_tempo.value;
 
-            if (tipoTempo == "Horas") {
-                div_resposta.innerHTML += `
+        if (tipoTempo == "Horas") {
+            div_resposta.innerHTML += ` <div class="segunda_parte"> 
                 Informe a quantidade de horas que a fábrica parou:
                 <input type="text" id="input_tempo"><br>
                 <div id="div_botao"><button class="simulador" onclick="analisarpt2()">Simular Prejuízo</button></div>
+                </div>
                 `
         } else if (tipoTempo == "Dias") {
             div_resposta.innerHTML += `
@@ -233,6 +234,35 @@
         }
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     function calcular() {
 
@@ -260,24 +290,30 @@
             if (qntTempo < 6) {
                 calcularNao()
             } else if (qntTempo >= 6 && qntTempo < 24) {
-                div_prejuizo.innerHTML += `
-            <p><b> PARA ESTA SITUAÇÃO, CONSIDERA-SE QUE TODA A PRODUÇÃO DIÁRIA FOI ABATIDA NA PRIMEIRA HORA </b></p>
-            <p><b>1. CUSTOS DE INVESTIMENTO NOS BOVINOS:</b></p>
+
+                div_prejuizo.innerHTML += `<div class="resposta_estrutura">  
+            <p><b> PARA ESTA SITUAÇÃO, CONSIDERA-SE QUE TODA A PRODUÇÃO DIÁRIA FOI ABATIDA NA PRIMEIRA HORA </b></p> <br>
+            <p><b>1. CUSTOS DE INVESTIMENTO NOS BOVINOS:</b></p> <br>
             <p>- Custo direto (R$${custoDireto.toFixed(2)}/cabeça): R$${(qtdBois * custoDireto).toFixed(2)}</p>
-            <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois * custoIndireto).toFixed(2)}</p>
-            <p>- <b>TOTAL INVESTIDO:</b> R$${custoTotalInvestido.toFixed(2)}</p>
+            <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois * custoIndireto).toFixed(2)}</p><br>
+            <p>- <b>TOTAL INVESTIDO:</b> R$${custoTotalInvestido.toFixed(2)}</p> <br>
+            <div class="borda"> </div> <br>
             
-            <p><b>2. PERDA DE PRODUÇÃO DE CARNE:</b></p>
+            <p><b>2. PERDA DE PRODUÇÃO DE CARNE:</b></p><br>
             <p>- Quantidade de arrobas perdidas: ${qntArroba.toFixed(2)}</p>
-            <p>- Valor da carne perdida: R$${custoArroba.toFixed(2)}</p>
+            <p>- Valor da carne perdida: R$${custoArroba.toFixed(2)}</p><br>
+
+            <div class="borda"> </div> <br>
+
             
-            <p><b>3. PERDA NO LUCRO:</b></p>
-            <p>- Lucro medio de frigorificos: 10% </p>
+            <p><b>3. PERDA NO LUCRO:</b></p><br>
+            <p>- Lucro médio de frigorificos: 10% </p>
+            </div>
             `
 
-                div_prejuizo.innerHTML += `
+                div_prejuizo.innerHTML += `<div class="resposta_estrutura">  
             <p><b>TOTAL DE PREJUÍZOS ESTIMADOS:</b> R$${totalPrejuizos.toFixed(2)}</p>
-        `;
+        </div>`;
             }
             else {
                 if (grafico1 !== null) {
@@ -288,28 +324,38 @@
         } else if (tipoTempo == "Dias") {
 
             var diasParalizados = input_tempo.value;
-            div_prejuizo.innerHTML += `
-            <p><b> PARA ESTA SITUAÇÃO, CONSIDERA-SE QUE TODA A PRODUÇÃO DIÁRIA FOI ABATIDA NA PRIMEIRA HORA</b></p>
-            <p><b>1. CUSTOS DE INVESTIMENTO NOS BOVINOS:</b></p>
+            div_prejuizo.innerHTML += `<div class="resposta_estrutura">  
+            <p><b> PARA ESTA SITUAÇÃO, CONSIDERA-SE QUE TODA A PRODUÇÃO DIÁRIA FOI ABATIDA NA PRIMEIRA HORA</b></p><br><br>
+            <p><b>1. CUSTOS DE INVESTIMENTO NOS BOVINOS:</b></p><br>
             <p>- Custo direto (R$${custoDireto.toFixed(2)}/cabeça): R$${(qtdBois * custoDireto * diasParalizados).toFixed(2)}</p>
-            <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois * custoIndireto * diasParalizados).toFixed(2)}</p>
-            <p>- <b>TOTAL INVESTIDO:</b> R$${(custoTotalInvestido * diasParalizados).toFixed(2)}</p>
+            <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois * custoIndireto * diasParalizados).toFixed(2)}</p><br>
+            <p>- <b>TOTAL INVESTIDO:</b> R$${(custoTotalInvestido * diasParalizados).toFixed(2)}</p><br>
+
+                        <div class="borda"> </div> <br>
+
             
-            <p><b>2. PERDA DE PRODUÇÃO DE CARNE:</b></p>
+            <p><b>2. PERDA DE PRODUÇÃO DE CARNE:</b></p><br>
             <p>- Quantidade de arrobas perdidas: ${(qntArroba * diasParalizados).toFixed(2)}</p>
-            <p>- Valor da carne perdida: R$${(custoArroba * diasParalizados).toFixed(2)}</p>
-            
-            <p><b>3. PERDA NO LUCRO:</b></p>
-            <p>- Lucro medio de frigorificos: 10% </p>
+            <p>- Valor da carne perdida: R$${(custoArroba * diasParalizados).toFixed(2)}</p><br>
+
+                        <div class="borda"> </div> <br>
+
+            <p><b>3. PERDA NO LUCRO:</b></p><br>
+            <p>- Lucro médio de frigorificos: 10% </p>
+            </div>
             `
 
-            div_prejuizo.innerHTML += `
+            div_prejuizo.innerHTML += ` <div class="resposta_estrutura">
             <p><b>TOTAL DE PREJUÍZOS ESTIMADOS:</b> R$${(totalPrejuizos * diasParalizados).toFixed(2)}</p>
+            </div>
         `;
         }
     }
 
     function calcularNao() {
+
+        document.getElementById('grafico').style.display = 'block';
+
 
         qtdBois = Number(input_qntBois.value);
 
@@ -338,26 +384,32 @@
         }
 
 
-        div_prejuizo.innerHTML += `
-                <p><b>1. CUSTOS DE INVESTIMENTO NOS BOVINOS:</b></p>
+        div_prejuizo.innerHTML += ` <div class="resposta_estrutura">
+                <p><b>1. CUSTOS DE INVESTIMENTO NOS BOVINOS:</b></p> <br>
                 <p>- Custo direto (R$${custoDireto.toFixed(2)}/cabeça): R$${(qtdBois * custoDireto).toFixed(2)}</p>
-                <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois * custoIndireto).toFixed(2)}</p>
-                <p>- <b>TOTAL INVESTIDO:</b> R$${custoTotalInvestido.toFixed(2)}</p>
+                <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois * custoIndireto).toFixed(2)}</p><br>
+                <p>- <b>TOTAL INVESTIDO:</b> R$${custoTotalInvestido.toFixed(2)}</p><br>
+
+                <div class="borda"> </div> <br>
                 
-                <p><b>2. PERDA DE PRODUÇÃO DE CARNE:</b></p>
+                <p><b>2. PERDA DE PRODUÇÃO DE CARNE:</b></p><br>
                 <p>- Quantidade de arrobas perdidas: ${qntArroba.toFixed(2)}</p>
-                <p>- Valor da carne perdida: R$${custoArroba.toFixed(2)}</p>
+                <p>- Valor da carne perdida: R$${custoArroba.toFixed(2)}</p><br>
+
+                <div class="borda"> </div> <br> 
                 
                 <p><b>3. PERDA NO LUCRO:</b></p>
-                <p>- Lucro medio de frigorificos: 10% </p>
+                <p>- Lucro medio de frigorificos: 10% </p><br>
+                 </div>
                 `
 
-        div_prejuizo.innerHTML += `
+        div_prejuizo.innerHTML += ` <div class="resposta_estrutura">
                 <p><b>TOTAL DE PREJUÍZOS ESTIMADOS:</b> R$${totalPrejuizos.toFixed(2)}</p>
+                 </div>
             `;
 
 
-        //Configurando o grafico 1 - Linha 
+        //Configurando o grafico - Linha 
         const labels = [
             '1º dia',
             '2º dia',
@@ -383,8 +435,8 @@
             datasets: [
                 {
                     label: 'Prejuizo',
-                    backgroundColor: 'rgb(255, 0, 0)',
-                    borderColor: 'rgb(255, 0, 0)',
+                    backgroundColor: 'hsl(219, 56%, 42%)',
+                    borderColor: 'hsl(219, 56%, 42%)',
                     data: [dado1, dado2, dado3, dado4, dado5, dado6, dado7],
                 }
             ]
@@ -409,6 +461,8 @@
             document.getElementById('grafico'),
             config
         );
+
+
 
     }
 </script>

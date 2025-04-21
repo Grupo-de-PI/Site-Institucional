@@ -151,15 +151,15 @@ header {
 .estrutura_simulador{
     padding: 3%;
     margin-top: 10%;
-    margin-bottom: 10%;
     background-color: #ffffff;
     max-width: 600px;
     font-family: 'Segoe UI', sans-serif;
     border-radius: 15px;
-    
-
 
 }
+
+
+
 
 /* duas classes na mesma linha */ 
 
@@ -206,6 +206,48 @@ header {
 
 }
 
+
+
+/*  -------------------------------- resposta --------------------------*/ 
+
+
+.resposta_estrutura{
+    padding: 3%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    background-color: #ffffff;
+    max-width: 600px;
+    font-family: 'Segoe UI', sans-serif;
+    border-radius: 15px;
+    
+
+}
+
+#div_prejuizo{
+    margin-top: 2%;
+    font-size: 20px;
+    color: black;
+    margin-bottom: 10px;
+    justify-content: left;
+    margin-bottom: 13%;
+    
+}
+
+.borda{
+    background-color: #ccd1db;
+    width: 100%;
+    height: 3px;
+}
+
+.dados{
+    padding: 2%;
+    margin-bottom: 3%;
+    background-color: rgb(255, 255, 255);
+    width: 600px;
+    height: 300px;
+    border-radius: 15px;
+    border-color: hsl(219, 56%, 42%);
+}
 
 
 
