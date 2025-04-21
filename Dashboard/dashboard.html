@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="shortcut icon" href="fotos\favicon-16x16.png" type="image/x-icon">
+
+</head>
+
+<body>
+    <div class="sidenav">
+        <img src="fotos\homem.png">
+        <p>Nome Cliente</p>
+        <a href="#home">Home</a>
+        <a href="#notification">Notificações</a>
+        <a href="#graficos">Gráficos</a>
+        
+    </div>
+
+    <div class = "main">
+
+    <div class="container">
+
+        <div class="top_kpi">
+
+            <div class="top_kp1">
+                <p>Dias sem vazamento</p>
+                <p>[$valor]</p>
+            </div>
+            <div class="top_kp2">
+                <p>Prejuizos evitados</p>
+                <p>[$valor]</p>
+            </div>
+            <div class="top_kp3">
+                <p>Acidentes evitados</p>
+                <p>[$valor]</p>
+            </div>
+
+
+
+        </div>
+        <div class="section">
+            <div class="cards">
+                <div class="double_card">
+                    <canvas id="card3" class="card card3"> </canvas>
+                    <canvas id="card2" class="card card2"> </canvas>
+                </div>
+                <div class="mono_card">
+                    <canvas id="card1" class="card card1"> </canvas>
+                </div>
+
+            </div>
+
+            
+            <div class="left_kpi">
+                <div class="left_kp1">
+                    <p>Sensores ativos</p>
+                    <p>[$valor]</p>
+                </div>
+                <div class="left_kp2">
+                    <p>Dias para manutenção preventiva</p>
+                    <p>[$valor]</p>
+                </div>
+
+                <div class="left_kp3">
+                    <p>Salas que precisam de atenção</p>
+                    <p>[$valor]</p>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+
+
+
+</body>
+
+</html>
+
+<script>
+
+    // grafico histórico do dia
+    function card1() {
+    const labels_grafic_lines = [
+        '12:00',
+        '12:01',
+        '12:02',
+        '12:03',
+        '12:04',
+        '12:05',
+    ];
+
+    const data_grafic_lines = {
+        labels: labels_grafic_lines,
+        datasets: [
+            {
+                label: 'Sensor 1',
+                backgroundColor: '#1F77B4',
+                borderWidth: 1,
+                pointRadius: 0,
+                borderColor: '#1F77B4',
+                data: [0, 2, 2, 5, 10, 5]
+            },
+            {
+                label: 'Sensor 2',
+                backgroundColor: '#FF7F0E',
+                borderWidth: 1,
+                pointRadius: 0,
+                borderColor: '#FF7F0E',
+                data: [0, 0, 0, 7, 10, 11]
+            },
+            {
+                label: 'Sensor 3',
+                backgroundColor: '#2CA02C',
+                borderWidth: 1,
+                pointRadius: 0,
+                borderColor: '#2CA02C',
+                data: [1, 1, 1, 0, 1, 0]
+            },
+            {
+                label: 'Sensor 4',
+                backgroundColor: '#9467BD',
+                borderWidth: 1,
+                pointRadius: 0,
+                borderColor: '#9467BD',
+                data: [15, 12, 8, 2, 1, 1]
+            },
+            {
+                label: 'Máximo permitido',
+                backgroundColor: '#FF0000',
+                borderColor: '#FF0000',
+                borderWidth: 2,
+                pointRadius: 0,
+                data: [20, 20, 20, 20, 20, 20]
+            },
+            {
+                label: 'Alerta de possível vazamento',
+                backgroundColor: '#FFD700',
+                borderColor: '#FFD700',
+                borderWidth: 2,
+                pointRadius: 0,
+                data: [10, 10, 10, 10, 10, 10]
+            }
+        ]
+    };
+
+    const config_grafic_lines = {
+        type: 'line',
+        data: data_grafic_lines,
+        options: {
+            responsive: true,
+            scales: {
+                x: {
+                    ticks: {
+                        color: '#ffffff'
+                    },
+                    grid: {
+                        color: '#ffffff33'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#ffffff'
+                    },
+                    grid: {
+                        color: '#ffffff33'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ffffff' // Legenda branca
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Concentração de amônia (ppm)',
+                    color: '#ffffff',
+                    font: {
+                        size: 16
+                    }
+                },
+                tooltip: {
+                    bodyColor: '#ffffff',
+                    titleColor: '#ffffff',
+                    backgroundColor: '#333'
+                }
+            }
+        }
+    };
+
+    const chart_grafic_lines = new Chart(
+        document.getElementById('card1'),
+        config_grafic_lines
+    );
+}
+
+    function card2() {
+
+        const labels_grafic_bar = [
+            'Sala das Maquinas',
+            'Câmara de resfriamento',
+            'Câmara de estocagem',
+            'Túnel congelador',
+        ]
+
+        const data_grafic_bar = {
+            labels: ['Sala das Maquinas', 'Câmara de resfriamento', 'Câmara de estocagem', 'Túnel congelador'],
+            datasets: [{
+                label: 'Nível de amônia(ppm) por ala',
+                backgroundColor: ['#1F77B4', '#FF7F0E', '#2CA02C', '#9467BD'],
+
+                data: [7, 4, 2, 5]
+            }]
+        };
+
+        const config_grafic_bar = {
+            type: 'bar',
+            data: data_grafic_bar,
+            options: {
+                scales: {
+                    x: {
+                        ticks: {
+                    color: '#ffffff' // cor do texto do eixo Y
+                },
+                grid: {
+                    color: '#ffffff33' // cor da grade do eixo Y
+                }
+                    },
+
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                    color: '#ffffff' // cor do eixo Y
+                },
+                grid: {
+                    color: '#ffffff33' // cor da grade do eixo Y
+                }
+                    }
+                },
+                plugins: { // Titulo para o grafico de Concentração média de amonia
+                    legend: {
+                labels: {
+                    color: '#ffffff'
+                }
+            },
+                    title: {
+                        display: true,
+                        text: 'Concentração média de amônia (ppm)',
+                        color: '#ffffff'
+                    }
+                }
+            }
+        };
+
+        const chart_grafic_bar = new Chart(
+            document.getElementById('card2'),
+            config_grafic_bar
+        )
+    }
+
+    function card3() {
+    const labels_grafic_donut = [
+        'Sala das Maquinas',
+        'Câmara de resfriamento',
+        'Câmara de estocagem',
+        'Túnel congelador'
+    ];
+
+    const data_grafic_donut = {
+        labels: labels_grafic_donut,
+        datasets: [{
+            label: 'Porcentagem de recorrências por ala',
+            backgroundColor: ['#1F77B4', '#FF7F0E', '#2CA02C', '#9467BD'],
+            data: [45, 20, 10, 23]
+        }]
+    };
+
+    const config_grafic_donut = {
+        type: 'doughnut',
+        data: data_grafic_donut,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ffffff' // Cor da legenda
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Relação de acidentes',
+                    color: '#ffffff', // Cor do título
+                    font: {
+                        size: 16
+                    }
+                },
+                tooltip: {
+                    bodyColor: '#ffffff',
+                    titleColor: '#ffffff',
+                    backgroundColor: '#333' // opcional: fundo do tooltip
+                }
+            },
+           
+            scales: {
+                    x: {
+                        display: false // Remove a escala do eixo X (se aplicável)
+                    },
+                    y: {
+                        display: false // Remove a escala do eixo Y (se aplicável)
+                    }
+                },
+
+        }
+    };
+
+    const chart_grafic_donut = new Chart(
+        document.getElementById('card3'),
+        config_grafic_donut
+    );
+}
+
+    card1();
+    card2();
+    card3();
+
+
+</script>
