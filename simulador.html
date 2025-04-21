@@ -1,40 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="simulador.css">
 </head>
+
 <body>
+    <header class="fixo">
+        <div class="container">
+            <ul class="navbar">
+                <img class="imageNavbar" src="./fotos/logo Airsafe sem fundo.png" alt="">
+                <li class="locs">
+                    <a href="#">Home</a>
+                </li>
+                
+                <li class="locs">
+                    <a href="produtos.html">Produtos</a>
+                </li class="locs">
+                
+                <li class="locs">
+                    <a href="sobrenos.html">Sobre Nós</a>
+                </li class="locs">
+                
+                <li class="locs">
+                    <a href="simulador.html">Simulador</a>
+                </li>
+                <li class="locs">
 
-    
-    <label>
-        Insira a quantidade de bovinos que fazem parte da sua produção diária:
-        <input type="number" id="input_qntBois">
-    <label><br>
+                    <div class="traco"></div>
+                <li>
+                    <a class="link_faleconosco" href="login.html">
+                        <button class="botoes1navbar" type="button">Login</button>
+                    </a>
+                </li>
 
-    <label>
-        Houve paralisação por conta de vazamento de amonia na sua empresa quando houve um acidente?
-        <select id="select_resposta" onchange="mensagem()">
-            <option value="#">Escolha uma opção</option>
-            <option>Não</option>
-            <option>Sim</option>
-            
-        </select>
-    </label>
-    
-    <div id="div_mensagem"><button onclick="analisar()">Simular Prejuízo</button></div>
-    
-    <div id="div_prejuizo"></div>
-    
-    <div>
-        <canvas id="grafico"></canvas>
-        <canvas id="grafico1"></canvas>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+
+    <div class="card_estrutura">
+        <div class="estrutura_simulador">
+            <h1>Simulador Financeiro</h1>
+
+            <label>
+                Quantidade de bovinos sua produção diária: <br><br>
+                <input type="number" id="input_qntBois"><br><br>
+                <label><br>
+
+                    <label>
+                        Houve paralisação? <br><br>
+                        <select id="select_resposta" onchange="mensagem()"> 
+                            <option value="#">Escolha uma opção</option>
+                            <option>Não</option>
+                            <option>Sim</option>
+
+                        </select> <br><br>
+                    </label>
+
+                    <div id="div_mensagem" class="botao">
+                        <button class="simulador" onclick="analisar()">Simular Prejuízo</button>
+                    </div>
+        </div>
+        
+        <div id="div_prejuizo"></div>
+        
+        <div>
+            <canvas id="grafico"></canvas>
+            <canvas id="grafico1"></canvas>
+        </div>
+        
+
     </div>
-    
-    
+    </div>
+
+
+    <footer class="footer">
+        <div class="footer-conteudo">
+            <nav class="footer-nav">
+                <div class="imagem_footer">
+                    <img class="i" src="./fotos/logo Airsafe sem fundo.png" alt="">
+                    <h6> AirSafe. </h6>
+                </div>
+                <p class="texto88">contato@airsafe.com.br</p>
+                <p class="texto88">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP</p>
+
+
+            </nav>
+            <nav class="footer-nav2">
+                <div class="texto99"> SERVIÇOS</div>
+
+                <li class="tods">
+                    <a href="simulador.html">Simulador</a>
+                </li>
+                <li class="tods">
+                    <a href="produtos.html">Produtos</a>
+                </li>
+
+                <li class="tods">
+                    <a href="sobrenos.html">Sobre Nós</a>
+                </li>
+
+                <li class="tods">
+                    <a href="login.html">Login</a>
+                </li>
+
+                <li class="tods">
+                    <a href="faleConosco.html">Contato</a>
+                </li>
+            </nav>
+        </div>
+    </footer>
+
+
 </body>
+
 </html>
 
 
@@ -59,12 +146,12 @@
     var custoDireto = 112.39;
     var custoIndireto = 57.73;
     var custoTotalInvestido = qtdBois * (custoDireto + custoIndireto);
-    
+
     // 2. Cálculo da perda de produção
     var precoArroba = 332;
     var pesoArroba = 15;
     var qntArroba = (qtdBois * 0.5 * pesoBoi) / pesoArroba;
-    var custoArroba = precoArroba*qntArroba;
+    var custoArroba = precoArroba * qntArroba;
 
     // 3. Cálculo da paralisação (se aplicável)
     var custoParalisacao = 0;
@@ -73,87 +160,88 @@
 
     var grafico1 = null;
 
-        function analisar(){
-            //Receber as inputs
-            qntBois = input_qntBois.value;
-            resposta = select_resposta.value;
+    function analisar() {
+        //Receber as inputs
+        qntBois = input_qntBois.value;
+        resposta = select_resposta.value;
 
-            if (qntBois == 0) {
-                alert("Informe a quantidade de bois!!")
-            } else if (resposta == "#"){
-                alert("Informe se houve vazamento!!")
-            } else if (qntBois != 0 && resposta == "Não"){
-                calcularNao()
-            }
-
-            
+        if (qntBois == 0) {
+            alert("Informe a quantidade de bois!!")
+        } else if (resposta == "#") {
+            alert("Informe se houve vazamento!!")
+        } else if (qntBois != 0 && resposta == "Não") {
+            calcularNao()
         }
 
-        function mensagem(){
-            resposta = select_resposta.value;
-            div_prejuizo.innerHTML = "";
-            div_mensagem.innerHTML = "";
 
-            if (grafico1 !== null){
-                grafico1.destroy(); //Perguntar para o JP
-            } 
+    }
 
-            if (resposta == "Sim") {
-                div_mensagem.innerHTML = `
-                Informe a escala da paralisação:
+    function mensagem() {
+        resposta = select_resposta.value;
+        div_prejuizo.innerHTML = "";
+        div_mensagem.innerHTML = "";
+
+        if (grafico1 !== null) {
+            grafico1.destroy(); //Perguntar para o JP
+        }
+
+        if (resposta == "Sim") {
+            div_mensagem.innerHTML = `
+                  <div class="estrutura_simulador">
+                    Informe a escala da paralisação: <br><br>
                 <select id="select_tempo" onchange="temporizador()">
                     <option value="#">Selecione uma das seguintes opções</option>
                     <option>Minutos</option>
                     <option>Horas</option>
                     <option>Dias</option>
-                </select><br>
+                </select><br> <br>
                 <div id="div_resposta"></div>
-                <div id="div_botao"><button onclick="analisarpt2()">Simular Prejuízo</button></div>
-            `; 
-            } else {
-                div_mensagem.innerHTML = `<button onclick="analisar()">Simular Prejuízo</button>`
-            }
+                <div class="botao" id="div_botao"><button class="simulador" onclick="analisarpt2()">Simular Prejuízo</button></div></div>
+            `;
+        } else {
+            div_mensagem.innerHTML = `<button class="simulador" onclick="analisar()">Simular Prejuízo</button>`
+        }
+    }
+
+    function analisarpt2() {
+        tipoTempo = select_tempo.value;
+        if (tipoTempo == "#") {
+            alert("Informe a escala de paralização!!")
+        } else {
+            calcular()
+        }
+    }
+
+    function temporizador() {
+        div_botao.innerHTML = "";
+        div_resposta.innerHTML = "";
+        tipoTempo = select_tempo.value;
+
+        if (tipoTempo == "Minutos") {
+            div_resposta.innerHTML += `
+                Informe a quantidade de minutos que a fábrica parou: <br><br>
+                <input type="text" id="input_tempo"><br>
+                <div id="div_botao"><button class="simulador" onclick="analisarpt2()">Simular Prejuízo</button></div>
+                `
+        } else if (tipoTempo == "Horas") {
+            div_resposta.innerHTML += `
+                Informe a quantidade de horas que a fábrica parou: <br><br>
+                <input type="text" id="input_tempo"><br>
+                <div id="div_botao"><button class="simulador" onclick="analisarpt2()">Simular Prejuízo</button></div>
+                `
+        } else if (tipoTempo == "Dias") {
+            div_resposta.innerHTML += `
+                Informe a quantidade de dias que a fábrica parou: <br><br>
+                <input type="text" id="input_tempo"><br>
+                <div id="div_botao"><button class="simulador" onclick="analisarpt2()">Simular Prejuízo</button></div>
+                `
+        } else {
+            div_resposta.innerHTML += `<div id="div_botao"><button class="simulador" onclick="analisarpt2()">Simular Prejuízo</button></div>`
         }
 
-        function analisarpt2(){
-                tipoTempo = select_tempo.value;
-                if (tipoTempo == "#") {
-                    alert("Informe a escala de paralização!!")
-                } else {
-                    calcular()
-                }
-        }
+    }
 
-        function temporizador() {
-            div_botao.innerHTML = "";
-            div_resposta.innerHTML = "";
-            tipoTempo = select_tempo.value;
-
-            if (tipoTempo == "Minutos") {
-                div_resposta.innerHTML += `
-                Informe a quantidade de minutos que a fábrica parou:
-                <input type="text" id="input_tempo"><br>
-                <div id="div_botao"><button onclick="analisarpt2()">Simular Prejuízo</button></div>
-                `
-            } else if (tipoTempo == "Horas") {
-                div_resposta.innerHTML += `
-                Informe a quantidade de horas que a fábrica parou:
-                <input type="text" id="input_tempo"><br>
-                <div id="div_botao"><button onclick="analisarpt2()">Simular Prejuízo</button></div>
-                `
-            } else if (tipoTempo == "Dias") {
-                div_resposta.innerHTML += `
-                Informe a quantidade de dias que a fábrica parou:
-                <input type="text" id="input_tempo"><br>
-                <div id="div_botao"><button onclick="analisarpt2()">Simular Prejuízo</button></div>
-                `
-            } else {
-                div_resposta.innerHTML += `<div id="div_botao"><button onclick="analisarpt2()">Simular Prejuízo</button></div>` 
-            }
-        
-        }
-
-        function calcular() {
+    function calcular() {
 
         qtdBois = Number(input_qntBois.value);
 
@@ -167,10 +255,10 @@
         custoTotalInvestido = qtdBois * (custoDireto + custoIndireto);
 
         qntArroba = (qtdBois * 0.5 * pesoBoi) / pesoArroba;
-        custoArroba = precoArroba*qntArroba;
+        custoArroba = precoArroba * qntArroba;
         var lucroPerdido = 1.1;
 
-        totalPrejuizos = lucroPerdido*(custoTotalInvestido + custoArroba) ;
+        totalPrejuizos = lucroPerdido * (custoTotalInvestido + custoArroba);
 
         div_prejuizo.innerHTML = "";
         qntTempo = Number(input_tempo.value);
@@ -182,8 +270,8 @@
                 div_prejuizo.innerHTML += `
             <p><b> PARA ESTA SITUAÇÃO, CONSIDERA-SE QUE TODA A PRODUÇÃO DIÁRIA FOI ABATIDA NA PRIMEIRA HORA </b></p>
             <p><b>1. CUSTOS DE INVESTIMENTO NOS BOVINOS:</b></p>
-            <p>- Custo direto (R$${custoDireto.toFixed(2)}/cabeça): R$${(qtdBois*custoDireto).toFixed(2)}</p>
-            <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois*custoIndireto).toFixed(2)}</p>
+            <p>- Custo direto (R$${custoDireto.toFixed(2)}/cabeça): R$${(qtdBois * custoDireto).toFixed(2)}</p>
+            <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois * custoIndireto).toFixed(2)}</p>
             <p>- <b>TOTAL INVESTIDO:</b> R$${custoTotalInvestido.toFixed(2)}</p>
             
             <p><b>2. PERDA DE PRODUÇÃO DE CARNE:</b></p>
@@ -194,73 +282,73 @@
             <p>- Lucro medio de frigorificos: 10% </p>
             `
 
-        div_prejuizo.innerHTML +=`
+                div_prejuizo.innerHTML += `
             <p><b>TOTAL DE PREJUÍZOS ESTIMADOS:</b> R$${totalPrejuizos.toFixed(2)}</p>
         `;
             }
             else {
-                if (grafico1 !== null){
+                if (grafico1 !== null) {
                     grafico1.destroy(); //Perguntar para o JP
-                 } 
+                }
                 alert("Caso a quantidade de horas seja maior que 23, troque para opção Dias na escala da paralisação.")
             }
-        } else if (tipoTempo == "Dias")  {
+        } else if (tipoTempo == "Dias") {
 
             var diasParalizados = input_tempo.value;
             div_prejuizo.innerHTML += `
             <p><b> PARA ESTA SITUAÇÃO, CONSIDERA-SE QUE TODA A PRODUÇÃO DIÁRIA FOI ABATIDA NA PRIMEIRA HORA</b></p>
             <p><b>1. CUSTOS DE INVESTIMENTO NOS BOVINOS:</b></p>
-            <p>- Custo direto (R$${custoDireto.toFixed(2)}/cabeça): R$${(qtdBois*custoDireto*diasParalizados).toFixed(2)}</p>
-            <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois*custoIndireto*diasParalizados).toFixed(2)}</p>
+            <p>- Custo direto (R$${custoDireto.toFixed(2)}/cabeça): R$${(qtdBois * custoDireto * diasParalizados).toFixed(2)}</p>
+            <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois * custoIndireto * diasParalizados).toFixed(2)}</p>
             <p>- <b>TOTAL INVESTIDO:</b> R$${(custoTotalInvestido * diasParalizados).toFixed(2)}</p>
             
             <p><b>2. PERDA DE PRODUÇÃO DE CARNE:</b></p>
-            <p>- Quantidade de arrobas perdidas: ${(qntArroba*diasParalizados).toFixed(2)}</p>
-            <p>- Valor da carne perdida: R$${(custoArroba*diasParalizados).toFixed(2)}</p>
+            <p>- Quantidade de arrobas perdidas: ${(qntArroba * diasParalizados).toFixed(2)}</p>
+            <p>- Valor da carne perdida: R$${(custoArroba * diasParalizados).toFixed(2)}</p>
             
             <p><b>3. PERDA NO LUCRO:</b></p>
             <p>- Lucro medio de frigorificos: 10% </p>
             `
 
-        div_prejuizo.innerHTML +=`
-            <p><b>TOTAL DE PREJUÍZOS ESTIMADOS:</b> R$${(totalPrejuizos*diasParalizados).toFixed(2)}</p>
-        `;  
-        }
-        }
-
-        function calcularNao() {
-
-            qtdBois = Number(input_qntBois.value);
-            
-            precoArroba = 332;
-            pesoArroba = 15;
-            qntAprovArroba = 0.50;
-            pesoBoi = 500;
-
-            custoDireto = 112.39;
-            custoIndireto = 57.73;
-            custoTotalInvestido = qtdBois * (custoDireto + custoIndireto);
-
-            qntArroba = (qtdBois * 0.5 * pesoBoi) / pesoArroba;
-            custoArroba = precoArroba*qntArroba;
-            var lucroPerdido = 1.1;
-
-            totalPrejuizos = lucroPerdido*(custoTotalInvestido + custoArroba) ;
-            
-            
-            div_prejuizo.innerHTML = "";
-            
-
-            
-            if (grafico1 !== null){
-                grafico1.destroy(); //Perguntar para o JP
-            } 
-            
-
             div_prejuizo.innerHTML += `
+            <p><b>TOTAL DE PREJUÍZOS ESTIMADOS:</b> R$${(totalPrejuizos * diasParalizados).toFixed(2)}</p>
+        `;
+        }
+    }
+
+    function calcularNao() {
+
+        qtdBois = Number(input_qntBois.value);
+
+        precoArroba = 332;
+        pesoArroba = 15;
+        qntAprovArroba = 0.50;
+        pesoBoi = 500;
+
+        custoDireto = 112.39;
+        custoIndireto = 57.73;
+        custoTotalInvestido = qtdBois * (custoDireto + custoIndireto);
+
+        qntArroba = (qtdBois * 0.5 * pesoBoi) / pesoArroba;
+        custoArroba = precoArroba * qntArroba;
+        var lucroPerdido = 1.1;
+
+        totalPrejuizos = lucroPerdido * (custoTotalInvestido + custoArroba);
+
+
+        div_prejuizo.innerHTML = "";
+
+
+
+        if (grafico1 !== null) {
+            grafico1.destroy(); //Perguntar para o JP
+        }
+
+
+        div_prejuizo.innerHTML += `
                 <p><b>1. CUSTOS DE INVESTIMENTO NOS BOVINOS:</b></p>
-                <p>- Custo direto (R$${custoDireto.toFixed(2)}/cabeça): R$${(qtdBois*custoDireto).toFixed(2)}</p>
-                <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois*custoIndireto).toFixed(2)}</p>
+                <p>- Custo direto (R$${custoDireto.toFixed(2)}/cabeça): R$${(qtdBois * custoDireto).toFixed(2)}</p>
+                <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois * custoIndireto).toFixed(2)}</p>
                 <p>- <b>TOTAL INVESTIDO:</b> R$${custoTotalInvestido.toFixed(2)}</p>
                 
                 <p><b>2. PERDA DE PRODUÇÃO DE CARNE:</b></p>
@@ -271,63 +359,63 @@
                 <p>- Lucro medio de frigorificos: 10% </p>
                 `
 
-            div_prejuizo.innerHTML +=`
+        div_prejuizo.innerHTML += `
                 <p><b>TOTAL DE PREJUÍZOS ESTIMADOS:</b> R$${totalPrejuizos.toFixed(2)}</p>
             `;
 
 
-             //Configurando o grafico 1 - Linha 
-            const labels = [ 
-                '1º dia',
-                '2º dia',
-                '3º dia',
-                '4º dia',
-                '5º dia',
-                '6º dia',
-                '7º dia',
-                
-            ];
+        //Configurando o grafico 1 - Linha 
+        const labels = [
+            '1º dia',
+            '2º dia',
+            '3º dia',
+            '4º dia',
+            '5º dia',
+            '6º dia',
+            '7º dia',
 
-            var dado1 = totalPrejuizos;
-            var dado2 = 2*totalPrejuizos;
-            var dado3 = 3*totalPrejuizos;
-            var dado4 = 4*totalPrejuizos;
-            var dado5 = 5*totalPrejuizos;
-            var dado6 = 6*totalPrejuizos;
-            var dado7 = 7*totalPrejuizos;
+        ];
+
+        var dado1 = totalPrejuizos;
+        var dado2 = 2 * totalPrejuizos;
+        var dado3 = 3 * totalPrejuizos;
+        var dado4 = 4 * totalPrejuizos;
+        var dado5 = 5 * totalPrejuizos;
+        var dado6 = 6 * totalPrejuizos;
+        var dado7 = 7 * totalPrejuizos;
 
 
-            const Linha = { 
-                labels: labels, 
-                datasets: [
-                    { 
+        const Linha = {
+            labels: labels,
+            datasets: [
+                {
                     label: 'Prejuizo',
-                    backgroundColor: 'rgb(255, 0, 0)', 
-                    borderColor: 'rgb(255, 0, 0)', 
+                    backgroundColor: 'rgb(255, 0, 0)',
+                    borderColor: 'rgb(255, 0, 0)',
                     data: [dado1, dado2, dado3, dado4, dado5, dado6, dado7],
-                    }
-                ]
-            };
-
-            const config = {
-                type: 'line', 
-                data: Linha, 
-                options: {
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Prejuizo ao longo de uma semana'
-                        }       
-                    }
-
                 }
-            };
+            ]
+        };
 
-            
-            grafico1 = new Chart(
-            document.getElementById('grafico'), 
-            config 
-            );    
+        const config = {
+            type: 'line',
+            data: Linha,
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Prejuizo ao longo de uma semana'
+                    }
+                }
 
-        }
+            }
+        };
+
+
+        grafico1 = new Chart(
+            document.getElementById('grafico'),
+            config
+        );
+
+    }
 </script>
