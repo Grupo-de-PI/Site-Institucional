@@ -1,0 +1,397 @@
+body{
+    background-color: #CADAE9;
+
+}
+
+header {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 0%;
+    font-family: 'Fredoka One', cursive;
+    display: flex;
+    flex-direction: column;
+    top: 0%;
+    align-items: center;
+}
+
+.container {
+
+    width: 80%;
+    margin: auto;
+
+}
+
+.fixo {
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Marvel:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    list-style: none;
+    padding-right: 100px;
+
+}
+
+.navbar a {
+    color: black;
+    text-decoration: none;
+    font-family: monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 19px;
+
+}
+
+.traco {
+    background-color: #1F2A33;
+    width: 1px;
+    height: 60px;
+    margin: 20px;
+}
+
+.locs {
+    display: flex;
+    color: black;
+    align-items: center;
+
+
+}
+
+/* decoração dos LINKS */
+
+.locs>a {
+    display: inline-block;
+    padding-bottom: 0.25rem;
+    position: relative;
+}
+
+.locs a::before {
+    content: "";
+    position: absolute;
+    background-color: #3FA2F3;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    transition: width 0.25s ease-out;
+
+
+}
+
+.locs>a:hover::before {
+    width: 100%;
+}
+
+/* fim dos links */
+
+.locs>p {
+    color: #000000;
+    font-family: "Marvel", sans-serif;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+
+.botoes1navbar {
+    display: flex;
+    width: 120px;
+    height: 40px;
+    flex-direction: row;
+    border-radius: 10px;
+    background-color: #3FA2F3;
+    border-color: #3FA2F3;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    transition-duration: 0.4s;
+
+}
+.botoes1navbar {
+    cursor: pointer;
+}
+
+.botoes1navbar:hover {
+    background-color: #ffffff;
+    /* Green */
+    color: #3FA2F3;
+
+}
+
+
+.botoes1navbar {
+    cursor: pointer;
+}
+
+.imageNavbar {
+    width: 80px;
+    height: 80px;
+    margin-right: 100px;
+}
+
+/* ----------------------------- comeco simulador */
+
+
+.card_estrutura{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 100px;
+    background-color: #CADAE9;
+}
+
+.estrutura_simulador{
+    padding: 3%;
+    margin-top: 10%;
+    background-color: #ffffff;
+    max-width: 600px;
+    font-family: 'Segoe UI', sans-serif;
+    border-radius: 15px;
+
+}
+
+
+
+
+/* duas classes na mesma linha */ 
+
+.estrutura_simulador input,
+.estrutura_simulador select{
+    padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  color: #111827;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+
+}
+
+ h1 {
+    font-size: 28px;
+    color: black;
+    margin-bottom: 10px;
+    text-align: center;
+    margin-bottom: 13%;
+  }
+
+.simulador{
+    margin-top: 2%;
+    width: 60%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: larger;
+    background-color: #2F58A5;
+    color: #ffffff;
+    border-radius: 15px;
+    border: #2F58A5;
+}
+
+.botao{
+    display: flex;
+    justify-content: center;
+
+}
+
+
+
+/*  -------------------------------- resposta --------------------------*/ 
+
+
+.resposta_estrutura{
+    padding: 3%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    background-color: #ffffff;
+    max-width: 600px;
+    font-family: 'Segoe UI', sans-serif;
+    border-radius: 15px;
+    
+
+}
+
+#div_prejuizo{
+    margin-top: 2%;
+    font-size: 20px;
+    color: black;
+    margin-bottom: 10px;
+    justify-content: left;
+    margin-bottom: 13%;
+    
+}
+
+.borda{
+    background-color: #ccd1db;
+    width: 100%;
+    height: 3px;
+}
+
+.dados{
+    padding: 2%;
+    margin-bottom: 3%;
+    background-color: rgb(255, 255, 255);
+    width: 600px;
+    height: 300px;
+    border-radius: 15px;
+    border-color: hsl(219, 56%, 42%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------------------------FOOTER ------------------------------------------ */ 
+
+footer{
+    position: flex;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
+    background-color: #2F58A5;
+ 
+}
+
+.footer-conteudo{
+    flex-direction: row;
+    display: flex;
+}
+
+.footer-nav{
+    padding-left: 5%;
+    padding-top: 2%;
+    width: 50%;
+}
+
+.footer-nav2{
+    padding-left: 5%;
+    padding-top: 2%;
+    width: 50%;
+}
+
+.imagem_footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-direction: flex-end;
+    width: 50%;
+    
+}
+
+.i{
+    height: 100px;
+    width: 100px;
+}
+
+/* -------------------------------- LINKS ------------------------------------------------------------*/ 
+
+
+h6 {
+    color: #ffffff;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 23px;
+    margin-top: 2%;
+    text-align: center;
+    width: 100%;
+}
+
+
+.texto88 {
+    color: white;
+    margin-top: 5%;
+    font-family: 'Segoe UI', sans-serif;
+    justify-content: left;
+    display: flex;
+
+}
+
+.HH {
+    color: white;
+    margin-left: 0px;
+}
+
+.texto99 {
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: large;
+    margin-bottom: 5%;
+}
+
+
+/* --------------------------------------------------------------------------*/
+
+
+
+.tods>a {
+    color: #ffffffce;
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+    text-decoration: none;
+    display: inline-block;
+    padding-bottom: 0.25rem;
+    position: relative;
+}
+
+
+.tods a::before {
+    content: "";
+    position: absolute;
+    background-color: #3FA2F3;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    transition: width 0.25s ease-out;
+
+}
+
+.tods>a:hover::before {
+    width: 100%;
+}
+
+li{
+    list-style-type: none;
+
+}

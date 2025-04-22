@@ -3,6 +3,7 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
 }
 
 header{
@@ -21,8 +22,11 @@ header{
 
 }
 
+
+
+
 .card-cadastro{
-    font-family: 'Marvel', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     color: #3D75DC;
     flex-direction: row;
     display: flex;
@@ -80,7 +84,7 @@ h2{
 
 span{
     color: #3D75DC;
-    font-family: 'Marvel', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: 20px;
     margin-left: 3%;
 }
@@ -99,7 +103,7 @@ span{
     align-items: center;
     font-size: medium;
     transition-duration: 0.4s;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     text-decoration: none;
 }
 
@@ -145,14 +149,10 @@ li{
 
 .link_faleconosco{
     color: #2F58A5;
-    font-family: 'Marvel', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     
 
 }
-
-
-
-
 
 
 
@@ -206,7 +206,7 @@ footer{
 
 h6 {
     color: #ffffff;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: 23px;
     margin-top: 2%;
     text-align: center;
@@ -217,7 +217,7 @@ h6 {
 .texto88 {
     color: white;
     margin-top: 5%;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     justify-content: left;
     display: flex;
 
@@ -230,7 +230,7 @@ h6 {
 
 .texto99 {
     color: white;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: large;
     margin-bottom: 5%;
 }
@@ -241,7 +241,7 @@ h6 {
 
 .tods>a {
     color: #ffffffce;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     display: flex;
     align-items: center;
     margin-left: 20px;

@@ -42,8 +42,6 @@ header {
     z-index: 1000;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Marvel:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -67,7 +65,7 @@ header {
 .ou {
     padding: 10px;
     font-size: larger;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     color: #000000;
 
 }
@@ -116,7 +114,7 @@ header {
 
 .locs>p {
     color: #000000;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     display: flex;
     align-items: center;
     margin-left: 20px;
@@ -224,7 +222,7 @@ section {
 
 h2 {
     color: #2F58A5;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: 25px;
     margin-top: 2%;
     margin-bottom: 8%;
@@ -232,7 +230,7 @@ h2 {
 
 .texto_caixa {
     color: #2F58A5;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: 135%;
     margin-top: 2%;
 
@@ -280,8 +278,8 @@ h2 {
 }
 
 h3 {
-    color: #2F58A5;
-    font-family: "Marvel", sans-serif;
+    color: hsl(219, 56%, 42%);
+    font-family: 'Segoe UI', sans-serif;
     font-size: 25px;
     
 
@@ -294,7 +292,7 @@ p {
     line-height: 1.3;
     margin-bottom: 1.8%;
     margin-top: 1.8%;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     margin-right: 30%;
     width: 100%;
     margin-right: 100px;
@@ -399,7 +397,7 @@ p {
 
 h5 {
     color: #2F58A5;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: 25px;
     margin-top: 2%;
 
@@ -462,7 +460,7 @@ h5 {
 
 h6 {
     color: #ffffff;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: 23px;
     margin-top: 2%;
     text-align: center;
@@ -476,7 +474,7 @@ h6 {
 }
 
 .textoF {
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     text-align: center;
     color: #ffffffd2;
     font-size: 21px;
@@ -558,7 +556,7 @@ h6 {
 
 .texto99 {
     color: white;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: large;
     margin-bottom: 5%;
 }
@@ -569,7 +567,7 @@ h6 {
 
 .tods>a {
     color: #ffffffce;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     display: flex;
     align-items: center;
     margin-left: 20px;
@@ -742,7 +740,7 @@ h6 {
 
 .bm {
     color: #2F58A5;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: 35px;
     margin-top: 2%;
     margin-bottom: 8%;
@@ -779,7 +777,7 @@ h6 {
     line-height: 1.3;
     margin-bottom: 1.8%;
     margin-top: 1.8%;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     margin-right: 30%;
     width: 100%;
     margin-right: 100px;
@@ -791,7 +789,7 @@ h6 {
 
 .rm {
     color: #2F58A5;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     font-size: 35px;
     margin-bottom: 5%;
 
@@ -925,7 +923,7 @@ h6 {
     align-items: center;
     font-size: medium;
     transition-duration: 0.4s;
-    font-family: "Marvel", sans-serif;
+    font-family: 'Segoe UI', sans-serif;
 
 }
 
@@ -936,7 +934,6 @@ h6 {
 
 .botao_fale:hover {
     background-color: #ffffff;
-    /* Green */
     color: #2F58A5;
 
 }
@@ -958,13 +955,13 @@ h6 {
 
 .nome{
     color: #3D75DC;
-    font-family: 'Marvel', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     margin-top: 5%;
     margin-bottom: 1%;
 }
 
 .textoH{
-    font-family: 'Marvel', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     margin-top: 5%;
     margin-bottom: 5%;
 }
@@ -974,7 +971,7 @@ h6 {
 
 .link_faleconosco{
     color: #ffffff;
-    font-family: 'Marvel', sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     list-style-type: none;  
     text-decoration: none;
 
