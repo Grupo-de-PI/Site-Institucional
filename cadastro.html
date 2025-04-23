@@ -107,7 +107,7 @@
         <div class="campo">
           <span>Redigite sua Senha:</span><br>
 
-          <input class="input_decor" id="input_confirmacao_senha" type="password" onblur="validarSenha()" />
+          <input class="input_decor" id="input_confirmacao_senha" type="password" />
         </div>
 
         <div class="loc_botao">
@@ -232,9 +232,9 @@
       cnpj == '' ||
       razaoSocial == '' ||
       nome == '' ||
-      porte == ''
-    ) {
-      alert('Preencha todos os campo');
+      porte == '')
+      {
+      alert('Preencha todos os campos');
     } else {
       validarSenha();
     }
@@ -303,17 +303,18 @@
 
     if (email.startsWith('@') || email.startsWith('.')) {
       alert('O E-mail não pode iniciar com @ ou .')
-    } else {
+    } 
+    /*
+    else {
       if (email.includes('@') && email.endsWith('.com')) {
         div_mensagem.innerHTML = 'E-mail válido'
       } else {
         div_mensagem.innerHTML = 'O E-mail deve seguir o exemplo: usuario@dominio.com'
       }
     }
+    */
 
   }
-
-
 
   function validarSenha() {
     var senha = input_senha.value;
@@ -329,4 +330,6 @@
   function redirecionar() {
     window.location.href = "cadastro_endereco.html";
   }
+
+
 </script>
