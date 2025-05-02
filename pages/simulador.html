@@ -56,7 +56,7 @@
                 <label><br>
 
                     <label>
-                        Houve paralisação? <br><br>
+                        Houve paralisação por conta de vazamento de gás? <br><br>
                         <select id="select_resposta" onchange="mensagem()">
                             <option value="#">Escolha uma opção</option>
                             <option>Não</option>
@@ -166,9 +166,9 @@
         resposta = select_resposta.value;
 
         if (qntBois == 0) {
-            alert("Informe a quantidade de bois!!")
+            alert("Informe a quantidade de bois")
         } else if (resposta == "#") {
-            alert("Informe se houve vazamento!!")
+            alert("Informe se houve vazamento")
         } else if (qntBois != 0 && resposta == "Não") {
             calcularNao()
         }
@@ -182,15 +182,15 @@
         div_mensagem.innerHTML = "";
 
         if (grafico1 !== null) {
-            grafico1.destroy(); //Perguntar para o JP
+            grafico1.destroy(); 
         }
 
         if (resposta == "Sim") {
             div_mensagem.innerHTML = `
                   <div class="estrutura_simulador">
-                    Informe a escala da paralisação: <br><br>
+                    Informar a escala da paralisação: <br><br>
                 <select id="select_tempo" onchange="temporizador()">
-                    <option value="#">Selecione uma das seguintes opções</option>
+                    <option value="#">Selecione uma opção</option>
                     <option>Horas</option>
                     <option>Dias</option>
                 </select><br> <br>
@@ -205,7 +205,7 @@
     function analisarpt2() {
         tipoTempo = select_tempo.value;
         if (tipoTempo == "#") {
-            alert("Informe a escala de paralização!!")
+            alert("Informar a escala de paralisação")
         } else {
             calcular()
         }
@@ -218,14 +218,14 @@
 
         if (tipoTempo == "Horas") {
             div_resposta.innerHTML += ` <div class="segunda_parte"> 
-                Informe a quantidade de horas que a fábrica parou:
+                Informar a quantidade de horas que a fábrica parou:
                 <input type="text" id="input_tempo"><br>
                 <div id="div_botao"><button class="simulador" onclick="analisarpt2()">Simular Prejuízo</button></div>
                 </div>
                 `
         } else if (tipoTempo == "Dias") {
             div_resposta.innerHTML += `
-                Informe a quantidade de dias que a fábrica parou: <br><br>
+                Informar a quantidade de dias que a fábrica parou: <br><br>
                 <input type="text" id="input_tempo"><br>
                 <div id="div_botao"><button class="simulador" onclick="analisarpt2()">Simular Prejuízo</button></div>
                 `
@@ -234,35 +234,6 @@
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     function calcular() {
 
@@ -294,59 +265,58 @@
                 div_prejuizo.innerHTML += `<div class="resposta_estrutura">  
             <p><b> PARA ESTA SITUAÇÃO, CONSIDERA-SE QUE TODA A PRODUÇÃO DIÁRIA FOI ABATIDA NA PRIMEIRA HORA </b></p> <br>
             <p><b>1. CUSTOS DE INVESTIMENTO NOS BOVINOS:</b></p> <br>
-            <p>- Custo direto (R$${custoDireto.toFixed(2)}/cabeça): R$${(qtdBois * custoDireto).toFixed(2)}</p>
-            <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois * custoIndireto).toFixed(2)}</p><br>
-            <p>- <b>TOTAL INVESTIDO:</b> R$${custoTotalInvestido.toFixed(2)}</p> <br>
+            <p>- Custo direto (R$  ${custoDireto.toFixed(2)}/cabeça): R$  ${(qtdBois * custoDireto).toFixed(2)}</p>
+            <p>- Custo indireto (R$  ${custoIndireto.toFixed(2)}/cabeça): R$  ${(qtdBois * custoIndireto).toFixed(2)}</p><br>
+            <p>- <b>TOTAL INVESTIDO:</b> R$  ${custoTotalInvestido.toFixed(2)}</p> <br>
             <div class="borda"> </div> <br>
             
             <p><b>2. PERDA DE PRODUÇÃO DE CARNE:</b></p><br>
-            <p>- Quantidade de arrobas perdidas: ${qntArroba.toFixed(2)}</p>
-            <p>- Valor da carne perdida: R$${custoArroba.toFixed(2)}</p><br>
+            <p>- Quantidade aproximada de arrobas perdidas: ${qntArroba.toFixed(2)}</p>
+            <p>- Valor da carne perdida: R$ ${custoArroba.toFixed(2)}</p><br>
 
             <div class="borda"> </div> <br>
 
             
             <p><b>3. PERDA NO LUCRO:</b></p><br>
-            <p>- Lucro médio de frigorificos: 10% </p>
+            <p>- Lucro médio dos frigoríficos: 10% </p>
             </div>
             `
 
                 div_prejuizo.innerHTML += `<div class="resposta_estrutura">  
-            <p><b>TOTAL DE PREJUÍZOS ESTIMADOS:</b> R$${totalPrejuizos.toFixed(2)}</p>
+            <p><b>TOTAL DE PREJUÍZOS ESTIMADOS:</b> R$  ${totalPrejuizos.toFixed(2)}</p>
         </div>`;
             }
             else {
                 if (grafico1 !== null) {
-                    grafico1.destroy(); //Perguntar para o JP
+                    grafico1.destroy(); 
                 }
-                alert("Caso a quantidade de horas seja maior que 23, troque para opção Dias na escala da paralisação.")
+                alert("Caso a quantidade de horas seja maior que 23, troque para opção Dias na escala de paralisação.")
             }
         } else if (tipoTempo == "Dias") {
 
             var diasParalizados = input_tempo.value;
             div_prejuizo.innerHTML += `<div class="resposta_estrutura">  
-            <p><b> PARA ESTA SITUAÇÃO, CONSIDERA-SE QUE TODA A PRODUÇÃO DIÁRIA FOI ABATIDA NA PRIMEIRA HORA</b></p><br><br>
             <p><b>1. CUSTOS DE INVESTIMENTO NOS BOVINOS:</b></p><br>
-            <p>- Custo direto (R$${custoDireto.toFixed(2)}/cabeça): R$${(qtdBois * custoDireto * diasParalizados).toFixed(2)}</p>
-            <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois * custoIndireto * diasParalizados).toFixed(2)}</p><br>
-            <p>- <b>TOTAL INVESTIDO:</b> R$${(custoTotalInvestido * diasParalizados).toFixed(2)}</p><br>
+            <p>- Custo direto (R$ ${custoDireto.toFixed(2)}/cabeça): R$ ${(qtdBois * custoDireto * diasParalizados).toFixed(2)}</p>
+            <p>- Custo indireto (R$ ${custoIndireto.toFixed(2)}/cabeça): R$ ${(qtdBois * custoIndireto * diasParalizados).toFixed(2)}</p><br>
+            <p>- <b>TOTAL INVESTIDO:</b> R$ ${(custoTotalInvestido * diasParalizados).toFixed(2)}</p><br>
 
                         <div class="borda"> </div> <br>
 
             
-            <p><b>2. PERDA DE PRODUÇÃO DE CARNE:</b></p><br>
-            <p>- Quantidade de arrobas perdidas: ${(qntArroba * diasParalizados).toFixed(2)}</p>
-            <p>- Valor da carne perdida: R$${(custoArroba * diasParalizados).toFixed(2)}</p><br>
+            <p><b>2. PERDA NA PRODUÇÃO DE CARNE:</b></p><br>
+            <p>- Quantidade aproximada de arrobas perdidas: ${(qntArroba * diasParalizados).toFixed(2)}</p>
+            <p>- Valor da produção perdida: R$ ${(custoArroba * diasParalizados).toFixed(2)}</p><br>
 
                         <div class="borda"> </div> <br>
 
             <p><b>3. PERDA NO LUCRO:</b></p><br>
-            <p>- Lucro médio de frigorificos: 10% </p>
+            <p>- Lucro médio dos frigoríficos: 10% </p>
             </div>
             `
 
             div_prejuizo.innerHTML += ` <div class="resposta_estrutura">
-            <p><b>TOTAL DE PREJUÍZOS ESTIMADOS:</b> R$${(totalPrejuizos * diasParalizados).toFixed(2)}</p>
+            <p><b>PREJUÍZO TOTAL ESTIMADO:</b> R$ ${(totalPrejuizos * diasParalizados).toFixed(2)}</p>
             </div>
         `;
         }
@@ -380,33 +350,58 @@
 
 
         if (grafico1 !== null) {
-            grafico1.destroy(); //Perguntar para o JP
+            grafico1.destroy();
         }
 
 
         div_prejuizo.innerHTML += ` <div class="resposta_estrutura">
                 <p><b>1. CUSTOS DE INVESTIMENTO NOS BOVINOS:</b></p> <br>
-                <p>- Custo direto (R$${custoDireto.toFixed(2)}/cabeça): R$${(qtdBois * custoDireto).toFixed(2)}</p>
-                <p>- Custo indireto (R$${custoIndireto.toFixed(2)}/cabeça): R$${(qtdBois * custoIndireto).toFixed(2)}</p><br>
-                <p>- <b>TOTAL INVESTIDO:</b> R$${custoTotalInvestido.toFixed(2)}</p><br>
+                <p>- Custo direto (R$ ${custoDireto.toLocaleString('pt-BR', { 
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}/cabeça): R$ ${(qtdBois * custoDireto).toLocaleString('pt-BR', { 
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}</p>
+                <p>- Custo indireto (R$ ${custoIndireto.toLocaleString('pt-BR', { 
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}/cabeça): R$ ${(qtdBois * custoIndireto).toLocaleString('pt-BR', { 
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}</p><br>
+                <p>- <b>TOTAL INVESTIDO:</b> R$ ${custoTotalInvestido.toLocaleString('pt-BR', { 
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}</p><br>
 
                 <div class="borda"> </div> <br>
                 
-                <p><b>2. PERDA DE PRODUÇÃO DE CARNE:</b></p><br>
-                <p>- Quantidade de arrobas perdidas: ${qntArroba.toFixed(2)}</p>
-                <p>- Valor da carne perdida: R$${custoArroba.toFixed(2)}</p><br>
+                <p><b>2. PERDA NA PRODUÇÃO DE CARNE:</b></p><br>
+                <p>- Quantidade aproximada de arrobas perdidas: ${qntArroba.toLocaleString('pt-BR', { 
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0
+                    })}</p>
+                <p>- Valor da produção perdida: R$ ${custoArroba.toLocaleString('pt-BR', { 
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}</p><br>
 
                 <div class="borda"> </div> <br> 
                 
                 <p><b>3. PERDA NO LUCRO:</b></p>
-                <p>- Lucro medio de frigorificos: 10% </p><br>
-                 </div>
+                <p><br>- Lucro médio dos frigoríficos: 10% </p><br>
+                </div>
                 `
 
-        div_prejuizo.innerHTML += ` <div class="resposta_estrutura">
-                <p><b>TOTAL DE PREJUÍZOS ESTIMADOS:</b> R$${totalPrejuizos.toFixed(2)}</p>
-                 </div>
-            `;
+        div_prejuizo.innerHTML += ` 
+                <div class="resposta_estrutura">
+                    <p><b>PREJUÍZO TOTAL ESTIMADO:</b> R$ ${totalPrejuizos.toLocaleString('pt-BR', { 
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })}</p>
+                </div>
+`;
 
 
         //Configurando o grafico - Linha 
@@ -434,7 +429,7 @@
             labels: labels,
             datasets: [
                 {
-                    label: 'Prejuizo',
+                    label: 'Prejuízo',
                     backgroundColor: 'hsl(219, 56%, 42%)',
                     borderColor: 'hsl(219, 56%, 42%)',
                     data: [dado1, dado2, dado3, dado4, dado5, dado6, dado7],
@@ -449,7 +444,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Prejuizo ao longo de uma semana'
+                        text: 'Prejuízo ao longo de uma semana'
                     }
                 }
 
