@@ -76,8 +76,6 @@
             <canvas class="dados" id="grafico" style="display: none;"></canvas>
         </div>
 
-
-
     </div>
     </div>
 
@@ -177,9 +175,7 @@
         div_prejuizo.innerHTML = "";
         div_mensagem.innerHTML = "";
 
-        if (grafico1 !== null) {
-            grafico1.destroy(); 
-        }
+
 
         if (resposta == "Sim") {
             div_mensagem.innerHTML = `
@@ -284,7 +280,7 @@
             }
             else {
                 if (grafico1 !== null) {
-                    grafico1.destroy(); 
+                    grafico1.destroy();
                 }
                 alert("Caso a quantidade de horas seja maior que 23, troque para opção Dias na escala de paralisação.")
             }
@@ -352,36 +348,36 @@
 
         div_prejuizo.innerHTML += ` <div class="resposta_estrutura">
                 <p><b>1. CUSTOS DE INVESTIMENTO NOS BOVINOS:</b></p> <br>
-                <p>- Custo direto (R$ ${custoDireto.toLocaleString('pt-BR', { 
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    })}/cabeça): R$ ${(qtdBois * custoDireto).toLocaleString('pt-BR', { 
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    })}</p>
-                <p>- Custo indireto (R$ ${custoIndireto.toLocaleString('pt-BR', { 
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    })}/cabeça): R$ ${(qtdBois * custoIndireto).toLocaleString('pt-BR', { 
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    })}</p><br>
-                <p>- <b>TOTAL INVESTIDO:</b> R$ ${custoTotalInvestido.toLocaleString('pt-BR', { 
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    })}</p><br>
+                <p>- Custo direto (R$ ${custoDireto.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}/cabeça): R$ ${(qtdBois * custoDireto).toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}</p>
+                <p>- Custo indireto (R$ ${custoIndireto.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}/cabeça): R$ ${(qtdBois * custoIndireto).toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}</p><br>
+                <p>- <b>TOTAL INVESTIDO:</b> R$ ${custoTotalInvestido.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}</p><br>
 
                 <div class="borda"> </div> <br>
                 
                 <p><b>2. PERDA NA PRODUÇÃO DE CARNE:</b></p><br>
-                <p>- Quantidade aproximada de arrobas perdidas: ${qntArroba.toLocaleString('pt-BR', { 
-                        minimumFractionDigits: 0,
-                        maximumFractionDigits: 0
-                    })}</p>
-                <p>- Valor da produção perdida: R$ ${custoArroba.toLocaleString('pt-BR', { 
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    })}</p><br>
+                <p>- Quantidade aproximada de arrobas perdidas: ${qntArroba.toLocaleString('pt-BR', {
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0
+        })}</p>
+                <p>- Valor da produção perdida: R$ ${custoArroba.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}</p><br>
 
                 <div class="borda"> </div> <br> 
                 
@@ -392,68 +388,69 @@
 
         div_prejuizo.innerHTML += ` 
                 <div class="resposta_estrutura">
-                    <p><b>PREJUÍZO TOTAL ESTIMADO:</b> R$ ${totalPrejuizos.toLocaleString('pt-BR', { 
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2
-                    })}</p>
+                    <p><b>PREJUÍZO TOTAL ESTIMADO:</b> R$ ${totalPrejuizos.toLocaleString('pt-BR', {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        })}</p>
                 </div>
 `;
 
 
         //Configurando o grafico - Linha 
-        const labels = [
-            '1º dia',
-            '2º dia',
-            '3º dia',
-            '4º dia',
-            '5º dia',
-            '6º dia',
-            '7º dia',
-
-        ];
-
-        var dado1 = totalPrejuizos;
-        var dado2 = 2 * totalPrejuizos;
-        var dado3 = 3 * totalPrejuizos;
-        var dado4 = 4 * totalPrejuizos;
-        var dado5 = 5 * totalPrejuizos;
-        var dado6 = 6 * totalPrejuizos;
-        var dado7 = 7 * totalPrejuizos;
 
 
-        const Linha = {
-            labels: labels,
-            datasets: [
-                {
-                    label: 'Prejuízo',
-                    backgroundColor: 'hsl(219, 56%, 42%)',
-                    borderColor: 'hsl(219, 56%, 42%)',
-                    data: [dado1, dado2, dado3, dado4, dado5, dado6, dado7],
-                }
-            ]
-        };
 
-        const config = {
-            type: 'line',
-            data: Linha,
-            options: {
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Prejuízo ao longo de uma semana'
-                    }
-                }
+        // const labels = [
+        //     '1º dia',
+        //     '2º dia',
+        //     '3º dia',
+        //     '4º dia',
+        //     '5º dia',
+        //     '6º dia',
+        //     '7º dia',
 
-            }
-        };
+        // ];
+
+        // var dado1 = totalPrejuizos;
+        // var dado2 = 2 * totalPrejuizos;
+        // var dado3 = 3 * totalPrejuizos;
+        // var dado4 = 4 * totalPrejuizos;
+        // var dado5 = 5 * totalPrejuizos;
+        // var dado6 = 6 * totalPrejuizos;
+        // var dado7 = 7 * totalPrejuizos;
 
 
-        grafico1 = new Chart(
-            document.getElementById('grafico'),
-            config
-        );
+        // const Linha = {
+        //     labels: labels,
+        //     datasets: [
+        //         {
+        //             label: 'Prejuízo',
+        //             backgroundColor: 'hsl(219, 56%, 42%)',
+        //             borderColor: 'hsl(219, 56%, 42%)',
+        //             data: [dado1, dado2, dado3, dado4, dado5, dado6, dado7],
+        //         }
+        //     ]
+        // };
+
+        // const config = {
+        //     type: 'line',
+        //     data: Linha,
+        //     options: {
+        //         plugins: {
+        //             title: {
+        //                 display: true,
+        //                 text: 'Prejuízo ao longo de uma semana'
+        //             }
+        //         }
+
+        //     }
+        // };
 
 
+        // grafico1 = new Chart(
+        //     document.getElementById('grafico'),
+        //     config
+        // );
 
     }
 </script>
