@@ -5,11 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <link rel="stylesheet" href="../styles/reset.css">
     <link rel="stylesheet" href="../styles/simulador.css">
 </head>
+
+
+
+
+
+
 
 <body>
     <header class="fixo">
@@ -72,12 +77,10 @@
 
         <div id="div_prejuizo"></div>
 
-        <div>
-            <canvas class="dados" id="grafico" style="display: none;"></canvas>
-        </div>
 
     </div>
     </div>
+
 
 
     <footer class="footer">
@@ -151,8 +154,6 @@
     var custoParalisacao = 0;
 
     var totalPrejuizos = 0;
-
-    var grafico1 = null;
 
     function analisar() {
         //Receber as inputs
@@ -278,12 +279,6 @@
             <p><b>TOTAL DE PREJUÍZOS ESTIMADOS:</b> R$  ${totalPrejuizos.toFixed(2)}</p>
         </div>`;
             }
-            else {
-                if (grafico1 !== null) {
-                    grafico1.destroy();
-                }
-                alert("Caso a quantidade de horas seja maior que 23, troque para opção Dias na escala de paralisação.")
-            }
         } else if (tipoTempo == "Dias") {
 
             var diasParalizados = input_tempo.value;
@@ -316,9 +311,6 @@
 
     function calcularNao() {
 
-        document.getElementById('grafico').style.display = 'block';
-
-
         qtdBois = Number(input_qntBois.value);
 
         precoArroba = 332;
@@ -338,12 +330,6 @@
 
 
         div_prejuizo.innerHTML = "";
-
-
-
-        if (grafico1 !== null) {
-            grafico1.destroy();
-        }
 
 
         div_prejuizo.innerHTML += ` <div class="resposta_estrutura">
@@ -396,61 +382,6 @@
 `;
 
 
-        //Configurando o grafico - Linha 
-
-
-
-        // const labels = [
-        //     '1º dia',
-        //     '2º dia',
-        //     '3º dia',
-        //     '4º dia',
-        //     '5º dia',
-        //     '6º dia',
-        //     '7º dia',
-
-        // ];
-
-        // var dado1 = totalPrejuizos;
-        // var dado2 = 2 * totalPrejuizos;
-        // var dado3 = 3 * totalPrejuizos;
-        // var dado4 = 4 * totalPrejuizos;
-        // var dado5 = 5 * totalPrejuizos;
-        // var dado6 = 6 * totalPrejuizos;
-        // var dado7 = 7 * totalPrejuizos;
-
-
-        // const Linha = {
-        //     labels: labels,
-        //     datasets: [
-        //         {
-        //             label: 'Prejuízo',
-        //             backgroundColor: 'hsl(219, 56%, 42%)',
-        //             borderColor: 'hsl(219, 56%, 42%)',
-        //             data: [dado1, dado2, dado3, dado4, dado5, dado6, dado7],
-        //         }
-        //     ]
-        // };
-
-        // const config = {
-        //     type: 'line',
-        //     data: Linha,
-        //     options: {
-        //         plugins: {
-        //             title: {
-        //                 display: true,
-        //                 text: 'Prejuízo ao longo de uma semana'
-        //             }
-        //         }
-
-        //     }
-        // };
-
-
-        // grafico1 = new Chart(
-        //     document.getElementById('grafico'),
-        //     config
-        // );
 
     }
 </script>
