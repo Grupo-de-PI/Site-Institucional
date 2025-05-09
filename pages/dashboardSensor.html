@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../styles/dashboard.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <img src="../pictures/female_woman_avatar_people_person_white_tone_icon_159370.png" alt="User">
+        <h2>Fernanda Caramico</h2>
+        <p>caramico@outlook.com</p>
+        <a href="#"><i class="fas fa-home"></i> Paínel geral</a>
+        <a href="dashboardSensor.html"><i class="fas fa-home"></i> Salas</a>
+        <a href="#"><i class="fas fa-home"></i> Suporte técnico</a>
+        <a href="#"><i class="fas fa-home"></i> </a>
+
+        <a href="#"><i class="fas fa-home"></i> Logout</a>
+    </div>
+
+    <div class="main">
+        <div class="kpis">
+           
+            <!-- <div class="kpi"><div><strong>23 dias</strong><br>Sem vazamentos</div><i class="fas fa-calendar-check"></i></div>
+            <div class="kpi"><div><strong>última atualização</strong><br>há 5 segundos</div><i class="fas fa-heartbeat"></i></div>
+            <div class="kpi"><div><strong>4/4</strong><br>Sensores ativos</div><i class="fas fa-microchip"></i></div> -->
+            <div class="kpi"><div><strong>7</strong><br>Dias para manutenção</div><i class="fas fa-microchip"></i></div>
+        </div>
+
+        <div class="charts">
+            <!-- <div class="chart-box">
+                <canvas id="chart1"></canvas>
+            </div>
+            <div class="chart-box">
+                <canvas id="chart2"></canvas>
+            </div> -->
+        </div>
+
+        <div class="chart-box">
+            <canvas id="chart3"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // // Gráfico de barras
+        // new Chart(document.getElementById("chart1"), {
+        //     type: 'bar',
+        //     data: {
+        //         labels: ['Sala das Máquinas', 'Câmara de Resfriamento', 'Câmara de Estocagem', 'Túnel Congelador'],
+        //         datasets: [{
+        //             label: 'ppm',
+        //             data: [7, 4, 2, 5],
+        //             backgroundColor: ['#1F77B4', '#FF7F0E', '#2CA02C', '#9467BD']
+        //         }]
+        //     },
+        //     options: {
+        //         responsive: true,
+        //         plugins: {
+        //             legend: { display: false },
+        //             title: {
+        //                 display: true,
+        //                 text: 'Níveis médios de Amônia por Setor (ppm)',
+        //                 font:{
+        //                     size:18
+        //                 }
+        //             }
+        //         }
+        //     }
+        // });
+
+        // // Gráfico de donut
+        // new Chart(document.getElementById("chart2"), {
+        //     type: 'doughnut',
+        //     data: {
+        //         labels: ['Sala das Máquinas', 'Câmara de Resfriamento', 'Câmara de Estocagem', 'Túnel Congelador'],
+        //         datasets: [{
+        //             label: 'Incidentes',
+        //             data: [45, 20, 10, 23],
+        //             backgroundColor: ['#1F77B4', '#FF7F0E', '#2CA02C', '#9467BD']
+        //         }]
+        //     },
+        //     options: {
+        //         responsive: true,
+        //         plugins: {
+        //             legend: {
+        //                 position: 'bottom'
+        //             },
+        //             title: {
+        //                 display: true,
+        //                 text: 'Distribuição de vazamentos (%)',
+        //                 font:{
+        //                     size:18
+        //                 }
+        //             }
+        //         }
+        //     }
+        // });
+
+        // Gráfico de linhas
+        new Chart(document.getElementById("chart3"), {
+            type: 'line',
+            data: {
+                labels: ['12:00', '12:01', '12:02', '12:03', '12:04', '12:05'],
+                datasets: [
+                    {
+                        label: 'Sensor',
+                        data: [0, 2, 2, 5, 10, 5],
+                        borderColor: '#1F77B4',
+                        fill: false
+                    },                    
+                    {
+                        label: 'Máximo permitido',
+                        data: [20, 20, 20, 20, 20, 20],
+                        borderColor: '#FF0000',
+                        borderDash: [5, 5],
+                        fill: false
+                    },
+                    {
+                        label: 'Alerta',
+                        data: [10, 10, 10, 10, 10, 10],
+                        borderColor: '#FFD700',
+                        borderDash: [5, 5],
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Histórico de Concentração de Amônia (ppm)',
+                        font:{
+                            size:18
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
