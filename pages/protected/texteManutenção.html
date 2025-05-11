@@ -6,43 +6,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../../styles/testeDennis.css">
 </head>
 
 <body>
     <div class="sidebar">
-        <img src="../pictures/female_woman_avatar_people_person_white_tone_icon_159370.png" alt="User">
-        <h2>Fernanda Caramico</h2>
-        <p>caramico@outlook.com</p>
-        <a href="#"><i class="fas fa-home"></i> Paínel geral</a>
+        <img src="../../pictures/female_woman_avatar_people_person_white_tone_icon_159370.png" alt="User">
+        <h2 class="userSession">Fernanda Caramico</h2>
+        <p class="userEmailSession">caramico@outlook.com</p>
+        <a href="dashboard.html"><i class="fas fa-home"></i> Paínel geral</a>
         <a href="dashboardSensor.html"><i class="fas fa-home"></i> Salas</a>
         <a href="#"><i class="fas fa-home"></i> Suporte técnico</a>
         <a href="#"><i class="fas fa-home"></i> </a>
 
-        <a href="#"><i class="fas fa-home"></i> Logout</a>
+        <a href="../index.html"><i class="fas fa-home"></i> Logout</a>
     </div>
 
     <div class="main">
+
+
+
+        <div class="retan">
+            <div class="retangulo"></div>
+            <h3 class="titulo-manutencao">Manutenção Inteligente, Segurança Garantida: O Compromisso da AirSafe com Frigoríficos</h3>
+        </div>
+
+
+
         <div class="kpis">
-           
+
             <!-- <div class="kpi"><div><strong>23 dias</strong><br>Sem vazamentos</div><i class="fas fa-calendar-check"></i></div>
             <div class="kpi"><div><strong>última atualização</strong><br>há 5 segundos</div><i class="fas fa-heartbeat"></i></div>
             <div class="kpi"><div><strong>4/4</strong><br>Sensores ativos</div><i class="fas fa-microchip"></i></div> -->
-            <div class="kpi"><div><strong>7</strong><br>Dias para manutenção</div><i class="fas fa-microchip"></i></div>
+
+                <p class="tipos-manutencao" >
+                    Na AirSafe, somos especializados no monitoramento de amônia em ambientes frigoríficos, onde o controle preciso desse gás é essencial para a segurança, a conformidade e a continuidade das operações. Em instalações que utilizam amônia como fluido refrigerante, vazamentos podem representar riscos graves à saúde, ao meio ambiente e à integridade do processo produtivo. Por isso, a manutenção regular dos sensores é fundamental para garantir um monitoramento eficiente e confiável.<br><br>
+
+                    Sem manutenção adequada, os sensores podem apresentar desgaste, perda de sensibilidade e falhas de calibração, comprometendo a detecção precoce de vazamentos. Isso pode levar a exposição de trabalhadores a gases tóxicos, contaminação de produtos, paralisações na produção e, até, autuações por órgãos reguladores. Em um setor onde a segurança e a conservação de alimentos são prioridades absolutas, não há espaço para falhas.<br><br>
+
+                    Por outro lado, um sistema bem mantido garante resposta rápida em situações críticas, evita alarmes falsos e assegura que qualquer desvio nos níveis de amônia seja identificado com precisão. A manutenção preventiva e preditiva prolonga a vida útil dos equipamentos, melhora o desempenho do sistema e reforça o compromisso da empresa com a segurança alimentar e ambiental.<br><br>
+
+                    Manter a manutenção em dia é proteger vidas, produtos e o futuro do seu negócio. Conheça abaixo os processos necessários para manter seu frigorífico seguro e em conformidade com as normas mais exigentes do setor.
+
+
+                </p><i class="fas fa-microchip"></i>
+
+            
         </div>
 
-        <div class="charts">
-            <!-- <div class="chart-box">
-                <canvas id="chart1"></canvas>
+        <div class="kpis">
+            <div class="tipos-manutencao">
+                <p>
+                    A <strong>manutenção preventiva</strong> é realizada de forma programada, com base no tempo de uso
+                    ou em ciclos definidos. Seu principal objetivo é evitar falhas inesperadas, aumentar a vida útil dos
+                    equipamentos e reduzir os custos com paradas emergenciais.
+                </p>
             </div>
-            <div class="chart-box">
-                <canvas id="chart2"></canvas>
-            </div> -->
+            <div>
+                <img class="img-manutancao" src="../../pictures/manutenção-preventiva.jpg" alt="">
+            </div>
         </div>
 
-        <div class="chart-box">
-            <canvas id="chart3"></canvas>
+        <div class="kpis">
+            <div>
+                <img class="img-manutancao" src="../../pictures/manutenção-preditiva.jpg" alt="">
+            </div>
+            <div class="tipos-manutencao">
+                <p>
+                    A <strong>manutenção preditiva</strong> é baseada em dados obtidos por meio do monitoramento
+                    contínuo das condições dos equipamentos, como vibração, temperatura e ruído. Isso permite
+                    identificar sinais de desgaste ou anomalias e agir no momento ideal, evitando tanto falhas quanto
+                    manutenções desnecessárias.
+                </p>
+            </div>
         </div>
+
+        <div class="kpis">
+            <div class="tipos-manutencao">
+                <p>
+                    A <strong>manutenção corretiva</strong> é acionada após a falha ou quebra de um equipamento. Embora
+                    essencial em situações emergenciais, seu uso frequente pode resultar em paradas imprevistas e custos
+                    elevados. Por esse motivo, o ideal é que ela seja utilizada de forma controlada e estratégica.
+                </p>
+            </div>
+            <div>
+                <img class="img-manutancao" src="../../pictures/manutencao-corretiva.webp" alt="">
+            </div>
+        </div>
+
+
+        
     </div>
 
     <script>
@@ -111,7 +164,7 @@
                         data: [0, 2, 2, 5, 10, 5],
                         borderColor: '#1F77B4',
                         fill: false
-                    },                    
+                    },
                     {
                         label: 'Máximo permitido',
                         data: [20, 20, 20, 20, 20, 20],
@@ -134,8 +187,8 @@
                     title: {
                         display: true,
                         text: 'Histórico de Concentração de Amônia (ppm)',
-                        font:{
-                            size:18
+                        font: {
+                            size: 18
                         }
                     }
                 },
