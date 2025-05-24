@@ -8,9 +8,9 @@
 
     <title> Login - AirSafe</title>
 
-    <link rel="stylesheet" href="../styles/reset.css">
-    <link rel="stylesheet" href="../styles/cads_login.css">
-    <link rel="shortcut icon" href="../pictures//favicon-16x16.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/reset.css">
+    <link rel="stylesheet" href="./styles/cads_login.css">
+    <link rel="shortcut icon" href="./pictures//favicon-16x16.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="card2">
-                        <img class="imageNavbar2" src="../pictures/logo Airsafe sem fundo.png" alt="">
+                        <img class="imageNavbar2" src="./pictures/logo Airsafe sem fundo.png" alt="">
                     </div>
                 </div>
 
@@ -56,7 +56,7 @@
                     <div id="div_senha"></div>
 
                     <div class="loc_botao">
-                        <button class="botao" onclick="validar()">Entrar</button>
+                        <button class="botao" onclick="entrar()">Entrar</button>
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@
         <div class="footer-conteudo">
             <nav class="footer-nav">
                 <div class="imagem_footer">
-                    <img class="i" src="../pictures/logo Airsafe sem fundo.png" alt="">
+                    <img class="i" src="./pictures/logo Airsafe sem fundo.png" alt="">
                     <h6> AirSafe. </h6>
                 </div>
                 <p class="texto88">contato@airsafe.com.br</p>
@@ -109,40 +109,73 @@
 </html>
 <script>
 
-    var cont = 2;
+   function entrar() {
+        // aguardar();
 
-    function validar() {
-        var email = email_input.value;
-        var senha = senha_input.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
 
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            // finalizarAguardar();
+            return false;
+        }
+        // else {
+        //     setInterval(sumirMensagem, 5000)
+        // }
 
-        if (cont > 0) {
-            if (email != 'caramico@outlook.com' || senha != 'Caramico123') {
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
 
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
 
-                if (email != 'caramico@outlook.com') {
-                    div_email.innerHTML = '<b style="Color: red"> E-mail incorreto </b>';
-                }
+            if (resposta.ok) {
+                console.log(resposta);
 
-                if (senha != 'Caramico123') {
-                    div_senha.innerHTML = '<b style="Color: red"> Senha incorreta </b>';
-                }
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id_funcionario;
+                    // sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
-                div_msm.innerHTML = `Restam ${cont} tentativas`;
+                    setTimeout(function () {
+                        window.location = "./dashboard/dashboard.html";
+                    }, 1000); // apenas para exibir o loading
 
-                cont--;
+                });
 
             } else {
-                cont = 3;
-                window.location.href = "dashboard.html"
 
+                console.log("Houve um erro ao tentar realizar o login!");
 
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    // finalizarAguardar(texto);
+                });
             }
 
-        } else {
-            div_msm.innerHTML = `Usuario bloqueado!`;
-            div_login.innerHTML = '';
-        }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
 
+        return false;
     }
+
+    // function sumirMensagem() {
+    //     cardErro.style.display = "none"
+    // }
+
 </script>
