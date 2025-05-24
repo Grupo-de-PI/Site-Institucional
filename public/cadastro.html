@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="./js/sessao.js"></script>
+
+  <link rel="stylesheet" href="./styles/reset.css">
+  <link rel="stylesheet" href="./styles/cads_login.css">
+  <link rel="shortcut icon" href="./pictures/favicon-16x16.png" type="image/x-icon">
+
+  <title> Cadastro - AirSafe</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+</head>
+
+<body onload="listar()">
+  <!--header inicio-->
+  <header>
+    <div class="botaocads">
+      <li>
+        <a class="link_faleconosco" href="index.html">
+          <button class="botaoFale">Voltar</button>
+        </a>
+      </li>
+    </div>
+  </header>
+
+  <!--header fim-->
+
+
+
+
+  <div class="login">
+    <div class="container">
+      <div class="card card-cadastro">
+
+        <div class="card1">
+          <h2>Cadastro</h2>
+        </div>
+
+        <div class="card2">
+          <img class="imageNavbar2" src="./pictures/logo Airsafe sem fundo.png" alt="">
+        </div>
+
+      </div>
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+
+      <div class="formulario">
+        
+        <div class="campo">
+          <span>Codigo da Empresa</span><br>
+          <input class="input_decor" id="codigo_input" type="text" />
+        </div>
+
+        <div class="campo">
+          <span>Nome</span><br>
+          <input class="input_decor" id="nome_input" type="text"" />
+        </div>
+
+        <div class="campo">
+          <span>Sobrenome</span><br>
+          <input class="input_decor" id="sobrenome_input" type="text"/>
+        </div>
+
+        <div class="campo">
+          <span>CPF</span><br>
+          <input class="input_decor" id="cpf_input" type="text"/>
+        </div>
+
+        <div class="campo">
+          <span>Telefone</span><br>
+          <input class="input_decor" id="telefone_input" type="text"/>
+        </div>
+
+        <div class="campo">
+          <span>Email</span><br>
+          <input class="input_decor" id="email_input" type="text"/>
+        </div>
+
+        <div class="campo">
+          <span>Digite sua Senha</span><br>
+          <input class="input_decor" id="senha_input" type="password" />
+        </div>
+
+        <div class="campo">
+          <span>Confirme sua Senha:</span><br>
+
+          <input class="input_decor" id="confirmacao_senha_input" type="password" />
+        </div>
+
+        <div class="loc_botao">
+          <button class="botao" onclick="cadastrar()">Finalizar Cadastro</button>
+
+        </div>
+        <div id="div_mensagem"></div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+
+
+  <!--footer inicio-->
+  <footer class="footer">
+    <div class="footer-conteudo">
+      <nav class="footer-nav">
+        <div class="imagem_footer">
+          <img class="i" src="./pictures/logo Airsafe sem fundo.png" alt="">
+          <h6> AirSafe. </h6>
+        </div>
+        <p class="texto88">contato@airsafe.com.br</p>
+        <p class="texto88">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP</p>
+
+
+      </nav>
+      <nav class="footer-nav2">
+        <div class="texto99"> SERVIÇOS</div>
+
+        <li class="tods">
+          <a href="simulador.html">Simulador</a>
+        </li>
+        <li class="tods">
+          <a href="produtos.html">Produtos</a>
+        </li>
+
+        <li class="tods">
+          <a href="sobrenos.html">Sobre Nós</a>
+        </li>
+
+
+        <li class="tods">
+          <a href="login.html">Login</a>
+        </li>
+
+      </nav>
+    </div>
+  </footer>
+  <!--footer fim-->
+</body>
+
+</html>
+
+
+
+
+<!-- /* ------------------------------------------------------------------------------------------------------------------
+ --------------------------------------------------------------------------------------------------------------------------
+ -------------------------------------------------------------------------------------------------------------------------
+ --------------------------------------------------------------------------------------------------------------------------->
+
+
+
+
+<script>
+  
+  // Array para armazenar empresas cadastradas para validação de código de ativação 
+  let listaEmpresasCadastradas = [];
+
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var codigoVar = codigo_input.value;
+    var idEmpresaVincular
+
+    var sobrenomeVar = sobrenome_input.value;
+    var cpfVar = cpf_input.value;
+    var telefoneVar = telefone_input.value;
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      codigoVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      
+      return false;
+    } 
+
+    // Verificando se o código de ativação é de alguma empresa cadastrada
+    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+        idEmpresaVincular = listaEmpresasCadastradas[i].id_empresa
+        console.log("Código de ativação válido.");
+        break;
+      } else {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+        
+      }
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        sobrenomeServer: sobrenomeVar,
+        cpfServer: cpfVar,
+        telefoneServer: telefoneVar,
+
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        idEmpresaVincularServer: idEmpresaVincular
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        
+      });
+
+    return false;
+  }
+
+  // Listando empresas cadastradas 
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
+
+            console.log("listaEmpresasCadastradas")
+            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+
+
+
+</script>
