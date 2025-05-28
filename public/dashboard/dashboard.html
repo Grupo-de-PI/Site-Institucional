@@ -7,15 +7,16 @@
     <title>Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../../styles/dashboard.css">
+    <script src="../js/sessao.js"></script>
 </head>
 
-<body>
+<body onload="validarSessao()">
 
     <nav class="sidebar">
         <div class="userContainer">
             <img src="../../pictures/female_woman_avatar_people_person_white_tone_icon_159370.png" alt="User">
-            <h2 class="userSession">Fernanda Caramico</h2>
-            <p class="userEmailSession">caramico@outlook.com</p>
+             <h2 class="userSession"><span id="b_usuario">usuário</span></h2>
+             <p class="userEmailSession"><span id="b_email">email</span></p>
         </div>
         <div class="pagescontainer">
             <a href="dashboard.html"><i class="fas fa-home"></i> Paínel geral</a>
