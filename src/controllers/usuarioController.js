@@ -28,7 +28,6 @@ function autenticar(req, res) {
                                         email: resultadoAutenticar[0].email,
                                         nome: resultadoAutenticar[0].nome,
                                         senha: resultadoAutenticar[0].senha,
-
                                         sobrenome: resultadoAutenticar[0].sobrenome,
                                         cpf: resultadoAutenticar[0].cpf,
                                         telefone: resultadoAutenticar[0].telefone
@@ -60,7 +59,6 @@ function cadastrar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var fk_empresa = req.body.idEmpresaVincularServer;
-    
     var sobrenome = req.body.sobrenomeServer;
     var cpf = req.body.cpfServer;
     var telefone = req.body.telefoneServer;
