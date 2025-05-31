@@ -36,9 +36,7 @@
             <div class="kpi">
                 <div><strong>23 dias</strong><br>Sem vazamentos</div><i class="fas fa-calendar-check"></i>
             </div>
-            <div class="kpi">
-                <div><strong>última atualização</strong><br>há 5 segundos</div><i class="fas fa-heartbeat"></i>
-            </div>
+    
             <div class="kpi">
                 <div><strong>4/4</strong><br>Sensores ativos</div><i class="fas fa-microchip"></i>
             </div>
@@ -64,48 +62,7 @@
 
 
 <script>
-    // Gráfico de barras
-    new Chart(document.getElementById("chart1"), {
-        type: 'bar',
-        data: {
-            labels: ['Sala das Máquinas', 'Câmara de Resfriamento', 'Câmara de Estocagem', 'Túnel Congelador'],
-            datasets: [{
-                label: 'ppm',
-                data: [7, 4, 2, 5],
-                backgroundColor: ['#1F77B4', '#FF7F0E', '#2CA02C', '#9467BD']
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                title: {
-                    display: true,
-                    text: 'Níveis médios de Amônia por Setor (ppm)',
-                    font: {
-                        size: 12
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    ticks: {
-                        font: {
-                            size: 8
-                        }
-                    }
-                },
-                y: {
-                    ticks: {
-                        font: {
-                            size: 8
-                        }
-                    }
-                }
-            }
-        }
-    });
+
 
     // Gráfico de donut
     new Chart(document.getElementById("chart2"), {
@@ -148,9 +105,9 @@
 
     function obterDados() {
 
-// Graficos de linha ------------------------------------------------------------------------------------------------------
+        // Graficos de linha ------------------------------------------------------------------------------------------------------
         fetch('/graficos/linha').then(function (response) {
-            console.log("2 - Segura esses dados brutos: /n");
+            console.log("1 - Dados para linha: /n");
             console.log(response);
             // if (!response.ok) {
             //     throw new Error("Testando se o problem é na resposta: " + response.status);
@@ -158,46 +115,82 @@
             return response.json();
         })
             .then(function (data) {
-                console.log("3 - Deu bom, vamos plotar! /n");
+                console.log("1.1 - Deu bom, vamos plotar o gráfico de linha! /n");
                 console.log(data);
                 plotarGraficoLinha(data);
-                // plotarGraficoBarra(data);
             })
             .catch(function (err) {
-                console.log("4 - Deu ruim da uma investigada /n");
+                console.log("1.2 - Deu ruim no grafico de linha, aqui no fetch /n");
                 console.log(err);
             })
 
+
+        // Graficos de barra ------------------------------------------------------------------------------------------------------
+        fetch('/graficos/barra').then(function (response) {
+            console.log("2 - Dados para barra: /n");
+            console.log(response);
+            // if (!response.ok) {
+            //     throw new Error("Testando se o problem é na resposta: " + response.status);
+            // }
+            return response.json();
+        })
+            .then(function (data) {
+                console.log("2.1 - Deu bom, vamos plotar o gráfico de linha! /n");
+                console.log(data);
+                plotarGraficoBarra(data);
+            })
+            .catch(function (err) {
+                console.log("2.2 - Deu ruim no grafico de barra, aqui no fetch /n");
+                console.log(err);
+            })
+
+
+
     }
 
+
     function plotarGraficoLinha(data) {
-        // Separando os rótulos (labels) e os dados dos votos
-        const lista_ppm = [];
-        const lista_hora = [];
+        
+        const sensores = {}; // VAi armazenar o id_sens: [Valores]
+        const horarios = []; //Vai armazenar as labels de horário
+
 
         // Preenchendo os arrays com os dados
-        for (var i = 0; i < data.length; i++) {
-            lista_ppm.push(Number(data[i].valor));
-            lista_hora.push(data[i].HoraRegistro)
+       data.forEach(registro => {
+        const {id_sens, HoraRegistro, valor} = registro;
+
+        if(!horarios.includes(HoraRegistro)) {
+            horarios.push(HoraRegistro);
         }
 
+        if (!sensores[id_sens]) {
+            sensores[id_sens] = [];
+        }
+
+        sensores[id_sens].push(Number(valor));
+       });
+
+       const datasets = Object.keys(sensores).map((id, i) =>{
+    
+        const cores = ['red', 'blue', 'green', 'orange', 'purple']
+
+        return {
+            label: `Sensor ${id}`, // exemplo: "Sensor S1"
+            data: sensores[id], // os valores de cada sensor
+            borderColor: cores[i % cores.length],
+            backgroundColor: cores[i % cores.length],
+            fill: false,
+            tension: 0.1
+        }
+       })
+        
+        
         // Gráfico de linhas
         new Chart(document.getElementById("chart3").getContext('2d'), {
             type: 'line',
             data: {
-                labels: lista_hora,
-                datasets: [{
-                    label: 'ppm',
-                    data: lista_ppm,
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)', // Cor de fundo das linhas
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)', // Cor da borda das linhas
-                    ],
-                    borderWidth: 1 // Largura da borda das linhas
-                }]
-
+                labels: horarios,
+                datasets: datasets
             },
             options: {
                 maintainAspectRatio: false,
@@ -239,5 +232,60 @@
             }
         });
 
+    }
+
+    function plotarGraficoBarra(data) {
+        // Separando os rótulos (labels) e os dados dos votos
+        const lista_ppm = [];
+        const lista_nome = [];
+
+        // Preenchendo os arrays com os dados
+        for (var i = 0; i < data.length; i++) {
+            lista_ppm.push(Number(data[i].media));
+            lista_nome.push(data[i].nome_loc)
+        }
+
+        // Gráfico de barras
+        new Chart(document.getElementById("chart1"), {
+            type: 'bar',
+            data: {
+                labels: lista_nome,
+                datasets: [{
+                    label: 'ppm',
+                    data: lista_ppm,
+                    backgroundColor: ['#1F77B4', '#FF7F0E', '#2CA02C', '#9467BD']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Níveis médios de Amônia por Setor (ppm)',
+                        font: {
+                            size: 12
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            font: {
+                                size: 8
+                            }
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            font: {
+                                size: 8
+                            }
+                        }
+                    }
+                }
+            }
+        });
     }
 </script>

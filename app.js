@@ -19,7 +19,7 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var empresasRouter = require("./src/routes/empresas");
-var graficoRouter = require("./src/routes/graficos")
+var graficoRouter = require("./src/routes/graficos");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,7 +29,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/empresas", empresasRouter);
-app.use("/graficos", graficoRouter)
+app.use("/graficos", graficoRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
