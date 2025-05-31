@@ -10,19 +10,19 @@
     <script src="../js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), obterDados()">
 
     <nav class="sidebar">
         <div class="userContainer">
             <img src="../../pictures/female_woman_avatar_people_person_white_tone_icon_159370.png" alt="User">
-             <h2 class="userSession" id="b_usuario">usuário</h2>
-             <p class="userEmailSession" id="b_email">email</p>
+            <h2 class="userSession" id="b_usuario">usuário</h2>
+            <p class="userEmailSession" id="b_email">email</p>
         </div>
         <div class="pagescontainer">
             <a href="dashboard.html"><i class="fas fa-home"></i> Paínel geral</a>
             <a href="dashboardSensor.html"><i class="fas fa-home"></i> Salas</a>
             <a href="#"><i class="fas fa-home"></i> Suporte técnico</a>
-            <a href="texteManutenção.html"><i class="fas fa-home"></i>Teste para home Manutenção</a>
+            <a onclick="alert('Esse campo aqui é para testes')"><i class="fas fa-home"></i>Teste Listar dados</a>
         </div>
         <div class="logoutContainer">
             <a href="index.html"><i class="fas fa-home"></i> Logout</a>
@@ -88,7 +88,7 @@
                     }
                 }
             },
-               scales: {
+            scales: {
                 x: {
                     ticks: {
                         font: {
@@ -137,93 +137,107 @@
                         size: 12
                     }
                 }
-            } 
+            }
         }
     });
 
-    // Gráfico de linhas
-    new Chart(document.getElementById("chart3"), {
-        type: 'line',
-        data: {
-            labels: ['12:00', '12:01', '12:02', '12:03', '12:04', '12:05'],
-            datasets: [
-                {
-                    label: 'Sensor 1',
-                    data: [0, 2, 2, 5, 10, 5],
-                    borderColor: '#1F77B4',
-                    fill: false
-                },
-                {
-                    label: 'Sensor 2',
-                    data: [0, 0, 0, 7, 10, 11],
-                    borderColor: '#FF7F0E',
-                    fill: false
-                },
-                {
-                    label: 'Sensor 3',
-                    data: [1, 1, 1, 0, 1, 0],
-                    borderColor: '#2CA02C',
-                    fill: false
-                },
-                {
-                    label: 'Sensor 4',
-                    data: [15, 12, 8, 2, 1, 1],
-                    borderColor: '#9467BD',
-                    fill: false
-                },
-                {
-                    label: 'Máximo permitido',
-                    data: [20, 20, 20, 20, 20, 20],
-                    borderColor: '#FF0000',
-                    borderDash: [5, 5],
-                    fill: false
-                },
-                {
-                    label: 'Alerta',
-                    data: [10, 10, 10, 10, 10, 10],
-                    borderColor: '#FFD700',
-                    borderDash: [5, 5],
-                    fill: false
-                }
-            ]
-        },
-        options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Histórico de Concentração de Amônia (ppm)',
-                    font: {
-                        size: 12
-                    }
-                },
-                legend: {
-                    position: 'right',
-                    labels: {
-                        font: {
-                            size: 10
-                        }
-                    }
-                }
+
+</script>
+
+<script>
+
+    function obterDados() {
+
+// Graficos de linha ------------------------------------------------------------------------------------------------------
+        fetch('/graficos/linha').then(function (response) {
+            console.log("2 - Segura esses dados brutos: /n");
+            console.log(response);
+            // if (!response.ok) {
+            //     throw new Error("Testando se o problem é na resposta: " + response.status);
+            // }
+            return response.json();
+        })
+            .then(function (data) {
+                console.log("3 - Deu bom, vamos plotar! /n");
+                console.log(data);
+                plotarGraficoLinha(data);
+                // plotarGraficoBarra(data);
+            })
+            .catch(function (err) {
+                console.log("4 - Deu ruim da uma investigada /n");
+                console.log(err);
+            })
+
+    }
+
+    function plotarGraficoLinha(data) {
+        // Separando os rótulos (labels) e os dados dos votos
+        const lista_ppm = [];
+        const lista_hora = [];
+
+        // Preenchendo os arrays com os dados
+        for (var i = 0; i < data.length; i++) {
+            lista_ppm.push(Number(data[i].valor));
+            lista_hora.push(data[i].HoraRegistro)
+        }
+
+        // Gráfico de linhas
+        new Chart(document.getElementById("chart3").getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: lista_hora,
+                datasets: [{
+                    label: 'ppm',
+                    data: lista_ppm,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)', // Cor de fundo das linhas
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)', // Cor da borda das linhas
+                    ],
+                    borderWidth: 1 // Largura da borda das linhas
+                }]
+
             },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    trick: {
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Histórico de Concentração de Amônia (ppm)',
                         font: {
-                            size: 8
+                            size: 12
+                        }
+                    },
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            font: {
+                                size: 10
+                            }
                         }
                     }
                 },
-                x: {
-                    trick: {
-                        font: {
-                            size: 8
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        trick: {
+                            font: {
+                                size: 8
+                            }
+                        }
+                    },
+                    x: {
+                        trick: {
+                            font: {
+                                size: 8
+                            }
                         }
                     }
                 }
             }
-        }
-    });
+        });
+
+    }
 </script>
