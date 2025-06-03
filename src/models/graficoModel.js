@@ -3,13 +3,11 @@ var database = require("../database/config");
 function listarLinha() {
     console.log("1 - Cheguei no models da linha: /n");
     var instrucao = `
-        select 
-            distinct id_sens,   
-            valor, 
-            DATE_FORMAT(time(HoraRegistro), '%H:%i:%s') AS HoraRegistro 
-        from vw_historico_registros 
-            where codigo = 'EF345' 
-            order by id_sens asc;
+       select distinct nome_loc, avg(valor) as media, DATE_FORMAT(time(HoraRegistro), '%H:%i:%s') 
+        AS HoraRegistro from vw_historico_registros 
+	    where codigo = 'EF345' 
+		group by nome_loc, DATE_FORMAT(time(HoraRegistro), '%H:%i:%s')
+		order by HoraRegistro asc;
     `;
     
     console.log("Executando instrução SQL: \n" + instrucao);

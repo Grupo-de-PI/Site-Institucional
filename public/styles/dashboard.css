@@ -7,13 +7,35 @@
 
 /* menu lateral ------------------------------------------------------------------------------------------------------------------------*/
 .sidebar {
-    width: 450px;
+    width: 25%;
     background-color: #2F58A5;
     color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.sidebar .userContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+
+}
+
+.sidebar .pagescontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.sidebar .userSession {
+    width: 100%;
+    text-align: center;
 }
 
 
@@ -42,7 +64,8 @@
     margin: 10px 0;
     display: flex;
     align-items: center;
-    gap: 10px;  /*Espaçamento*/
+    gap: 10px;
+    /*Espaçamento*/
     font-size: 16px;
 }
 
@@ -55,9 +78,10 @@
 /* Conteudo gráfico ------------------------------------------------------------------------------------------------------------------*/
 .kpis {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     width: 90%;
+    margin-top: 40px;
 }
 
 .kpi {
@@ -74,7 +98,7 @@
 
 .tipos-manutencao {
     background: white;
-    padding: 20px;
+    padding: 20px;  
     border-radius: 10px;
     flex: 1;
     /*Manter uma pagina bem distribuida*/
@@ -102,74 +126,43 @@
 /* Parte dos graficos */
 .chart-container {
     width: 90%;
-    height: 75%;
+    height: 90%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
 }
 
 .chart-container .charts {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: 40%;
+    height: 90%;
     width: 100%;
-}
-
-.chart-container .charts .chart-box {
-    padding: 10px;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    height: 200px;
-    width: 65%;
-}
-
-.chart-container .charts .chart-box2 {
-    padding: 10px;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    height: 200px;
-    width: 30%;
-}
-
-.chart-box3 {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    height: 100% !important;
-    width: 100% !important;
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 0 10px 10px;
 }
 
 
 .chart1 {
-    height: 100% !important;
-    width: 95% !important;
- 
+    height: 80% !important;
+    width: 43% !important;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .chart2 {
-    height: 100% !important;
-    width: 100% !important;
-   
-}
-
-.chart3 {
-    height: 100% !important;
-    width: 95% !important;
+    height: 80% !important;
+    width: 55% !important;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 

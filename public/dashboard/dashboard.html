@@ -16,7 +16,7 @@
         <div class="userContainer">
             <img src="../../pictures/female_woman_avatar_people_person_white_tone_icon_159370.png" alt="User">
             <h2 class="userSession" id="b_usuario">usuário</h2>
-            <p class="userEmailSession" id="b_email">email</p>
+            <!-- <p class="userEmailSession" id="b_email">email</p> -->
         </div>
         <div class="pagescontainer">
             <a href="dashboard.html"><i class="fas fa-home"></i> Paínel geral</a>
@@ -34,72 +34,32 @@
         <div class="kpis">
 
             <div class="kpi">
-                <div><strong>23 dias</strong><br>Sem vazamentos</div><i class="fas fa-calendar-check"></i>
+                <div>Dias sem vazamentos<strong><br><span id="span_ultimo">resultado</span>dias</strong></div><i
+                    class="fas fa-calendar-check"></i>
             </div>
-    
+
             <div class="kpi">
-                <div><strong>4/4</strong><br>Sensores ativos</div><i class="fas fa-microchip"></i>
+                <div> Maior concentração média de amônia<br><strong><span id="span_maior_concentracao">resultado</span></strong></div><i
+                    class="fas fa-calendar-check"></i>
+            </div>
+
+            <div class="kpi">
+                <div>Sensores ativos<br><strong><span id="span_ativos">resultado</span></strong></div><i
+                    class="fas fa-microchip"></i>
             </div>
             <!-- <div class="kpi"><div><strong>7</strong><br>Dias para manutenção</div><i class="fas fa-microchip"></i></div> -->
         </div>
         <div class="chart-container">
             <div class="charts">
-                <div class="chart-box">
-                    <canvas id="chart1" class="chart1"></canvas>
-                </div>
-                <div class="chart-box2">
-                    <canvas id="chart2" class="chart2"></canvas>
-                </div>
+                <canvas id="chart1" class="chart1"></canvas>
+                <canvas id="chart2" class="chart2"></canvas>
             </div>
 
-            <div class="chart-box3">
-                <canvas id="chart3" class="chart3"></canvas>
-            </div>
+
         </div>
 </body>
 
 </html>
-
-
-<script>
-
-
-    // Gráfico de donut
-    new Chart(document.getElementById("chart2"), {
-        type: 'doughnut',
-        data: {
-            labels: ['Sala das Máquinas', 'Câmara de Resfriamento', 'Câmara de Estocagem', 'Túnel Congelador'],
-            datasets: [{
-                label: 'Incidentes',
-                data: [45, 20, 10, 23],
-                backgroundColor: ['#1F77B4', '#FF7F0E', '#2CA02C', '#9467BD']
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        font: {
-                            size: 8
-                        }
-                    }
-                },
-                title: {
-                    display: true,
-                    text: 'Distribuição de vazamentos (%)',
-                    font: {
-                        size: 12
-                    }
-                }
-            }
-        }
-    });
-
-
-</script>
 
 <script>
 
@@ -146,47 +106,97 @@
 
 
 
+        // kppi de ultimo dia sem vazamento ------------------------------------------------------------------------------------------------------
+        fetch('/kpis/ultimo').then(function (response) {
+            console.log(response);
+            // if (!response.ok) {
+            //     throw new Error("Testando se o problem é na resposta: " + response.status);
+            // }
+            return response.json();
+        })
+            .then(function (data) {
+                console.log(data);
+                plotarKpiUltimo(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+
+
+        // kppi de sensores ativos ------------------------------------------------------------------------------------------------------
+        fetch('/kpis/ativos').then(function (response) {
+            console.log(response);
+            // if (!response.ok) {
+            //     throw new Error("Testando se o problem é na resposta: " + response.status);
+            // }
+            return response.json();
+        })
+            .then(function (data) {
+                console.log(data);
+                plotarKpiAtivos(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+
+
+        // kpi de maiores niveis ------------------------------------------------------------------------------------------------------
+        fetch('/kpis/perigo').then(function (response) {
+            console.log(response);
+            // if (!response.ok) {
+            //     throw new Error("Testando se o problem é na resposta: " + response.status);
+            // }
+            return response.json();
+        })
+            .then(function (data) {
+                console.log(data);
+                plotarKpiPerigo(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+
     }
 
 
     function plotarGraficoLinha(data) {
-        
-        const sensores = {}; // VAi armazenar o id_sens: [Valores]
+
+        const salas = {}; // VAi armazenar o nome_loc: [mediaes]
         const horarios = []; //Vai armazenar as labels de horário
 
 
         // Preenchendo os arrays com os dados
-       data.forEach(registro => {
-        const {id_sens, HoraRegistro, valor} = registro;
+        data.forEach(registro => {
+            const { nome_loc, HoraRegistro, media } = registro;
 
-        if(!horarios.includes(HoraRegistro)) {
-            horarios.push(HoraRegistro);
-        }
+            if (!horarios.includes(HoraRegistro)) {
+                horarios.push(HoraRegistro);
+            }
 
-        if (!sensores[id_sens]) {
-            sensores[id_sens] = [];
-        }
+            if (!salas[nome_loc]) {
+                salas[nome_loc] = [];
+            }
 
-        sensores[id_sens].push(Number(valor));
-       });
+            salas[nome_loc].push(Number(media));
+        });
 
-       const datasets = Object.keys(sensores).map((id, i) =>{
-    
-        const cores = ['red', 'blue', 'green', 'orange', 'purple']
+        const datasets = Object.keys(salas).map((nome_loc, i) => {
 
-        return {
-            label: `Sensor ${id}`, // exemplo: "Sensor S1"
-            data: sensores[id], // os valores de cada sensor
-            borderColor: cores[i % cores.length],
-            backgroundColor: cores[i % cores.length],
-            fill: false,
-            tension: 0.1
-        }
-       })
-        
-        
+            const cores = ['red', 'blue', 'green', 'orange', 'purple']
+
+            return {
+                label: nome_loc, // exemplo: "Sensor S1"
+                data: salas[nome_loc], // os mediaes de cada sensor
+                borderColor: cores[i % cores.length],
+                backgroundColor: cores[i % cores.length],
+                fill: false,
+                tension: 0.1
+            }
+        })
+
+
         // Gráfico de linhas
-        new Chart(document.getElementById("chart3").getContext('2d'), {
+        new Chart(document.getElementById("chart2").getContext('2d'), {
             type: 'line',
             data: {
                 labels: horarios,
@@ -198,16 +208,18 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Histórico de Concentração de Amônia (ppm)',
+                        text: 'Concentração de Amônia (ppm) em tempo real',
                         font: {
-                            size: 12
+                            size: 25,
+                            weight: 'bolder'
                         }
                     },
                     legend: {
                         position: 'right',
                         labels: {
                             font: {
-                                size: 10
+                                size: 20,
+                                weight: 'bolder'
                             }
                         }
                     }
@@ -215,16 +227,18 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        trick: {
+                        ticks: {
                             font: {
-                                size: 8
+                                size: 20,
+                                weight: 'bolder'
                             }
                         }
                     },
                     x: {
-                        trick: {
+                        ticks: {
                             font: {
-                                size: 8
+                                size: 20,
+                                weight: 'bolder'
                             }
                         }
                     }
@@ -265,7 +279,9 @@
                         display: true,
                         text: 'Níveis médios de Amônia por Setor (ppm)',
                         font: {
-                            size: 12
+                            size: 25,
+                            weight: 'bolder'
+
                         }
                     }
                 },
@@ -273,14 +289,16 @@
                     x: {
                         ticks: {
                             font: {
-                                size: 8
+                                size: 18,
+                                weight: 'bolder'
                             }
                         }
                     },
                     y: {
                         ticks: {
                             font: {
-                                size: 8
+                                size: 18,
+                                weight: 'bolder'
                             }
                         }
                     }
@@ -288,4 +306,27 @@
             }
         });
     }
+
+    function plotarKpiUltimo(data) {
+
+        var valor = data[0].dias;
+        span_ultimo.innerHTML = `${valor} `;
+    }
+
+    function plotarKpiAtivos(data) {
+
+        var ativos = data[0].sensores_ativos;
+        var totais = data[0].sensores_totais;
+
+        span_ativos.innerHTML = `${ativos}/${totais}`;
+    }
+
+    function plotarKpiPerigo(data) {
+
+        var maior = data[0].nome_loc;
+
+        span_maior_concentracao.innerHTML = `${maior}  `;
+
+    }
+
 </script>

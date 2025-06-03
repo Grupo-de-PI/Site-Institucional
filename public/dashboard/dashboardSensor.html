@@ -65,78 +65,16 @@
 
         <div class="chart-container">
             <div class="charts">
-                <!-- <div class="chart-box">
-                <canvas id="chart1"></canvas>
-            </div>
-            <div class="chart-box">
-                <canvas id="chart2"></canvas>
-            </div> -->
-            </div>
-
-            <div class="chart-box">
-                <canvas id="chart3" class="chart3"></canvas>
+                <canvas id="chart1" class="chart1"></canvas>
             </div>
         </div>
 
     </div>
 </body>
-<script>//script grafico
-    // // Gráfico de barras
-    // new Chart(document.getElementById("chart1"), {
-    //     type: 'bar',
-    //     data: {
-    //         labels: ['Sala das Máquinas', 'Câmara de Resfriamento', 'Câmara de Estocagem', 'Túnel Congelador'],
-    //         datasets: [{
-    //             label: 'ppm',
-    //             data: [7, 4, 2, 5],
-    //             backgroundColor: ['#1F77B4', '#FF7F0E', '#2CA02C', '#9467BD']
-    //         }]
-    //     },
-    //     options: {
-    //         responsive: true,
-    //         plugins: {
-    //             legend: { display: false },
-    //             title: {
-    //                 display: true,
-    //                 text: 'Níveis médios de Amônia por Setor (ppm)',
-    //                 font:{
-    //                     size:18
-    //                 }
-    //             }
-    //         }
-    //     }
-    // });
-
-    // // Gráfico de donut
-    // new Chart(document.getElementById("chart2"), {
-    //     type: 'doughnut',
-    //     data: {
-    //         labels: ['Sala das Máquinas', 'Câmara de Resfriamento', 'Câmara de Estocagem', 'Túnel Congelador'],
-    //         datasets: [{
-    //             label: 'Incidentes',
-    //             data: [45, 20, 10, 23],
-    //             backgroundColor: ['#1F77B4', '#FF7F0E', '#2CA02C', '#9467BD']
-    //         }]
-    //     },
-    //     options: {
-    //         responsive: true,
-    //         plugins: {
-    //             legend: {
-    //                 position: 'bottom'
-    //             },
-    //             title: {
-    //                 display: true,
-    //                 text: 'Distribuição de vazamentos (%)',
-    //                 font:{
-    //                     size:18
-    //                 }
-    //             }
-    //         }
-    //     }
-    // });
+<script>
 
     // Gráfico de linhas
-    new Chart(document.getElementById("chart3"), {
+    new Chart(document.getElementById("chart1"), {
         type: 'line',
         data: {
             labels: ['12:00', '12:01', '12:02', '12:03', '12:04', '12:05'],
