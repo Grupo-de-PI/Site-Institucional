@@ -10,7 +10,7 @@
     <script src="../js/sessao.js"></script>
 </head>
 
-<body onload="validarSessao(), obterDados()">
+<body>
 
     <nav class="sidebar">
         <div class="userContainer">
@@ -34,12 +34,13 @@
         <div class="kpis">
 
             <div class="kpi">
-                <div>Dias sem vazamentos<strong><br><span id="span_ultimo">resultado</span>dias</strong></div><i
+                <div>Dias sem vazamentos<strong><br><span id="span_ultimo">resultado</span></strong></div><i
                     class="fas fa-calendar-check"></i>
             </div>
 
             <div class="kpi">
-                <div> Maior concentração média de amônia<br><strong><span id="span_maior_concentracao">resultado</span></strong></div><i
+                <div> Maior concentração média de amônia<br><strong><span
+                            id="span_maior_concentracao">resultado</span></strong></div><i
                     class="fas fa-calendar-check"></i>
             </div>
 
@@ -63,6 +64,17 @@
 
 <script>
 
+    window.onload = function () {
+        validarSessao();
+        obterDados();
+        buscarEmpresa();
+
+    }
+    let chartLinha = '';
+    let chartBarra = '';
+
+    let qtdEmpresa = 0;
+
     function obterDados() {
 
         // Graficos de linha ------------------------------------------------------------------------------------------------------
@@ -75,12 +87,10 @@
             return response.json();
         })
             .then(function (data) {
-                console.log("1.1 - Deu bom, vamos plotar o gráfico de linha! /n");
                 console.log(data);
                 plotarGraficoLinha(data);
             })
             .catch(function (err) {
-                console.log("1.2 - Deu ruim no grafico de linha, aqui no fetch /n");
                 console.log(err);
             })
 
@@ -95,12 +105,10 @@
             return response.json();
         })
             .then(function (data) {
-                console.log("2.1 - Deu bom, vamos plotar o gráfico de linha! /n");
                 console.log(data);
                 plotarGraficoBarra(data);
             })
             .catch(function (err) {
-                console.log("2.2 - Deu ruim no grafico de barra, aqui no fetch /n");
                 console.log(err);
             })
 
@@ -158,7 +166,6 @@
 
     }
 
-
     function plotarGraficoLinha(data) {
 
         const salas = {}; // VAi armazenar o nome_loc: [mediaes]
@@ -196,7 +203,7 @@
 
 
         // Gráfico de linhas
-        new Chart(document.getElementById("chart2").getContext('2d'), {
+        chartLinha = new Chart(document.getElementById("chart2").getContext('2d'), {
             type: 'line',
             data: {
                 labels: horarios,
@@ -260,7 +267,7 @@
         }
 
         // Gráfico de barras
-        new Chart(document.getElementById("chart1"), {
+        chartBarra = new Chart(document.getElementById("chart1"), {
             type: 'bar',
             data: {
                 labels: lista_nome,
@@ -310,7 +317,10 @@
     function plotarKpiUltimo(data) {
 
         var valor = data[0].dias;
-        span_ultimo.innerHTML = `${valor} `;
+
+        valor == null ? valor = '-' : valor = `${valor} dias`;
+
+        span_ultimo.innerHTML = `${valor}`
     }
 
     function plotarKpiAtivos(data) {
@@ -327,6 +337,109 @@
 
         span_maior_concentracao.innerHTML = `${maior}  `;
 
+    }
+
+
+    function buscarEmpresa() {
+        // Graficos de linha ------------------------------------------------------------------------------------------------------
+        fetch('/buscar/qtd').then(function (response) {
+            console.log(response);
+            return response.json();
+        })
+            .then(function (data) {
+                console.log("Resposta de /buscar/qtd:", data);
+
+                if (data.length > 0 && data[0].num_loc) {
+                    qtdEmpresa = data[0].num_loc; //variavel global modificada  
+                    console.log("qtdEmpresa final:", qtdEmpresa);
+
+                    atualizarGraficos(qtdEmpresa);
+                } else {
+                    console.error("Erro: dado inesperado ou vazio em /buscar/qtd");
+                }
+            })
+            .catch(function (err) {
+                console.error("Erro no fetch de /buscar/qtd:", err);
+                console.log(err);
+            })
+
+    }
+
+    function atualizarGraficos(qtdEmpresa) {
+
+        console.log("qtdEmpresa sendo enviada:", qtdEmpresa);
+        fetch(`/buscar/linha/${qtdEmpresa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                console.log(response);
+                response.json()
+                    .then(function (novoRegistro) {
+
+                        const salas = {}; // VAi armazenar o nome_loc: [mediaes]
+                        const horarios = []; //Vai armazenar as labels de horário
+
+
+                        // Preenchendo os arrays com os dados
+                        novoRegistro.forEach(registro => {
+                            const { nome_loc, HoraRegistro, media } = registro;
+
+                            if (!horarios.includes(HoraRegistro)) {
+                                horarios.push(HoraRegistro);
+                            }
+
+                            if (!salas[nome_loc]) {
+                                salas[nome_loc] = [];
+                            }
+
+                            salas[nome_loc].push(Number(media));
+                        });
+
+                        const datasets = Object.keys(salas).map((nome_loc, i) => {
+
+                            const cores = ['red', 'blue', 'green', 'orange', 'purple']
+
+                            return {
+                                label: nome_loc, // exemplo: "Sensor S1"
+                                data: salas[nome_loc], // os mediaes de cada sensor
+                                borderColor: cores[i % cores.length],
+                                backgroundColor: cores[i % cores.length],
+                                fill: false,
+                                tension: 0.1
+                            }
+                        })
+
+                        if (novoRegistro[0].HoraRegistro == chartLinha.data.labels[chartLinha.data.labels.length - 1]) {
+                            console.log('Sem registros novos');
+                        } else {
+                            // tirando e colocando valores no gráfico
+                            chartLinha.data.labels.shift(); // Remove a primeira label (horário antigo)
+                            chartLinha.data.labels.push(horarios[horarios.length - 1]); // Adiciona o último horário novo // adicionar um horario capturado por ultimo
+
+                            datasets.forEach((novoDataset, i) => {
+                                // Remove o primeiro dado do dataset atual
+                                chartLinha.data.datasets[i].data.shift();
+
+                                // Adiciona o novo valor
+                                chartLinha.data.datasets[i].data.push(novoDataset.data[novoDataset.data.length - 1]);
+                            });
+
+                            // Atualiza visualmente o gráfico
+                            chartLinha.update();
+
+
+                            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 2000);
+                        }
+
+                    });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => buscarEmpresa(), 2000);
+            }
+
+        }).catch(function (err) {
+            console.log(err);
+        })
     }
 
 </script>

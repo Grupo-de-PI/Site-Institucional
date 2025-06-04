@@ -15,4 +15,9 @@ router.get("/barra", function (req,res) {
     graficoController.listarBarra(req, res);
 } );
 
+router.get("/novasLinhas", function (req,res) {
+    console.log("1 - Cheguei aqui no route das novas linhas");
+    // graficos/barra
+    graficoController.listarNovasLinhas(req, res);
+})
 module.exports = router;
