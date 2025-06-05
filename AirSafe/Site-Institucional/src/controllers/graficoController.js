@@ -32,14 +32,15 @@ function listarBarra(req, res) {
 
 function monitoramentoIndividual(req, res) {
 
-    let id_empresa = req.param.id_empresa;
-    req.params.id_empresa;
-
+    var empresaID = req.params.id_empresa;
+    
     console.log("2 - Cheguei no controller da monitoramentoIndividual, vamoo!");
+    console.log('EmpresaID: ', empresaID)
 
-    graficoModel.monitoramentoIndividual(id_empresa).then(
+    graficoModel.monitoramentoIndividual(empresaID).then(
         function (resultado) {
             console.log("2 - To na função do controller da monitoramentoIndividual");
+            console.log("Dados do BD referente a monitoramento individual: ", resultado)
             res.status(200).json(resultado);
         }
     ).catch(

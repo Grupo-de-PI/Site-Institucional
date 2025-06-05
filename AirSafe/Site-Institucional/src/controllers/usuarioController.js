@@ -54,6 +54,27 @@ function autenticar(req, res) {
 
 }
 
+function dadosMocados(req, res) {
+
+    var sensor1 = req.body.sensor1Server;
+    var sensor2 = req.body.sensor2Server;
+    var sensor3 = req.body.sensor3Server;
+    var sensor4 = req.body.sensor4Server;
+    var sensor5 = req.body.sensor5Server;
+
+    
+        usuarioModel.dadosMocados(sensor1, sensor2, sensor3, sensor4, sensor5)
+            .then(
+                console.log("DEU CERTO A INSERÇÃO")
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
@@ -103,5 +124,6 @@ function cadastrar(req, res) {
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    dadosMocados
 }

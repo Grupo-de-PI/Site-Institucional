@@ -28,4 +28,6 @@ router.get("/monitoramentoIndividual/:id_empresa", function (req,res) {
     graficoController.monitoramentoIndividual(req, res);
 })
 
+
+
 module.exports = router;
