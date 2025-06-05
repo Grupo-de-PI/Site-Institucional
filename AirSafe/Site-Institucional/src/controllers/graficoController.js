@@ -1,8 +1,10 @@
 var graficoModel = require("../models/graficoModel");
 
 function listarLinha(req, res) {
+     var id_empresa = parseInt(req.params.id_empresa);
+
     // console.log("1 - Cheguei no controller da linha, vamoo!");
-    graficoModel.listarLinha().then(
+    graficoModel.listarLinha(id_empresa).then(
         function (resultado) {
             res.status(200).json(resultado);
         }
@@ -16,8 +18,11 @@ function listarLinha(req, res) {
 
 
 function listarBarra(req, res) {
+
+     var id_empresa = parseInt(req.params.id_empresa);
+
     // console.log("2 - Cheguei no controller da barra, vamoo!");
-    graficoModel.listarBarra().then(
+    graficoModel.listarBarra(id_empresa).then(
         function (resultado) {
             // console.log("2 - To na função do controller da barra");
             res.status(200).json(resultado);
@@ -32,10 +37,7 @@ function listarBarra(req, res) {
 
 function monitoramentoIndividual(req, res) {
 
-    let id_empresa = req.param.id_empresa;
-    req.params.id_empresa;
-
-    console.log("2 - Cheguei no controller da monitoramentoIndividual, vamoo!");
+    let id_empresa = req.params.id_empresa;
 
     graficoModel.monitoramentoIndividual(id_empresa).then(
         function (resultado) {

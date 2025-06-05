@@ -35,18 +35,18 @@
         <div class="kpis">
 
             <div class="kpi">
-                <div>Dias sem vazamentos<strong><br><span id="span_ultimo">resultado</span></strong></div><i
+                <div>Dias sem vazamentos<strong><br><span id="span_ultimo">-</span></strong></div><i
                     class="fas fa-calendar-check"></i>
             </div>
 
             <div class="kpi">
                 <div> Maior concentração média de amônia<br><strong><span
-                            id="span_maior_concentracao">resultado</span></strong></div><i
+                            id="span_maior_concentracao">-</span></strong></div><i
                     class="fas fa-calendar-check"></i>
             </div>
 
             <div class="kpi">
-                <div>Sensores ativos<br><strong><span id="span_ativos">resultado</span></strong></div><i
+                <div>Sensores ativos<br><strong><span id="span_ativos">-</span></strong></div><i
                     class="fas fa-microchip"></i>
             </div>
             <!-- <div class="kpi"><div><strong>7</strong><br>Dias para manutenção</div><i class="fas fa-microchip"></i></div> -->
@@ -77,8 +77,9 @@
 
     let qtdEmpresa = 0;
 
+    let id_empresa = sessionStorage.ID_EMPRESA;
+
     function monitoramentoIndividual() {
-        let id_empresa = sessionStorage.ID_EMPRESA;
 
         fetch(`/graficos/monitoramentoIndividual/${id_empresa}`).then(function (response) {
 
@@ -94,8 +95,11 @@
 
     function obterDados() {
 
+        // console.log(id_empresa);
+        
+
         // Graficos de linha ------------------------------------------------------------------------------------------------------
-        fetch('/graficos/linha').then(function (response) {
+        fetch(`/graficos/linha/${id_empresa}`).then(function (response) {
 
             return response.json();
         })
@@ -109,7 +113,7 @@
 
 
         // Graficos de barra ------------------------------------------------------------------------------------------------------
-        fetch('/graficos/barra').then(function (response) {
+        fetch(`/graficos/barra/${id_empresa}`).then(function (response) {
 
             return response.json();
         })
@@ -124,7 +128,7 @@
 
 
         // kppi de ultimo dia sem vazamento ------------------------------------------------------------------------------------------------------
-        fetch('/kpis/ultimo').then(function (response) {
+        fetch(`/kpis/ultimo/${id_empresa}`).then(function (response) {
 
             return response.json();
         })
@@ -138,7 +142,7 @@
 
 
         // kppi de sensores ativos ------------------------------------------------------------------------------------------------------
-        fetch('/kpis/ativos').then(function (response) {
+        fetch(`/kpis/ativos/${id_empresa}`).then(function (response) {
 
             return response.json();
         })
@@ -152,7 +156,7 @@
 
 
         // kpi de maiores niveis ------------------------------------------------------------------------------------------------------
-        fetch('/kpis/perigo').then(function (response) {
+        fetch(`/kpis/perigo/${id_empresa}`).then(function (response) {
 
             return response.json();
         })
@@ -286,7 +290,7 @@
                     legend: { display: false },
                     title: {
                         display: true,
-                        text: 'Níveis médios de Amônia por Setor (ppm)',
+                        text: 'Níveis médios de Amônia por hora nos setores (ppm)',
                         font: {
                             size: 25,
                             weight: 'bolder'
@@ -343,19 +347,21 @@
 
 
     function buscarEmpresa() {
+
         // Graficos de linha ------------------------------------------------------------------------------------------------------
-        fetch('/buscar/qtd').then(function (response) {
-            console.log(response);
+        fetch(`/buscar/qtd/${id_empresa}`).then(function (response) {
+            // console.log("Resposta do buscar: " + response);
             return response.json();
         })
             .then(function (data) {
-                console.log("Resposta de /buscar/qtd:", data);
+                // console.log("Resposta de /buscar/qtd:", data);
 
                 if (data.length > 0 && data[0].num_loc) {
                     qtdEmpresa = data[0].num_loc; //variavel global modificada  
-                    console.log("qtdEmpresa final:", qtdEmpresa);
+                    // console.log("qtdEmpresa final:", qtdEmpresa);
 
-                    atualizarGraficos(qtdEmpresa);
+                    atualizarGraficoLinha(qtdEmpresa);
+                    atualizarGraficoBarra();
                 } else {
                     console.error("Erro: dado inesperado ou vazio em /buscar/qtd");
                 }
@@ -365,14 +371,15 @@
                 console.log(err);
             })
 
+
+
     }
 
-    function atualizarGraficos(qtdEmpresa) {
+    function atualizarGraficoLinha(qtdEmpresa) {
 
-        console.log("qtdEmpresa sendo enviada:", qtdEmpresa);
-        fetch(`/buscar/linha/${qtdEmpresa}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/buscar/linha/${qtdEmpresa}/${id_empresa}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
-                console.log(response);
+                // console.log(response);
                 response.json()
                     .then(function (novoRegistro) {
 
@@ -411,7 +418,7 @@
 
                         if (novoRegistro[novoRegistro.length - 1].HoraRegistro == chartLinha.data.labels[chartLinha.data.labels.length - 1]) {
                             console.log('Sem registros novos');
-                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 2000);
+                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
                         } else {
                             // tirando e colocando valores no gráfico
                             chartLinha.data.labels.shift(); // Remove a primeira label (horário antigo)
@@ -430,14 +437,14 @@
 
 
                             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 2000);
+                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
                         }
 
                     });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => buscarEmpresa(), 2000);
+                proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
             }
 
         }).catch(function (err) {
@@ -445,4 +452,43 @@
         })
     }
 
+    function atualizarGraficoBarra() {
+
+        fetch(`/buscar/barra/${id_empresa}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                // console.log(response);
+                response.json()
+                    .then(function (novoRegistro) {
+
+                        // Separando os rótulos (labels) e os dados dos votos
+                        const lista_ppm = [];
+                        const lista_nome = [];
+
+                        // Preenchendo os arrays com os dados
+                        for (var i = 0; i < novoRegistro.length; i++) {
+                            lista_ppm.push(Number(novoRegistro[i].media));
+                            lista_nome.push(novoRegistro[0].nome_loc)
+                        }
+
+                            chartBarra.data.labels = lista_nome; 
+                            chartBarra.data.datasets[0].data = lista_ppm;
+
+                            // Atualiza visualmente o gráfico
+                            chartBarra.update();
+
+                            // proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
+
+                    });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                // atualização feita no codigo de linha
+                // proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
+            }
+
+        }).catch(function (err) {
+            console.log(err);
+        })
+
+    }
 </script>
