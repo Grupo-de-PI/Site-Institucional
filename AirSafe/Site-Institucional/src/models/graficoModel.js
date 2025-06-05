@@ -39,7 +39,19 @@ function listarBarra() {
 
     return database.executar(instrucao);
 }
+
+function monitoramentoIndividual(id_empresa) {
+    console.log("2 -Cheguei no models do monitoramentoIndividual: /n");
+    var instrucao = `
+       select * from vw_monitomentoIndividual where id_emp = ${id_empresa};;
+    `;
+    console.log("Executando instrução SQL: \n" + instrucao);
+
+    return database.executar(instrucao);
+}
+
 module.exports = {
     listarLinha,
-    listarBarra
+    listarBarra,
+    monitoramentoIndividual
 };
