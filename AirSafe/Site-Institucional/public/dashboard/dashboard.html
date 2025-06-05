@@ -21,8 +21,9 @@
         <div class="pagescontainer">
             <a href="dashboard.html"><i class="fas fa-home"></i> Paínel geral</a>
             <a href="dashboardSensor.html"><i class="fas fa-home"></i> Salas</a>
-            <a href="https://airsafe.atlassian.net/servicedesk/customer/portal/1"><i class="fas fa-home"></i> Suporte técnico</a>
-            <a onclick="alert('Esse campo aqui é para testes')"><i class="fas fa-home"></i>Teste Listar dados</a>
+            <a href="https://airsafe.atlassian.net/servicedesk/customer/portal/1"><i class="fas fa-home"></i> Suporte
+                técnico</a>
+            <a href="texteManutenção.html"><i class="fas fa-home"></i>Sobre manutenções</a>
         </div>
         <div class="logoutContainer">
             <a href="index.html"><i class="fas fa-home"></i> Logout</a>
@@ -70,6 +71,7 @@
         buscarEmpresa();
 
     }
+
     let chartLinha = '';
     let chartBarra = '';
 
@@ -79,15 +81,10 @@
         let id_empresa = sessionStorage.ID_EMPRESA;
 
         fetch(`/graficos/monitoramentoIndividual/${id_empresa}`).then(function (response) {
-            console.log("1 - Dados para linha: /n");
-            console.log(response);
-            // if (!response.ok) {
-            //     throw new Error("Testando se o problem é na resposta: " + response.status);
-            // }
+
             return response.json();
         })
             .then(function (data) {
-                console.log(data);
                 plotarGraficoLinha(data);
             })
             .catch(function (err) {
@@ -99,11 +96,7 @@
 
         // Graficos de linha ------------------------------------------------------------------------------------------------------
         fetch('/graficos/linha').then(function (response) {
-            console.log("1 - Dados para linha: /n");
-            console.log(response);
-            // if (!response.ok) {
-            //     throw new Error("Testando se o problem é na resposta: " + response.status);
-            // }
+
             return response.json();
         })
             .then(function (data) {
@@ -117,11 +110,7 @@
 
         // Graficos de barra ------------------------------------------------------------------------------------------------------
         fetch('/graficos/barra').then(function (response) {
-            console.log("2 - Dados para barra: /n");
-            console.log(response);
-            // if (!response.ok) {
-            //     throw new Error("Testando se o problem é na resposta: " + response.status);
-            // }
+
             return response.json();
         })
             .then(function (data) {
@@ -136,10 +125,7 @@
 
         // kppi de ultimo dia sem vazamento ------------------------------------------------------------------------------------------------------
         fetch('/kpis/ultimo').then(function (response) {
-            console.log(response);
-            // if (!response.ok) {
-            //     throw new Error("Testando se o problem é na resposta: " + response.status);
-            // }
+
             return response.json();
         })
             .then(function (data) {
@@ -153,10 +139,7 @@
 
         // kppi de sensores ativos ------------------------------------------------------------------------------------------------------
         fetch('/kpis/ativos').then(function (response) {
-            console.log(response);
-            // if (!response.ok) {
-            //     throw new Error("Testando se o problem é na resposta: " + response.status);
-            // }
+
             return response.json();
         })
             .then(function (data) {
@@ -170,10 +153,7 @@
 
         // kpi de maiores niveis ------------------------------------------------------------------------------------------------------
         fetch('/kpis/perigo').then(function (response) {
-            console.log(response);
-            // if (!response.ok) {
-            //     throw new Error("Testando se o problem é na resposta: " + response.status);
-            // }
+
             return response.json();
         })
             .then(function (data) {
@@ -187,16 +167,14 @@
     }
 
     function plotarGraficoLinha(data) {
-
-        const salas = {}; // VAi armazenar o nome_loc: [mediaes]
-        const horarios = []; //Vai armazenar as labels de horário
-
+        const salas = {}; // Armazena nome_loc: [médias]
+        const horarios = []; // Labels do eixo X
 
         // Preenchendo os arrays com os dados
         data.forEach(registro => {
             const { nome_loc, HoraRegistro, media } = registro;
 
-            if (!horarios.includes(HoraRegistro)){
+            if (!horarios.includes(HoraRegistro)) {
                 horarios.push(HoraRegistro);
             }
 
@@ -207,26 +185,31 @@
             salas[nome_loc].push(Number(media));
         });
 
-        const datasets = Object.keys(salas).map((nome_loc, i) => {
+        // Limitar a 7 últimos horários e respectivos valores
+        const maxPontos = 7;
+        const horariosLimitados = horarios.slice(-maxPontos); // últimos 7 horários
 
-            const cores = ['red', 'blue', 'green', 'orange', 'purple']
+        const datasets = Object.keys(salas).map((nome_loc, i) => {
+            const cores = ['red', 'blue', 'green', 'orange', 'purple'];
+
+            // Garante que cada sala só tenha os últimos 7 valores
+            const dadosLimitados = salas[nome_loc].slice(-maxPontos);
 
             return {
-                label: nome_loc, // exemplo: "Sensor S1"
-                data: salas[nome_loc], // os mediaes de cada sensor
+                label: nome_loc,
+                data: dadosLimitados,
                 borderColor: cores[i % cores.length],
                 backgroundColor: cores[i % cores.length],
                 fill: false,
                 tension: 0.1
-            }
-        })
-
+            };
+        });
 
         // Gráfico de linhas
         chartLinha = new Chart(document.getElementById("chart2").getContext('2d'), {
             type: 'line',
             data: {
-                labels: horarios,
+                labels: horariosLimitados,
                 datasets: datasets
             },
             options: {
@@ -272,7 +255,6 @@
                 }
             }
         });
-
     }
 
     function plotarGraficoBarra(data) {
@@ -427,8 +409,9 @@
                             }
                         })
 
-                        if (novoRegistro[0].HoraRegistro == chartLinha.data.labels[chartLinha.data.labels.length - 1]) {
+                        if (novoRegistro[novoRegistro.length - 1].HoraRegistro == chartLinha.data.labels[chartLinha.data.labels.length - 1]) {
                             console.log('Sem registros novos');
+                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 2000);
                         } else {
                             // tirando e colocando valores no gráfico
                             chartLinha.data.labels.shift(); // Remove a primeira label (horário antigo)

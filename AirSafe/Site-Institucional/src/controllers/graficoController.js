@@ -52,9 +52,7 @@ function monitoramentoIndividual(req, res) {
 
 module.exports = {
     listarLinha,
-
     listarBarra,
-    listarNovasLinhas,
     monitoramentoIndividual
 
 }
