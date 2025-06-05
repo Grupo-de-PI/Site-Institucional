@@ -190,3 +190,89 @@ body {
     align-items: center;
     /*Manter a side bar fixa e constante*/
 }
+
+
+
+/* alerta EMERGENCIAL */
+
+.alerta-sem_nada{
+    width : 0px;
+    height : 0px; 
+    padding : 0px;
+    border : none;
+    overflow : hidden;
+    color : none;
+    position: relative;
+}
+
+.alerta-flutuante {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #1e1e1e;
+      border: 2px solid #ff4d4f;
+      border-radius: 12px;
+      padding: 15px 20px;
+      color: #fff;
+      width: 250px;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+      animation: pulse 1.5s infinite;
+      z-index: 1000;
+    }
+
+    .alerta-flutuante h2 {
+      font-size: 1.2rem;
+      margin: 0 0 5px;
+      color: #ff4d4f;
+    }
+
+    .alerta-flutuante p {
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .icon-alerta {
+      font-size: 24px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+      }
+      100% {
+        box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+      }
+    }
+
+    /*Atenção*/
+
+    .alerta-flutuante.atencao {
+        top: 20px; /* um pouco abaixo do alerta de emergência */
+        border-color: #ffc107;
+        box-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+        animation: pulse-amarelo 2s infinite;
+        width: 250px;
+    }
+
+    .alerta-flutuante.atencao h2 {
+        color: #ffc107;
+    }
+
+    @keyframes pulse-amarelo {
+        0% {
+            box-shadow: 0 0 8px rgba(255, 193, 7, 0.2);
+        }
+        50% {
+            box-shadow: 0 0 18px rgba(255, 193, 7, 0.5);
+        }
+        100% {
+            box-shadow: 0 0 8px rgba(255, 193, 7, 0.2);
+        }
+    }
+
+      
