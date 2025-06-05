@@ -65,7 +65,10 @@ function dadosMocados(req, res) {
     
         usuarioModel.dadosMocados(sensor1, sensor2, sensor3, sensor4, sensor5)
             .then(
-                console.log("DEU CERTO A INSERÇÃO")
+                function (resultado) {
+                    console.log("DEU CERTO A INSERÇÃO");
+                    res.json(resultado);
+                }
             ).catch(
                 function (erro) {
                     console.log(erro);

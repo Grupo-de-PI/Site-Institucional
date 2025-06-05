@@ -14,6 +14,7 @@ function dadosMocados(sensor1, sensor2, sensor3, sensor4, sensor5) {
     var instrucaoSql = `
         insert into leitura (fk_sensor, valor_ppm) values (1,${sensor1}),(2,${sensor2}),(3,${sensor3}),(4,${sensor4}),(5,${sensor5});`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    
     return database.executar(instrucaoSql);
 }
 

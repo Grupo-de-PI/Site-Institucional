@@ -86,8 +86,6 @@
     let id_empresa = sessionStorage.ID_EMPRESA;
 
     function monitoramentoIndividual() {
-
-        var id_empresa = Number(sessionStorage.ID_EMPRESA);    
                 obterdados(id_empresa)
     }
 
@@ -98,15 +96,11 @@
         var sensor4 = parseInt(Math.random()*20)
         var sensor5 = parseInt(Math.random()*20)
 
-        console.log('sensor1= ', sensor1)
-        console.log('sensor2= ', sensor2)
-        console.log('sensor3= ', sensor3)
-        console.log('sensor4= ', sensor4)
-        console.log('sensor5= ', sensor5)
-
-
-
-
+        // console.log('sensor1= ', sensor1)
+        // console.log('sensor2= ', sensor2)
+        // console.log('sensor3= ', sensor3)
+        // console.log('sensor4= ', sensor4)
+        // console.log('sensor5= ', sensor5)
 
 
         fetch(`/usuarios/dadosMocados`, {
@@ -123,7 +117,7 @@
                 
             })
         }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO dadosRandows()!")
+            // console.log("ESTOU NO THEN DO dadosRandows()!")
             proximaAtualizacao = setTimeout(() => dadosRandows(), 1000);
 
         }).catch(function (erro) {
