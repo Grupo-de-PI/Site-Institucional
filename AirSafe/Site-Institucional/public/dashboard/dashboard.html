@@ -75,6 +75,26 @@
 
     let qtdEmpresa = 0;
 
+    function monitoramentoIndividual() {
+        let id_empresa = sessionStorage.ID_EMPRESA;
+
+        fetch(`/graficos/monitoramentoIndividual/${id_empresa}`).then(function (response) {
+            console.log("1 - Dados para linha: /n");
+            console.log(response);
+            // if (!response.ok) {
+            //     throw new Error("Testando se o problem é na resposta: " + response.status);
+            // }
+            return response.json();
+        })
+            .then(function (data) {
+                console.log(data);
+                plotarGraficoLinha(data);
+            })
+            .catch(function (err) {
+                console.log(err);
+            })
+    }
+
     function obterDados() {
 
         // Graficos de linha ------------------------------------------------------------------------------------------------------
@@ -176,7 +196,7 @@
         data.forEach(registro => {
             const { nome_loc, HoraRegistro, media } = registro;
 
-            if (!horarios.includes(HoraRegistro)) {
+            if (!horarios.includes(HoraRegistro)){
                 horarios.push(HoraRegistro);
             }
 

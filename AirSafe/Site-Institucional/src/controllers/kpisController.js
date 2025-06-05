@@ -25,6 +25,7 @@ function mostrarSensoresAtivos(req, res) {
 }
 
 function mostrarSalaPerigosa (req, res) {
+
     kpiModel.mostrarSalaPerigosa().then(
         function (resultado) {
             res.status(200).json(resultado);

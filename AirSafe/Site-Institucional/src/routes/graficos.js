@@ -20,4 +20,10 @@ router.get("/novasLinhas", function (req,res) {
     // graficos/barra
     graficoController.listarNovasLinhas(req, res);
 })
+
+router.get("/monitoramentoIndividual/:id_empresa", function (req,res) {
+    console.log("1 - Cheguei aqui no route do monitoramentoIndividual");
+    // graficos/barra
+    graficoController.monitoramentoIndividual(req, res);
+})
 module.exports = router;
