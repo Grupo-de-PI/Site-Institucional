@@ -1,7 +1,7 @@
 {
   "name": "gerenciador-de-apis",
   "scripts": {
-    "start-all": "concurrently \"npm:start --prefix 'AirSafe/Site-Institucional'\" \"npm:start --prefix 'AirSafe/Site-Institucional/public/BobIA'\""
+    "start-all": "concurrently \"npm:start --prefix AirSafe/Site-Institucional/\" \"npm:start --prefix AirSafe/Site-Institucional/public/BOB_IA/\""
   },
   "devDependencies": {
     "concurrently": "^8.0.0"
