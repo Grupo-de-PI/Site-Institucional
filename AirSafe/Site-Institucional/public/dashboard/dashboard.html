@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../../styles/dashboard.css">
     <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
 </head>
 
 <body>
@@ -52,6 +53,10 @@
             <!-- <div class="kpi"><div><strong>7</strong><br>Dias para manutenção</div><i class="fas fa-microchip"></i></div> -->
         </div>
         <div class="chart-container">
+            <div id="alerta" >
+                <h2><span class="icon-alerta">⚠️</span><span id="nivelAtencao">Atenção</span></h2>
+                <p>Nível de Amonia detectado: <span id="nivelConcentracao">0</span> ppm</p>
+            </div>
             <div class="charts">
                 <canvas id="chart1" class="chart1"></canvas>
                 <canvas id="chart2" class="chart2"></canvas>
@@ -69,7 +74,8 @@
         validarSessao();
         obterDados();
         buscarEmpresa();
-
+        monitoramentoIndividual();
+        dadosRandows()
     }
 
     let chartLinha = '';
@@ -78,18 +84,51 @@
     let qtdEmpresa = 0;
 
     function monitoramentoIndividual() {
-        let id_empresa = sessionStorage.ID_EMPRESA;
+        var id_empresa = Number(sessionStorage.ID_EMPRESA);    
+                obterdados(id_empresa)
+        
+    }
 
-        fetch(`/graficos/monitoramentoIndividual/${id_empresa}`).then(function (response) {
+    function dadosRandows(){
+        var sensor1 = parseInt(Math.random()*20)
+        var sensor2 = parseInt(Math.random()*20)
+        var sensor3 = parseInt(Math.random()*20)
+        var sensor4 = parseInt(Math.random()*20)
+        var sensor5 = parseInt(Math.random()*20)
 
-            return response.json();
+        console.log('sensor1= ', sensor1)
+        console.log('sensor2= ', sensor2)
+        console.log('sensor3= ', sensor3)
+        console.log('sensor4= ', sensor4)
+        console.log('sensor5= ', sensor5)
+
+
+
+
+
+
+        fetch(`/usuarios/dadosMocados`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                sensor1Server: sensor1, 
+                sensor2Server: sensor2, 
+                sensor3Server: sensor3, 
+                sensor4Server: sensor4, 
+                sensor5Server: sensor5,
+                
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO dadosRandows()!")
+            proximaAtualizacao = setTimeout(() => dadosRandows(), 1000);
+
+        }).catch(function (erro) {
+            console.log(erro);
         })
-            .then(function (data) {
-                plotarGraficoLinha(data);
-            })
-            .catch(function (err) {
-                console.log(err);
-            })
+
+
     }
 
     function obterDados() {
@@ -411,7 +450,7 @@
 
                         if (novoRegistro[novoRegistro.length - 1].HoraRegistro == chartLinha.data.labels[chartLinha.data.labels.length - 1]) {
                             console.log('Sem registros novos');
-                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 2000);
+                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
                         } else {
                             // tirando e colocando valores no gráfico
                             chartLinha.data.labels.shift(); // Remove a primeira label (horário antigo)
@@ -430,7 +469,7 @@
 
 
                             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 2000);
+                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
                         }
 
                     });
