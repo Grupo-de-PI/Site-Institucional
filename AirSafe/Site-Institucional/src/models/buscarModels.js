@@ -1,9 +1,12 @@
 var database = require("../database/config");
 
-function buscarQtd() {
+function buscarQtd(id_empresa) {
+
+    var id_empresa = parseInt(id_empresa);
+    
     var instrucao = `
        select count(distinct(nome_loc)) as num_loc from vw_historico_registros 
-        where codigo = 'EF345';
+        where id_emp = ${id_empresa};
     `;
 
     console.log("Executando instrução SQL: \n" + instrucao);
@@ -11,8 +14,9 @@ function buscarQtd() {
     return database.executar(instrucao);
 }
 
-function atualizarLinha(qtdEmpresa) {
+function atualizarLinha(qtdEmpresa, id_empresa) {
 
+    var id_empresa = parseInt(id_empresa);
     var qtdEmpresa = parseInt(qtdEmpresa);
 
     var instrucao= `
@@ -25,7 +29,7 @@ function atualizarLinha(qtdEmpresa) {
             GROUP BY nome_loc
         ) AS ultimos
         ON vhr.nome_loc = ultimos.nome_loc AND vhr.HoraRegistro = ultimos.UltimoHorario
-        WHERE codigo = 'EF345'
+        WHERE id_emp = ${id_empresa}
         LIMIT ${qtdEmpresa};
     ` ;
 
@@ -33,7 +37,25 @@ function atualizarLinha(qtdEmpresa) {
    
 }
 
+function atualizarBarra(id_empresa) {
+
+    var id_empresa = parseInt(id_empresa);
+
+    var instrucao= `
+        select 
+            distinct nome_loc,  
+            avg(valor) as media 
+        from vw_historico_registros 
+            where id_emp = ${id_empresa} 
+            group by id_loc;
+    ` ;
+    
+    return database.executar(instrucao);
+   
+}
+
 module.exports = {
     buscarQtd,
-    atualizarLinha
+    atualizarLinha, 
+    atualizarBarra
 };

@@ -1,7 +1,10 @@
 var kpiModel = require("../models/kpisModel");
 
 function mostrarUltimoVazamento(req, res) {
-    kpiModel.mostrarUltimoVazamento().then(
+
+     var id_empresa = parseInt(req.params.id_empresa);
+
+    kpiModel.mostrarUltimoVazamento(id_empresa).then(
         function (resultado) {
             res.status(200).json(resultado);
         }
@@ -13,7 +16,10 @@ function mostrarUltimoVazamento(req, res) {
 }
 
 function mostrarSensoresAtivos(req, res) {
-    kpiModel.mostrarSensoresAtivos().then(
+
+     var id_empresa = parseInt(req.params.id_empresa);
+
+    kpiModel.mostrarSensoresAtivos(id_empresa).then(
         function (resultado) {
             res.status(200).json(resultado);
         }
@@ -26,7 +32,9 @@ function mostrarSensoresAtivos(req, res) {
 
 function mostrarSalaPerigosa (req, res) {
 
-    kpiModel.mostrarSalaPerigosa().then(
+     var id_empresa = parseInt(req.params.id_empresa);
+
+    kpiModel.mostrarSalaPerigosa(id_empresa).then(
         function (resultado) {
             res.status(200).json(resultado);
         }
