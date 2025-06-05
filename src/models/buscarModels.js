@@ -26,7 +26,7 @@ function atualizarLinha(qtdEmpresa) {
         ) AS ultimos
         ON vhr.nome_loc = ultimos.nome_loc AND vhr.HoraRegistro = ultimos.UltimoHorario
         WHERE codigo = 'EF345'
-        ORDER BY HoraRegistro asc
+       
         LIMIT ${qtdEmpresa};
     ` ;
 

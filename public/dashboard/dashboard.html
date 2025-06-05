@@ -79,15 +79,15 @@
 
         // Graficos de linha ------------------------------------------------------------------------------------------------------
         fetch('/graficos/linha').then(function (response) {
-            console.log("1 - Dados para linha: /n");
-            console.log(response);
+            // console.log("1 - Dados para linha: /n");
+            // console.log(response);
             // if (!response.ok) {
             //     throw new Error("Testando se o problem é na resposta: " + response.status);
             // }
             return response.json();
         })
             .then(function (data) {
-                console.log(data);
+                // console.log(data);
                 plotarGraficoLinha(data);
             })
             .catch(function (err) {
@@ -97,15 +97,15 @@
 
         // Graficos de barra ------------------------------------------------------------------------------------------------------
         fetch('/graficos/barra').then(function (response) {
-            console.log("2 - Dados para barra: /n");
-            console.log(response);
+            // console.log("2 - Dados para barra: /n");
+            // console.log(response);
             // if (!response.ok) {
             //     throw new Error("Testando se o problem é na resposta: " + response.status);
             // }
             return response.json();
         })
             .then(function (data) {
-                console.log(data);
+                // console.log(data);
                 plotarGraficoBarra(data);
             })
             .catch(function (err) {
@@ -116,14 +116,14 @@
 
         // kppi de ultimo dia sem vazamento ------------------------------------------------------------------------------------------------------
         fetch('/kpis/ultimo').then(function (response) {
-            console.log(response);
+            // console.log(response);
             // if (!response.ok) {
             //     throw new Error("Testando se o problem é na resposta: " + response.status);
             // }
             return response.json();
         })
             .then(function (data) {
-                console.log(data);
+                // console.log(data);
                 plotarKpiUltimo(data);
             })
             .catch(function (err) {
@@ -133,14 +133,14 @@
 
         // kppi de sensores ativos ------------------------------------------------------------------------------------------------------
         fetch('/kpis/ativos').then(function (response) {
-            console.log(response);
+            // console.log(response);
             // if (!response.ok) {
             //     throw new Error("Testando se o problem é na resposta: " + response.status);
             // }
             return response.json();
         })
             .then(function (data) {
-                console.log(data);
+                // console.log(data);
                 plotarKpiAtivos(data);
             })
             .catch(function (err) {
@@ -150,14 +150,14 @@
 
         // kpi de maiores niveis ------------------------------------------------------------------------------------------------------
         fetch('/kpis/perigo').then(function (response) {
-            console.log(response);
+            // console.log(response);
             // if (!response.ok) {
             //     throw new Error("Testando se o problem é na resposta: " + response.status);
             // }
             return response.json();
         })
             .then(function (data) {
-                console.log(data);
+                // console.log(data);
                 plotarKpiPerigo(data);
             })
             .catch(function (err) {
@@ -174,9 +174,12 @@
 
         // Preenchendo os arrays com os dados
         data.forEach(registro => {
+
             const { nome_loc, HoraRegistro, media } = registro;
 
             if (!horarios.includes(HoraRegistro)) {
+                // console.log(horarios)
+                // console.log(HoraRegistro)
                 horarios.push(HoraRegistro);
             }
 
@@ -185,15 +188,22 @@
             }
 
             salas[nome_loc].push(Number(media));
+
+
         });
 
+        const maxPontos = 7;
+        const horariosLimitados = horarios.slice(-maxPontos); // últimos 7 horários
+
         const datasets = Object.keys(salas).map((nome_loc, i) => {
+
+            const dadosLimitados = salas[nome_loc].slice(-maxPontos);
 
             const cores = ['red', 'blue', 'green', 'orange', 'purple']
 
             return {
                 label: nome_loc, // exemplo: "Sensor S1"
-                data: salas[nome_loc], // os mediaes de cada sensor
+                data: dadosLimitados, // os mediaes de cada sensor
                 borderColor: cores[i % cores.length],
                 backgroundColor: cores[i % cores.length],
                 fill: false,
@@ -206,7 +216,7 @@
         chartLinha = new Chart(document.getElementById("chart2").getContext('2d'), {
             type: 'line',
             data: {
-                labels: horarios,
+                labels: horariosLimitados,
                 datasets: datasets
             },
             options: {
@@ -343,15 +353,15 @@
     function buscarEmpresa() {
         // Graficos de linha ------------------------------------------------------------------------------------------------------
         fetch('/buscar/qtd').then(function (response) {
-            console.log(response);
+            // console.log(response);
             return response.json();
         })
             .then(function (data) {
-                console.log("Resposta de /buscar/qtd:", data);
+                // console.log("Resposta de /buscar/qtd:", data);
 
                 if (data.length > 0 && data[0].num_loc) {
                     qtdEmpresa = data[0].num_loc; //variavel global modificada  
-                    console.log("qtdEmpresa final:", qtdEmpresa);
+                    // console.log("qtdEmpresa final:", qtdEmpresa);
 
                     atualizarGraficos(qtdEmpresa);
                 } else {
@@ -367,10 +377,10 @@
 
     function atualizarGraficos(qtdEmpresa) {
 
-        console.log("qtdEmpresa sendo enviada:", qtdEmpresa);
+        // console.log("qtdEmpresa sendo enviada:", qtdEmpresa);
         fetch(`/buscar/linha/${qtdEmpresa}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
-                console.log(response);
+                // console.log(response);
                 response.json()
                     .then(function (novoRegistro) {
 
@@ -393,6 +403,11 @@
                             salas[nome_loc].push(Number(media));
                         });
 
+                        const maxPontos = 7;
+                        const horariosLimitados = horarios.slice(-maxPontos);
+                        const cores = ['red', 'blue', 'green', 'orange', 'purple'];
+
+
                         const datasets = Object.keys(salas).map((nome_loc, i) => {
 
                             const cores = ['red', 'blue', 'green', 'orange', 'purple']
@@ -406,9 +421,14 @@
                                 tension: 0.1
                             }
                         })
+                        // console.log("novo registro:" + novoRegistro)
 
-                        if (novoRegistro[0].HoraRegistro == chartLinha.data.labels[chartLinha.data.labels.length - 1]) {
+                        const novoUltimoHorario = horarios[horarios.length - 1];
+                        const atualUltimoRegistro = chartLinha.data.labels[chartLinha.data.labels.length - 1];
+
+                        if ( horarioAtual == ultimoRegistro ) {
                             console.log('Sem registros novos');
+                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 2000);
                         } else {
                             // tirando e colocando valores no gráfico
                             chartLinha.data.labels.shift(); // Remove a primeira label (horário antigo)
@@ -427,14 +447,15 @@
 
 
                             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 2000);
+                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
                         }
+
 
                     });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => buscarEmpresa(), 2000);
+                proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
             }
 
         }).catch(function (err) {
