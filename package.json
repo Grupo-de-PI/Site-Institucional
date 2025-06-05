@@ -4,6 +4,6 @@
     "start-all": "concurrently \"npm:start --prefix AirSafe/Site-Institucional/\" \"npm:start --prefix AirSafe/Site-Institucional/public/BOB_IA/\""
   },
   "devDependencies": {
-    "concurrently": "^8.0.0"
+    "concurrently": "^8.2.2"
   }
 }
