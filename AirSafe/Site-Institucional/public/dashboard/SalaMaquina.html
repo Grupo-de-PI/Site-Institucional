@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../styles/temporarioDavi.css">
+    <script src="../js/sessao.js"></script>
+</head>
+
+<body onload="validarSessao()">
+    <div class="sidebar">
+        <div class="userContainer">
+            <img src="../../pictures/female_woman_avatar_people_person_white_tone_icon_159370.png" alt="User">
+            <h2 class="userSession" id="b_usuario">nome</h2>
+        </div>
+        <div class="pagescontainer">
+            <a href="dashboard.html"><i class="fas fa-home"></i> Painel geral</a>
+            <a href="#"><i class="fas fa-home"></i> Salas</a>
+            <a href="https://airsafe.atlassian.net/servicedesk/customer/portal/1"><i class="fas fa-home"></i> Suporte
+                técnico</a>
+            <a href="texteManutenção.html"><i class="fas fa-home"></i> Sobre manutenções</a>
+        </div>
+        <div class="logoutContainer">
+            <a href="index.html"><i class="fas fa-home"></i> Logout</a>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="overlay" id="myNav">
+            <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
+            <div class="overlaycontent">
+                <a href="#">SALA DAS MAQUINAS</a>
+                <a href="salaCamaraResfriamento.html">CÂMARA DE RESFRIAMENTO</a>
+                <a href="salaCamaraEstoque.html">CÂMARA DE ESTOCAGEM</a>
+                <a href="salaTunel.html">TÚNEL CONGELADOR</a>
+            </div>
+        </div>
+
+        <div class="navSensores">
+            <button class="burguerSalas" onclick="openNav()">
+                <div>-</div>
+                <div>-</div>
+                <div>-</div>
+            </button>
+        </div>
+
+        <div class="kpis">
+            <div class="kpi">
+                <div><strong>7</strong><br>Dias para manutenção <span style="color: #000;">preventiva</span></div><i
+                    class="fas fa-microchip"></i>
+            </div>
+            <div class="kpi">
+                <div><strong>21/02/2024</strong><br>Última manutenção preditiva</div><i class="fas fa-microchip"></i>
+            </div>
+            <div class="kpi">
+                <div><strong>23/01/2024</strong><br>Última manutenção corretiva</div><i class="fas fa-microchip"></i>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="charts">
+                <canvas id="chart1"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        window.onload = function () {
+            validarSessao();
+            carregar_salas(1);
+        }
+
+        let chartLinha = null;
+        let id_empresa = sessionStorage.ID_EMPRESA;
+
+        function carregar_salas(id_salas) {
+            console.log("Salas: " + id_salas);
+            console.log("Empresa: " + id_empresa);
+
+            obterDados(id_salas);
+        }
+
+        function obterDados(id_salas) {
+            fetch(`/graficoIndividual/linha/${id_salas}/${id_empresa}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Dados recebidos:", data);
+                    plotarGraficoLinha(data);
+                })
+                .catch(err => console.error(err));
+        }
+
+        function plotarGraficoLinha(data) {
+            const salas = {};
+            const horarios = [];
+
+            data.forEach(registro => {
+                const { id_sens, valor, hora } = registro;
+
+                if (!horarios.includes(hora)) {
+                    horarios.push(hora);
+                }
+
+                if (!salas[id_sens]) {
+                    salas[id_sens] = [];
+                }
+
+                salas[id_sens].push(Number(valor));
+            });
+
+            const maxPontos = 7;
+            const horariosLimitados = horarios.slice(-maxPontos);
+
+            const cores = ['red', 'blue', 'green', 'orange', 'purple'];
+
+            const datasets = Object.keys(salas).map((id_sens, i) => {
+                const dadosLimitados = salas[id_sens].slice(-maxPontos);
+                return {
+                    label: `Sensor ${id_sens}`,
+                    data: dadosLimitados,
+                    borderColor: cores[i % cores.length],
+                    backgroundColor: cores[i % cores.length],
+                    fill: false,
+                    tension: 0.1
+                };
+            });
+
+
+            chartLinha = new Chart(document.getElementById("chart1").getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: horariosLimitados,
+                    datasets: datasets
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Concentração de Amônia (ppm) em tempo real',
+                            font: {
+                                size: 20,
+                                weight: 'bolder'
+                            }
+                        },
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                font: {
+                                    size: 18,
+                                    weight: 'bolder'
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                font: {
+                                    size: 16,
+                                    weight: 'bolder'
+                                }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    size: 16,
+                                    weight: 'bolder'
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function openNav() {
+            document.getElementById("myNav").style.width = "100%";
+        }
+
+        function closeNav() {
+            document.getElementById("myNav").style.width = "0%";
+        }
+
+    </script>
+
+</body>
+
+</html>
