@@ -31,7 +31,8 @@ function autenticar(req, res) {
                                         senha: resultadoAutenticar[0].senha,
                                         sobrenome: resultadoAutenticar[0].sobrenome,
                                         cpf: resultadoAutenticar[0].cpf,
-                                        telefone: resultadoAutenticar[0].telefone
+                                        telefone: resultadoAutenticar[0].telefone,
+                                        empresaId: resultadoAutenticar[0].empresaId
                                     });
                             //     // } else {
                             //     //     res.status(204).json({ aquarios: [] });
