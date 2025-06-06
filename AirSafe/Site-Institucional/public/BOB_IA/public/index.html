@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <nav class="sidebar">
+            <div class="userContainer">
+                <img src="../../pictures/female_woman_avatar_people_person_white_tone_icon_159370.png" alt="User">
+                <h2 class="userSession" id="b_usuario">usuário</h2>
+                <!-- <p class="userEmailSession" id="b_email">email</p> -->
+            </div>
+            <div class="pagescontainer">
+                <a href=""><i class="fas fa-home"></i> Home</a>
+                <a href=""><i class="fas fa-home"></i> Bob IA</a>
+                <a href=""><i class="fas fa-home"></i> Suporte técnico</a>
+            </div>
+            <div class="logoutContainer">
+                <a href="index.html"><i class="fas fa-home"></i> Logout</a>
+            </div>
+        </nav>
+
+        <div class="main">
+
+
+            <div id="chart1" class="chart1">
+                <div id="bobia-container">
+                    <h2>BobIA</h2>
+                    <textarea id="pergunta" placeholder="Digite a pergunta..."></textarea>
+                    <br>
+                    <button onclick="gerarResposta()">Gerar Resposta</button>
+                    <h3>Resposta da IA:</h3>
+                    <div id="resposta"></div>
+                </div>
+            </div>
+
+        </div>
+</body>
+
+</html>
+
+<script>
+    function onloadEsconder() {
+        document.getElementById('section_inicio').style.display = "flex";
+        document.getElementById('section_aposInicio').style.display = "none";
+    }
+
+    function encontrarIA() {
+        document.getElementById('section_inicio').style.display = "none";
+        document.getElementById('section_aposInicio').style.display = "flex";
+    }
+
+    async function gerarResposta() {
+        const perguntaInput = document.getElementById('pergunta');
+        const respostaDiv = document.getElementById('resposta');
+        const pergunta = perguntaInput.value;
+
+        if (!pergunta.trim()) {
+            alert("Por favor, digite uma pergunta.");
+            return;
+        }
+
+        respostaDiv.style.display = 'block';
+        respostaDiv.innerText = 'Pensando...'; // Feedback para o usuário
+
+        try {
+            const response = await fetch('/perguntar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ pergunta })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Erro na rede: ${response.statusText}`);
+            }
+
+            const data = await response.json();
+
+            respostaDiv.innerText = data.resultado;
+
+        } catch (error) {
+            console.error('Erro ao gerar resposta:', error);
+            respostaDiv.innerText = 'Desculpe, ocorreu um erro ao tentar obter a resposta. Tente novamente mais tarde.';
+        }
+    }
+</script>
