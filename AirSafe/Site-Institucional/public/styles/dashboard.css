@@ -195,6 +195,14 @@ body {
 
 /* alerta EMERGENCIAL */
 
+#alerta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100px;
+}
+
 .alerta-sem_nada{
     width : 0px;
     height : 0px; 
@@ -215,9 +223,8 @@ body {
       padding: 15px 20px;
       color: #fff;
       width: 250px;
-      box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
-      animation: pulse 1.5s infinite;
       z-index: 1000;
+      height : 200px; 
     }
 
     .alerta-flutuante h2 {
@@ -237,42 +244,31 @@ body {
       margin-right: 8px;
     }
 
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-      }
-      50% {
-        box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
-      }
-      100% {
-        box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
-      }
-    }
 
     /*Atenção*/
 
-    .alerta-flutuante.atencao {
+    .alerta-flutuante-emergencia {
         top: 20px; /* um pouco abaixo do alerta de emergência */
         border-color: #ffc107;
-        box-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
-        animation: pulse-amarelo 2s infinite;
+        background-color: #e4bf4f;
         width: 250px;
+        position: fixed;
+        right: 20px;
+        border-radius: 12px;
+        padding: 15px 20px;
+        color: #fff;
+        width: 250px;
+        z-index: 1000;
+        height : 200px; 
+        
     }
 
-    .alerta-flutuante.atencao h2 {
-        color: #ffc107;
+    .alerta-flutuante-emergencia h2 {
+        font-size: 1.2rem;
+        margin: 0 0 5px;
+        color: #ff4d4f;
     }
 
-    @keyframes pulse-amarelo {
-        0% {
-            box-shadow: 0 0 8px rgba(255, 193, 7, 0.2);
-        }
-        50% {
-            box-shadow: 0 0 18px rgba(255, 193, 7, 0.5);
-        }
-        100% {
-            box-shadow: 0 0 8px rgba(255, 193, 7, 0.2);
-        }
-    }
+
 
       
