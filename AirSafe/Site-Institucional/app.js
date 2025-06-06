@@ -22,6 +22,7 @@ var empresasRouter = require("./src/routes/empresas");
 var graficoRouter = require("./src/routes/graficos");
 var kpiRouter = require('./src/routes/kpis');
 var buscarRouter = require('./src/routes/buscar');
+var graficoIndividualRouter = require('./src/routes/graficoIndividual')
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,6 +35,7 @@ app.use("/empresas", empresasRouter);
 app.use("/graficos", graficoRouter);
 app.use("/kpis", kpiRouter);
 app.use("/buscar", buscarRouter);
+app.use("/graficoIndividual", graficoIndividualRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

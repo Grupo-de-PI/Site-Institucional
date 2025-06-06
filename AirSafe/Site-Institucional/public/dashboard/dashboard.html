@@ -20,8 +20,8 @@
             <!-- <p class="userEmailSession" id="b_email">email</p> -->
         </div>
         <div class="pagescontainer">
-            <a href="dashboard.html"><i class="fas fa-home"></i> Paínel geral</a>
-            <a href="dashboardSensor.html"><i class="fas fa-home"></i> Salas</a>
+            <a href="#"><i class="fas fa-home"></i> Paínel geral</a>
+            <a href="SalaMaquina.html"><i class="fas fa-home"></i> Salas</a>
             <a href="https://airsafe.atlassian.net/servicedesk/customer/portal/1"><i class="fas fa-home"></i> Suporte
                 técnico</a>
             <a href="texteManutenção.html"><i class="fas fa-home"></i>Sobre manutenções</a>
@@ -118,7 +118,7 @@
             })
         }).then(function (resposta) {
             // console.log("ESTOU NO THEN DO dadosRandows()!")
-            proximaAtualizacao = setTimeout(() => dadosRandows(), 1000);
+            // proximaAtualizacao = setTimeout(() => dadosRandows(), 1000);
 
         }).catch(function (erro) {
             console.log(erro);
@@ -356,11 +356,13 @@
 
     function plotarKpiUltimo(data) {
 
+        var ultimaData = data[0].data;
         var valor = data[0].dias;
 
+        ultimaData == null ? ultimaData = '' : ultimaData = ` (${ultimaData}) `;
         valor == null ? valor = '-' : valor = `${valor} dias`;
 
-        span_ultimo.innerHTML = `${valor}`
+        span_ultimo.innerHTML = `${valor} ${ultimaData}`;
     }
 
     function plotarKpiAtivos(data) {
