@@ -45,14 +45,14 @@ function alertar(resposta) {
         Ideal: 9
     };
 
-    if (gas >= limites.Perigo) {
+    if (gas >= limites.Perigo && local!= 'Emergencial') {
         alertaDiv.classList.remove("alerta-flutuante-emergencia")
         alertaDiv.classList.add("alerta-flutuante")
         nivelAtencaoDiv.innerHTML = 'EMERGENCIA';
         nivelConcentracaoDiv.innerHTML = gas;
         sensorVerDiv.innerHTML = local;
     }
-    else if (gas < limites.Perigo && gas >= limites.Atenção) {
+    else if (gas < limites.Perigo && gas >= limites.Atenção && local!= 'Alerta') {
         alertaDiv.classList.remove("alerta-flutuante")
         alertaDiv.classList.add("alerta-flutuante-emergencia")
         nivelAtencaoDiv.innerHTML = 'Alerta';
