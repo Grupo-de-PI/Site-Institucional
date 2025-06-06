@@ -27,7 +27,7 @@
             <a href="texteManutenção.html"><i class="fas fa-home"></i>Sobre manutenções</a>
         </div>
         <div class="logoutContainer">
-            <a href="index.html"><i class="fas fa-home"></i> Logout</a>
+            <a href="../index.html"><i class="fas fa-home"></i> Logout</a>
         </div>
     </nav>
 
@@ -41,7 +41,7 @@
             </div>
 
             <div class="kpi">
-                <div> Maior concentração média de amônia<br><strong><span id="span_maior_concentracao">-</span></strong>
+                <div> Maior concentração média de amônia<br><strong><span>Sala das Maquinas</span></strong>
                 </div><i class="fas fa-calendar-check"></i>
             </div>
 
@@ -74,7 +74,6 @@
         validarSessao();
         obterDados();
         buscarEmpresa();
-        monitoramentoIndividual();
     }
 
     let chartLinha = '';
@@ -84,44 +83,8 @@
 
     let id_empresa = sessionStorage.ID_EMPRESA;
 
-    function monitoramentoIndividual() {
-        obterdados(id_empresa)
-        dadosRandows()
-    }
-
-    function dadosRandows() {
-        var sensor1 = parseInt(Math.random() * 5)
-        var sensor2 = parseInt(Math.random() * 4)
-        var sensor3 = parseInt(Math.random() * 6)
-        var sensor4 = parseInt(Math.random() * 7)
-        var sensor5 = parseInt(Math.random() * 25)
 
 
-
-
-        fetch(`/usuarios/dadosMocados`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                sensor1Server: sensor1,
-                sensor2Server: sensor2,
-                sensor3Server: sensor3,
-                sensor4Server: sensor4,
-                sensor5Server: sensor5,
-
-            })
-        }).then(function (resposta) {
-            // console.log("ESTOU NO THEN DO dadosRandows()!")
-            // proximaAtualizacao = setTimeout(() => dadosRandows(), 1000);
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
-
-
-    }
 
     function obterDados() {
 
@@ -298,8 +261,13 @@
 
         // Preenchendo os arrays com os dados
         for (var i = 0; i < data.length; i++) {
-            lista_ppm.push(Number(data[i].media));
+            if(data[i].nome_loc == 'alerta' || data[i].nome_loc == 'emergencial' ) {
+
+            } else {
+                  lista_ppm.push(Number(data[i].media));
             lista_nome.push(data[i].nome_loc)
+            }
+          
         }
 
         // Gráfico de barras
@@ -380,7 +348,7 @@
 
     function buscarEmpresa() {
 
-        obterdados(id_empresa);
+        //obterdados(id_empresa);
         // Graficos de linha ------------------------------------------------------------------------------------------------------
         fetch(`/buscar/qtd/${id_empresa}`).then(function (response) {
             // console.log("Resposta do buscar: " + response);
@@ -449,10 +417,10 @@
                             }
                         })
 
-                        if (novoRegistro[novoRegistro.length - 1].HoraRegistro == chartLinha.data.labels[chartLinha.data.labels.length - 1]) {
+                     
                             console.log('Sem registros novos');
                             proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
-                        } else {
+                       
                             // tirando e colocando valores no gráfico
                             chartLinha.data.labels.shift(); // Remove a primeira label (horário antigo)
                             chartLinha.data.labels.push(horarios[horarios.length - 1]); // Adiciona o último horário novo // adicionar um horario capturado por ultimo
@@ -470,8 +438,8 @@
 
 
                             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                            proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
-                        }
+                            // proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
+                    
 
                     });
             } else {
@@ -498,10 +466,13 @@
                         const lista_nome = [];
 
                         // Preenchendo os arrays com os dados
-                        for (var i = 0; i < novoRegistro.length; i++) {
+                    for (let i = 0; i < novoRegistro.length; i++) {
+                        const nome = novoRegistro[i].nome_loc;
+                        if (nome !== 'Alerta' && nome !== 'Emergencial' && nome !== 'Ideal') {
                             lista_ppm.push(Number(novoRegistro[i].media));
-                            lista_nome.push(novoRegistro[0].nome_loc)
-                        }
+                            lista_nome.push(nome);
+    }
+}
 
                         chartBarra.data.labels = lista_nome;
                         chartBarra.data.datasets[0].data = lista_ppm;
