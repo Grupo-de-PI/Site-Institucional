@@ -4,64 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BobIA - AirSafe.</title>
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
+
 </head>
 
-<body onload="onloadEsconder()">
-    <div class="total">
-        <section class="lateral">
-                <p style="color: #242425;">s</p>
-            </section>
-        <div id="container" class="reto">
-            <section class="class_teto">
-                <p style="color: #242425;">s</p>
-            </section>
-            <section id="section_inicio" class="section_inicio">
-                <div class="div_texto">
-                    <h1>Aqui está a <span style="font-weight: bold; color: var(--azul-claro);"> BOB IA </span></h1>
-                    <h1>A inteligência artificial generativa da Air Safe<span> para suporte e
-                            solução de problema especializado no nível N3</span></h1>
-                </div>
+<body>
 
-                <p>Clique no botão abaixo para ter a interação com a IA</p>
-                <div class="div_but">
-                    <button class="botao_inicio" onclick="encotrarIA()">BobIA</button>
-                </div>
-            </section>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="userContainer">
+                <img src="../../pictures/female_woman_avatar_people_person_white_tone_icon_159370.png" alt="User">
+                <h2 class="userSession" id="b_usuario">usuário</h2>
+                <!-- <p class="userEmailSession" id="b_email">email</p> -->
+            </div>
+            <div class="pagescontainer">
+                <a href=""><i class="fas fa-home"></i> Home</a>
+                <a href=""><i class="fas fa-home"></i> Bob IA</a>
+                <a href=""><i class="fas fa-home"></i> Suporte técnico</a>
+            </div>
+            <div class="logoutContainer">
+                <a href="index.html"><i class="fas fa-home"></i> Logout</a>
+            </div>
+        </nav>
 
-            <section id="section_aposInicio" class="section_aposInicio">
-                <h1>BobIA (Auxílio N3)</h1>
-                <div class="apoio1">
-                    <div class="campo_paraDados" id="input_dados">
-                        <textarea class="areadetexto" id="pergunta" type="text"
-                            placeholder="Digite a pergunta..."></textarea>
-                        <button class="botao_bobia" onclick="gerarResposta()">
-                            <img class="img_botao" src="./pictures/semfundo-seta.png" alt="">
-                        </button>
-                    </div>
-                </div>
+        <div class="main">
 
-                <h3>Resposta da IA:</h3>
-                <div id="resposta"></div>
-            </section>
+
+            <div id="chart1" class="chart1">
+                <div id="bobia-container">
+                    <h2>BobIA</h2>
+                    <textarea id="pergunta" placeholder="Digite a pergunta..."></textarea>
+                    <br>
+                    <button onclick="gerarResposta()">Gerar Resposta</button>
+                    <h3>Resposta da IA:</h3>
+                    <div id="resposta"></div>
+                </div>
+            </div>
+
         </div>
-    </div>
+</body>
 
-    <script>
-        function onloadEsconder() {
-            document.getElementById('section_inicio').style.display = "flex";
-            document.getElementById('section_aposInicio').style.display = "none";
+</html>
+
+<script>
+    function onloadEsconder() {
+        document.getElementById('section_inicio').style.display = "flex";
+        document.getElementById('section_aposInicio').style.display = "none";
+    }
+
+    function encontrarIA() {
+        document.getElementById('section_inicio').style.display = "none";
+        document.getElementById('section_aposInicio').style.display = "flex";
+    }
+
+    async function gerarResposta() {
+        const perguntaInput = document.getElementById('pergunta');
+        const respostaDiv = document.getElementById('resposta');
+        const pergunta = perguntaInput.value;
+
+        if (!pergunta.trim()) {
+            alert("Por favor, digite uma pergunta.");
+            return;
         }
 
-        function encotrarIA() {
-            document.getElementById('section_inicio').style.display = "none";
-            document.getElementById('section_aposInicio').style.display = "flex";
-        }
+        respostaDiv.style.display = 'block';
+        respostaDiv.innerText = 'Pensando...'; // Feedback para o usuário
 
-        async function gerarResposta() {
-            const pergunta = document.getElementById('pergunta').value;
-
+        try {
             const response = await fetch('/perguntar', {
                 method: 'POST',
                 headers: {
@@ -70,14 +81,17 @@
                 body: JSON.stringify({ pergunta })
             });
 
+            if (!response.ok) {
+                throw new Error(`Erro na rede: ${response.statusText}`);
+            }
+
             const data = await response.json();
 
-            resposta.style.display = 'block';
-            document.getElementById('resposta').innerText = data.resultado;
+            respostaDiv.innerText = data.resultado;
+
+        } catch (error) {
+            console.error('Erro ao gerar resposta:', error);
+            respostaDiv.innerText = 'Desculpe, ocorreu um erro ao tentar obter a resposta. Tente novamente mais tarde.';
         }
-
-    </script>
-
-</body>
-
-</html>
+    }
+</script>
