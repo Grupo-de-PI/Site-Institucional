@@ -33,7 +33,7 @@
             <a href="javascript:void(0)" class="closeBtn" onclick="closeNav()">&times;</a>
             <div class="overlaycontent">
                 <a href="SalaMaquina.html">SALA DAS MAQUINAS</a>
-                <a href="CamaraResfriamento.html">CÂMARA DE RESFRIAMENTO</a>
+                <a href="salaCamaraResfriamento.html">CÂMARA DE RESFRIAMENTO</a>
                 <a href="#">CÂMARA DE ESTOCAGEM</a>
                 <a href="salaTunel.html">TÚNEL CONGELADOR</a>
             </div>
@@ -49,14 +49,8 @@
 
         <div class="kpis">
             <div class="kpi">
-                <div><strong>7</strong><br>Dias para manutenção <span style="color: #000;">preventiva</span></div><i
+                <div>Dias para manutenção preventiva<br><strong><span id="span_msm_kpi">-</span></strong><span style="color: #000;"></span></div><i
                     class="fas fa-microchip"></i>
-            </div>
-            <div class="kpi">
-                <div><strong>21/02/2024</strong><br>Última manutenção preditiva</div><i class="fas fa-microchip"></i>
-            </div>
-            <div class="kpi">
-                <div><strong>23/01/2024</strong><br>Última manutenção corretiva</div><i class="fas fa-microchip"></i>
             </div>
         </div>
 
@@ -64,6 +58,7 @@
             <div class="charts">
                 <canvas id="chart1"></canvas>
             </div>
+            <div id="rchart2" class="rchart2">-</div>
         </div>
     </div>
 
@@ -84,12 +79,22 @@
             obterDados(id_salas);
         }
 
-        function obterDados(id_salas) {
-            fetch(`/graficoIndividual/linha/${id_salas}/${id_empresa}`)
+              function obterDados(id_salas) {
+
+            fetch(`/graficoIndividual/linha/${id_empresa}/${id_salas}`)
                 .then(response => response.json())
                 .then(data => {
                     console.log("Dados recebidos:", data);
                     plotarGraficoLinha(data);
+                })
+                .catch(err => console.error(err));
+
+
+            fetch(`/graficoIndividual/relatorio/${id_empresa}/${id_salas}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Dados recebidos:", data);
+                    plotarRelatorio(data);
                 })
                 .catch(err => console.error(err));
         }
@@ -142,9 +147,9 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Concentração de Amônia (ppm) em tempo real',
+                            text: `Concentração de Amônia (ppm) - sala das maquinas`,
                             font: {
-                                size: 20,
+                                size: 16,
                                 weight: 'bolder'
                             }
                         },
@@ -152,7 +157,7 @@
                             position: 'right',
                             labels: {
                                 font: {
-                                    size: 18,
+                                    size: 12,
                                     weight: 'bolder'
                                 }
                             }
@@ -163,7 +168,7 @@
                             beginAtZero: true,
                             ticks: {
                                 font: {
-                                    size: 16,
+                                    size: 12,
                                     weight: 'bolder'
                                 }
                             }
@@ -171,7 +176,7 @@
                         x: {
                             ticks: {
                                 font: {
-                                    size: 16,
+                                    size: 12,
                                     weight: 'bolder'
                                 }
                             }
@@ -181,6 +186,54 @@
             });
         }
 
+        function plotarRelatorio(data) {
+            let msm = `
+                <table border="1" cellspacing="0" cellpadding="8">
+                    <thead>
+                        <tr>
+                            <th>ID Sensor</th>
+                            <th>Cód. Série</th>
+                            <th>Instalação</th>
+                            <th>Status</th>
+                            <th>Preventiva</th>
+                            <th>Preditiva</th>
+                            <th>Corretiva</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+                    data.forEach(sensor => {
+                        msm += `
+                    <tr>
+                        <td>${sensor.id_sensor}</td>
+                        <td>${sensor.cod_serie}</td>
+                        <td>${sensor.instalacao}</td>
+                        <td>${sensor.status_sensor}</td>
+                        <td>${sensor.preventiva}</td>
+                        <td>${sensor.preditiva}</td>
+                        <td>${sensor.corretiva}</td>
+                    </tr>
+                `;
+                    });
+
+                    msm += `
+                    </tbody>
+                </table>
+            `;
+            
+            rchart2.innerHTML = msm;
+
+
+            let kpi = data[0].dias*-1;
+
+            if (kpi > 0) {
+                span_msm_kpi.innerHTML = kpi;
+            } else {
+                span_msm_kpi.innerHTML = 'Agendar manuetenção.'
+            }
+
+        }
 
         function openNav() {
             document.getElementById("myNav").style.width = "100%";
@@ -189,7 +242,6 @@
         function closeNav() {
             document.getElementById("myNav").style.width = "0%";
         }
-
 
     </script>
 

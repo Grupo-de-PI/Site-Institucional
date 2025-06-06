@@ -6,11 +6,10 @@ function mostrarUltimoVazamento(id_empresa) {
 
     var instrucao = `
     SELECT 
-	    distinct  date(HoraRegistro) as data,
-        DATEDIFF(CURDATE(), MAX(DATE(HoraRegistro))) AS dias
+        DATE_FORMAT(MAX(HoraRegistro), '%Y/%m/%d') AS data,
+        DATEDIFF(CURDATE(), MAX(HoraRegistro)) AS dias
         FROM vw_historico_registros
         WHERE valor > 17 and id_emp = ${id_empresa}
-        group by HoraRegistro;
     `;
 
     return database.executar(instrucao);
