@@ -1,17 +1,17 @@
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    
+
 }
 
-header{
+header {
     display: flex;
     justify-content: end;
 }
 
-.login{
+.login {
     border-radius: 25px;
     margin-top: 12%;
     margin-bottom: 12%;
@@ -25,7 +25,7 @@ header{
 
 
 
-.card-cadastro{
+.card-cadastro {
     font-family: 'Segoe UI', sans-serif;
     color: #3D75DC;
     flex-direction: row;
@@ -33,13 +33,13 @@ header{
     margin-bottom: 5%;
 }
 
-.card1{
+.card1 {
     width: 50%;
     align-items: center;
     display: flex;
 }
 
-.card2{
+.card2 {
     width: 50%;
     display: flex;
     justify-content: end;
@@ -50,16 +50,25 @@ header{
 .imageNavbar2 {
     width: 80px;
     height: 80px;
-    
+
 }
 
-h2{
-    font-size: 150%;
-    
+h2 {
+    font-size: 30px;
+    width: 100%;
+
+}
+
+/* --------------------------------------  */
+.campo_login {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 
-.input_decor{
+.input_decor {
     background-color: #ffffff;
     color: #3D75DC;
     height: 30px;
@@ -69,25 +78,40 @@ h2{
     margin-top: 1%;
 }
 
-.input_login{
+.input_login {
     background-color: #ffffff;
     color: #3D75DC;
-    height: 30px;
+    height: 35px;
     width: 100%;
     border-color: #2F58A5;
     margin-bottom: 5%;
     margin-top: 1%;
+    font-size: larger;
+    border: 2px solid #3FA2F3;
 
 }
 
-span{
+span {
     color: #3D75DC;
     font-family: 'Segoe UI', sans-serif;
     font-size: 20px;
     margin-left: 3%;
 }
 
-.botao{
+.cliquevai {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.cliquevai p {
+    font-size: medium;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.botao {
     justify-content: center;
     display: flex;
     width: 170px;
@@ -97,15 +121,19 @@ span{
     background-color: #1F2A33;
     border-color: #1F2A33;
     color: #f7f7f7;
-    text-align: center;
     align-items: center;
     font-size: medium;
-    transition-duration: 0.4s;
+    transition: 0.8s;
     font-family: 'Segoe UI', sans-serif;
-    text-decoration: none;
 }
 
-.loc_botao{
+.botao:hover {
+    transform: scale(1.1);
+    color: #3FA2F3;
+
+}
+
+.loc_botao {
     display: flex;
     justify-content: center;
     margin-top: 5%;
@@ -116,9 +144,9 @@ span{
 }
 
 
-/* ---------------------------------------------------------------*/ 
+/* ---------------------------------------------------------------*/
 
-.botaocads{
+.botaocads {
     margin-top: 20%;
     margin-right: 450%;
 }
@@ -130,25 +158,30 @@ span{
     background-color: #3D75DC;
     border: none;
     color: #ffffff;
-    border-radius: 15px;
+    border-radius: 13px;
     font-size: larger;
     border: 15%;
+    transition: 0.8s;
 
 }
 
-.botaoFale{
+.botaoFale:hover {
     cursor: pointer;
+    transform: scale(1.1);
+    color: #3FA2F3;
+    border: 1px solid #3FA2F3;
+    background-color: #fff;
 }
 
-li{
+li {
     list-style-type: none;
 
 }
 
-.link_faleconosco{
+.link_faleconosco {
     color: #2F58A5;
     font-family: 'Segoe UI', sans-serif;
-    
+
 
 }
 
@@ -156,7 +189,7 @@ li{
 
 /* FOOTER */
 
-footer{
+footer {
     position: flex;
     bottom: 0;
     left: 0;
@@ -164,23 +197,23 @@ footer{
     color: #fff;
     text-align: center;
     padding: 15px 0;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     background-color: #2F58A5;
- 
+
 }
 
-.footer-conteudo{
+.footer-conteudo {
     flex-direction: row;
     display: flex;
 }
 
-.footer-nav{
+.footer-nav {
     padding-left: 5%;
     padding-top: 2%;
     width: 50%;
 }
 
-.footer-nav2{
+.footer-nav2 {
     padding-left: 5%;
     padding-top: 2%;
     width: 50%;
@@ -192,15 +225,15 @@ footer{
     align-items: center;
     flex-direction: flex-end;
     width: 50%;
-    
+
 }
 
-.i{
+.i {
     height: 100px;
     width: 100px;
 }
 
-/* ------------------------------ LINKS ------------------------------------------------------------------------- */ 
+/* ------------------------------ LINKS ------------------------------------------------------------------------- */
 
 h6 {
     color: #ffffff;
@@ -230,12 +263,11 @@ h6 {
     color: white;
     font-family: 'Segoe UI', sans-serif;
     font-size: large;
+    font-weight: bold;
     margin-bottom: 5%;
 }
 
 /* --------------------------------------------------------------------------*/
-
-
 
 .tods>a {
     color: #ffffffce;
@@ -248,36 +280,30 @@ h6 {
     display: inline-block;
     padding-bottom: 0.25rem;
     position: relative;
+    transition: 0.5s;
 }
 
-
-.tods a::before {
-    content: "";
-    position: absolute;
-    background-color: #3FA2F3;
-    right: 0;
-    bottom: 0;
-    width: 0;
-    height: 2px;
-    transition: width 0.25s ease-out;
-
+.tods {
+    margin-top: 10px;
+    transition: 0.5s;
 }
 
-.tods>a:hover::before {
-    width: 100%;
+.tods:hover,
+.tods a:hover {
+    transform: scale(1.2);
+    color: #3FA2F3;
 }
-
 
 /* -----------------------------------------------------------------  cadastro pt2 ----------------------*/
 
-.direcionamento{
+.direcionamento {
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 100%;
 }
 
-.bola{
+.bola {
     background-color: #3D75DC;
     width: 25px;
     height: 25px;
@@ -285,7 +311,7 @@ h6 {
 
 }
 
-.bola1{
+.bola1 {
     background-color: #CADAE9;
     width: 25px;
     height: 25px;
@@ -294,11 +320,11 @@ h6 {
 
 }
 
-.espn{
+.espn {
     margin: 10px;
 }
 
-.bola2{
+.bola2 {
     background-color: #CADAE9;
     width: 25px;
     height: 25px;
@@ -306,7 +332,7 @@ h6 {
 
 }
 
-.bola3{
+.bola3 {
     background-color: #3D75DC;
     width: 25px;
     height: 25px;
