@@ -166,66 +166,66 @@
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   let listaEmpresasCadastradas = [];
 
-  function mascaraCPF() {
+  // function mascaraCPF() {
 
-      var cpf = cpf_input.value;
+  //     var cpf = cpf_input.value;
 
-      cpf = cpf.replaceAll(/\D+/g, ''); //REmove tudo que não for digito
+  //     cpf = cpf.replaceAll(/\D+/g, ''); //REmove tudo que não for digito
 
-      var formatado = ''
+  //     var formatado = ''
 
-      for (var i = 0; i < cpf.length; i++) {
+  //     for (var i = 0; i < cpf.length; i++) {
 
-        //111.444.333-77
-        if (i == 3 || i == 6) {
-          formatado += ".";
-        } else if (i == 9) {
-          formatado += "-";
-        } else if (i == 11){
+  //       //111.444.333-77
+  //       if (i == 3 || i == 6) {
+  //         formatado += ".";
+  //       } else if (i == 9) {
+  //         formatado += "-";
+  //       } else if (i == 11){
           
-        }
+  //       }
 
-        formatado += cpf[i];
-      }
-      cpf_input.value = formatado
-    }
+  //       formatado += cpf[i];
+  //     }
+  //     cpf_input.value = formatado
+  //   }
 
-    function mascaraTelefone() {
+  //   function mascaraTelefone() {
 
-      var telefone = telefone_input.value;
-      var formatado = "";
+  //     var telefone = telefone_input.value;
+  //     var formatado = "";
 
-      telefone = telefone.replaceAll(/\D+/g, '');
+  //     telefone = telefone.replaceAll(/\D+/g, '');
 
-      for (var i = 0; i < telefone.length; i++) {
+  //     for (var i = 0; i < telefone.length; i++) {
 
-        //(11) 95982-3726
-        if (i == 0) {
-          formatado += '(';
-        } else if (i == 2) {
-          formatado += ') ';
-        } else if (i == 7) {
-          formatado += '-';
-        }
+  //       //(11) 95982-3726
+  //       if (i == 0) {
+  //         formatado += '(';
+  //       } else if (i == 2) {
+  //         formatado += ') ';
+  //       } else if (i == 7) {
+  //         formatado += '-';
+  //       }
 
-        formatado += telefone[i];
-      }
-      telefone_input.value = formatado;
+  //       formatado += telefone[i];
+  //     }
+  //     telefone_input.value = formatado;
 
-    }
+  //   }
 
-    function validarSenha() {
+  //   function validarSenha() {
       
-      if (confirmarSenha != senha) {
-        alert("A confirmação da senha não corresponde à senha digitada. Por favor, tente novamente.");
-      } else {
-        redirecionar();
-      }
-    }
+  //     if (confirmarSenha != senha) {
+  //       alert("A confirmação da senha não corresponde à senha digitada. Por favor, tente novamente.");
+  //     } else {
+  //       redirecionar();
+  //     }
+  //   }
 
-    function redirecionar() {
-      window.location.href = "./login.html";
-    }
+  //   function redirecionar() {
+  //     window.location.href = "./login.html";
+  //   }
 
 
   function cadastrar() {
