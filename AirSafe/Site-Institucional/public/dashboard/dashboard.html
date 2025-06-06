@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../../styles/dashboard.css">
     <script src="../js/sessao.js"></script>
-   
+
 </head>
 
 <body>
@@ -41,9 +41,8 @@
             </div>
 
             <div class="kpi">
-                <div> Maior concentração média de amônia<br><strong><span
-                            id="span_maior_concentracao">-</span></strong></div><i
-                    class="fas fa-calendar-check"></i>
+                <div> Maior concentração média de amônia<br><strong><span id="span_maior_concentracao">-</span></strong>
+                </div><i class="fas fa-calendar-check"></i>
             </div>
 
             <div class="kpi">
@@ -86,17 +85,17 @@
     let id_empresa = sessionStorage.ID_EMPRESA;
 
     function monitoramentoIndividual() {
-                obterdados(id_empresa)
-                dadosRandows()
+        obterdados(id_empresa)
+        dadosRandows()
     }
 
-    function dadosRandows(){
-        var sensor1 = parseInt(Math.random()*5)
-        var sensor2 = parseInt(Math.random()*4)
-        var sensor3 = parseInt(Math.random()*6)
-        var sensor4 = parseInt(Math.random()*7)
-        var sensor5 = parseInt(Math.random()*25)
- 
+    function dadosRandows() {
+        var sensor1 = parseInt(Math.random() * 5)
+        var sensor2 = parseInt(Math.random() * 4)
+        var sensor3 = parseInt(Math.random() * 6)
+        var sensor4 = parseInt(Math.random() * 7)
+        var sensor5 = parseInt(Math.random() * 25)
+
 
 
 
@@ -106,12 +105,12 @@
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                sensor1Server: sensor1, 
-                sensor2Server: sensor2, 
-                sensor3Server: sensor3, 
-                sensor4Server: sensor4, 
+                sensor1Server: sensor1,
+                sensor2Server: sensor2,
+                sensor3Server: sensor3,
+                sensor4Server: sensor4,
                 sensor5Server: sensor5,
-                
+
             })
         }).then(function (resposta) {
             // console.log("ESTOU NO THEN DO dadosRandows()!")
@@ -127,7 +126,7 @@
     function obterDados() {
 
         // console.log(id_empresa);
-        
+
 
         // Graficos de linha ------------------------------------------------------------------------------------------------------
         fetch(`/graficos/linha/${id_empresa}`).then(function (response) {
@@ -381,7 +380,7 @@
 
     function buscarEmpresa() {
 
-        obterdados(id_empresa); 
+        obterdados(id_empresa);
         // Graficos de linha ------------------------------------------------------------------------------------------------------
         fetch(`/buscar/qtd/${id_empresa}`).then(function (response) {
             // console.log("Resposta do buscar: " + response);
@@ -504,13 +503,13 @@
                             lista_nome.push(novoRegistro[0].nome_loc)
                         }
 
-                            chartBarra.data.labels = lista_nome; 
-                            chartBarra.data.datasets[0].data = lista_ppm;
+                        chartBarra.data.labels = lista_nome;
+                        chartBarra.data.datasets[0].data = lista_ppm;
 
-                            // Atualiza visualmente o gráfico
-                            chartBarra.update();
+                        // Atualiza visualmente o gráfico
+                        chartBarra.update();
 
-                            // proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
+                        // proximaAtualizacao = setTimeout(() => buscarEmpresa(), 1000);
 
                     });
             } else {
@@ -526,4 +525,4 @@
 
     }
 </script>
- <script src="../js/alerta.js"></script>
+<script src="../js/alerta.js"></script>
