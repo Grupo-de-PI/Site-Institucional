@@ -36,8 +36,8 @@
 
   <div class="login">
     <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
+      <span id="mensagem_erro"></span>
+    </div>
     <div class="container">
       <div class="card card-cadastro">
 
@@ -51,10 +51,10 @@
 
       </div>
 
-<!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+      <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
 
       <div class="formulario">
-        
+
         <div class="campo">
           <span>Codigo da Empresa</span><br>
           <input class="input_decor" id="codigo_input" type="text" />
@@ -62,27 +62,27 @@
 
         <div class="campo">
           <span>Nome</span><br>
-          <input class="input_decor" id="nome_input" type="text"" />
+          <input class="input_decor" id="nome_input" type="text" />
         </div>
 
-        <div class="campo">
+        <div class=" campo">
           <span>Sobrenome</span><br>
-          <input class="input_decor" id="sobrenome_input" type="text"/>
+          <input class="input_decor" id="sobrenome_input" type="text" />
         </div>
 
         <div class="campo">
           <span>CPF</span><br>
-          <input class="input_decor" id="cpf_input" type="text"/>
+          <input class="input_decor" id="cpf_input" type="text" oninput="mascaraCPF()" maxlength="14"/>
         </div>
 
         <div class="campo">
           <span>Telefone</span><br>
-          <input class="input_decor" id="telefone_input" type="text"/>
+          <input class="input_decor" id="telefone_input" type="text" maxlength="15" oninput="mascaraTelefone()"/>
         </div>
 
         <div class="campo">
           <span>Email</span><br>
-          <input class="input_decor" id="email_input" type="text"/>
+          <input class="input_decor" id="email_input" type="text" />
         </div>
 
         <div class="campo">
@@ -106,7 +106,7 @@
   </div>
 
 
-<!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
+  <!-- ----------------------------------------------------------------------------------------------------------------------------------- -->
 
 
   <!--footer inicio-->
@@ -161,9 +161,72 @@
 
 
 <script>
-  
+
+
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   let listaEmpresasCadastradas = [];
+
+  function mascaraCPF() {
+
+      var cpf = cpf_input.value;
+
+      cpf = cpf.replaceAll(/\D+/g, ''); //REmove tudo que não for digito
+
+      var formatado = ''
+
+      for (var i = 0; i < cpf.length; i++) {
+
+        //111.444.333-77
+        if (i == 3 || i == 6) {
+          formatado += ".";
+        } else if (i == 9) {
+          formatado += "-";
+        } else if (i == 11){
+          
+        }
+
+        formatado += cpf[i];
+      }
+      cpf_input.value = formatado
+    }
+
+    function mascaraTelefone() {
+
+      var telefone = telefone_input.value;
+      var formatado = "";
+
+      telefone = telefone.replaceAll(/\D+/g, '');
+
+      for (var i = 0; i < telefone.length; i++) {
+
+        //(11) 95982-3726
+        if (i == 0) {
+          formatado += '(';
+        } else if (i == 2) {
+          formatado += ') ';
+        } else if (i == 7) {
+          formatado += '-';
+        }
+
+        formatado += telefone[i];
+      }
+      telefone_input.value = formatado;
+
+    }
+
+    function validarSenha() {
+      
+      if (confirmarSenha != senha) {
+        alert("A confirmação da senha não corresponde à senha digitada. Por favor, tente novamente.");
+      } else {
+        redirecionar();
+      }
+    }
+
+    function redirecionar() {
+      window.location.href = "./login.html";
+    }
+
 
   function cadastrar() {
     // aguardar();
@@ -193,9 +256,9 @@
       mensagem_erro.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
 
-      
+
       return false;
-    } 
+    }
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
     for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
@@ -206,7 +269,7 @@
       } else {
         cardErro.style.display = "block";
         mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        
+
       }
     }
 
@@ -242,14 +305,14 @@
           }, "2000");
 
           limparFormulario();
-          
+
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        
+
       });
 
     return false;
@@ -274,8 +337,5 @@
         console.log(`#ERRO: ${resposta}`);
       });
   }
-
-
-
 
 </script>
