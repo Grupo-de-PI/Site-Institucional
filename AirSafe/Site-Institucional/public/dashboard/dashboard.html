@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="../../styles/dashboard.css">
     <script src="../js/sessao.js"></script>
-    <script src="../js/alerta.js"></script>
+   
 </head>
 
 <body>
@@ -53,8 +53,9 @@
             <!-- <div class="kpi"><div><strong>7</strong><br>Dias para manutenção</div><i class="fas fa-microchip"></i></div> -->
         </div>
         <div class="chart-container">
-            <div id="alerta" >
+            <div id="alerta" class="alerta-sem_nada">
                 <h2><span class="icon-alerta">⚠️</span><span id="nivelAtencao">Atenção</span></h2>
+                <h2>Local: <span id="sensorVer"></span></h2>
                 <p>Nível de Amonia detectado: <span id="nivelConcentracao">0</span> ppm</p>
             </div>
             <div class="charts">
@@ -75,7 +76,6 @@
         obterDados();
         buscarEmpresa();
         monitoramentoIndividual();
-        dadosRandows()
     }
 
     let chartLinha = '';
@@ -87,20 +87,17 @@
 
     function monitoramentoIndividual() {
                 obterdados(id_empresa)
+                dadosRandows()
     }
 
     function dadosRandows(){
-        var sensor1 = parseInt(Math.random()*20)
-        var sensor2 = parseInt(Math.random()*20)
-        var sensor3 = parseInt(Math.random()*20)
-        var sensor4 = parseInt(Math.random()*20)
-        var sensor5 = parseInt(Math.random()*20)
+        var sensor1 = parseInt(Math.random()*5)
+        var sensor2 = parseInt(Math.random()*4)
+        var sensor3 = parseInt(Math.random()*6)
+        var sensor4 = parseInt(Math.random()*7)
+        var sensor5 = parseInt(Math.random()*25)
+ 
 
-        // console.log('sensor1= ', sensor1)
-        // console.log('sensor2= ', sensor2)
-        // console.log('sensor3= ', sensor3)
-        // console.log('sensor4= ', sensor4)
-        // console.log('sensor5= ', sensor5)
 
 
         fetch(`/usuarios/dadosMocados`, {
@@ -382,6 +379,7 @@
 
     function buscarEmpresa() {
 
+        obterdados(id_empresa); 
         // Graficos de linha ------------------------------------------------------------------------------------------------------
         fetch(`/buscar/qtd/${id_empresa}`).then(function (response) {
             // console.log("Resposta do buscar: " + response);
@@ -526,3 +524,4 @@
 
     }
 </script>
+ <script src="../js/alerta.js"></script>
